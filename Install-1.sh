@@ -5,8 +5,8 @@ sed -i '/^#Port 22/s/#Port 22/Port 3984/' /etc/ssh/sshd_config && sed -i '/^Perm
 adduser admin
 usermod -aG sudo admin
 sudo service sshd restart
-touch ~/.sudo_as_admin_successful
 su admin
+touch ~/.sudo_as_admin_successful
 cd
 sudo apt-get install ufw -y
 sudo ufw allow ssh/tcp
