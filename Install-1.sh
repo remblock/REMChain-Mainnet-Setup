@@ -5,7 +5,6 @@ passwd root
 sed -i '/^#Port 22/s/#Port 22/Port 3984/' /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 adduser admin
 usermod -aG sudo admin
-sudo service sshd restart
 su - admin
 sudo apt-get install ufw -y
 sudo ufw allow ssh/tcp
@@ -17,6 +16,7 @@ sudo ufw enable
 sudo apt -y install fail2ban
 sudo systemctl enable fail2ban
 sudo systemctl start fail2ban
+sudo service sshd restart
 wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotocol_0.1.0-ubuntu-18.04_amd64.deb && sudo apt install ./remprotocol_0.1.0-ubuntu-18.04_amd64.deb
 wget https://testchain.remme.io/genesis.json
 mkdir data && mkdir config
