@@ -3,7 +3,7 @@
 
 **Step 1:**
 
-`sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh`
+```sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh```
 
 * **Update and upgrade system**
 * **Set new root password**
@@ -13,7 +13,7 @@
 
 **Step 2:**
 
-`sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-3.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-2.sh`
+```sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-3.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-2.sh```
 
 * **Download and install remnode binaries**
 * **Download and install the genesis file**
@@ -22,7 +22,7 @@
 
 **Step 3:**
 
-`sudo ./Install-3.sh`
+```sudo ./Install-3.sh```
 
 * **Run remnode in the background**
 * **Create a new remnode wallet account**
