@@ -10,7 +10,7 @@ remcli wallet import
 remcli create key --file requestkey
 cat ./requestkey
 remcli wallet import
-echo "What's your account name?"
+echo "What's your producer account name?"
 read -e produceraccountname
 echo "What's your producer private key?"
 read -e producerprivatekey
