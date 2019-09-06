@@ -12,9 +12,9 @@ echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
 remcli create key --to-console
 echo "Copy and paste your active private key:"
 remcli wallet import
+echo " "
+echo " "
 remcli create key --file producerkeys
-echo " "
-echo " "
 echo "THIS IS YOUR PRODUCER KEYS:"
 cat ./producerkeys
 echo "Copy and paste your producer private key:"
