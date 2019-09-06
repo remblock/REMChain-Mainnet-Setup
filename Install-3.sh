@@ -7,7 +7,7 @@ remcli wallet create --file walletpass
 echo "Copy and paste your telegram private key (owner key):"
 remcli wallet import
 echo "Take note of your active keys:"
-remcli create key --to-console activekeys
+remcli create key --to-console
 echo "Copy and paste your active private key:"
 remcli wallet import
 remcli create key --file producerkeys
