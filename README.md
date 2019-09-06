@@ -31,5 +31,5 @@
 * **Provide your active, request and producer public keys**
 * **Provide your account name, producer private key and domain**
 * **Setup key management for better security, request and producer keys**
-* **Request key will be used for claiming, voting, transfer and restaking**
+* **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
