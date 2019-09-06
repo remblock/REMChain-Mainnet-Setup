@@ -8,3 +8,4 @@ remcli create key --to-console --file requestkey
 remcli create key --to-console --file producerkey
 remcli wallet import
 remcli wallet import
+rm -f ./Install-2.sh Install-3.sh
