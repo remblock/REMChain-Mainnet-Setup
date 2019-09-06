@@ -14,7 +14,7 @@ sudo apt -y install fail2ban
 sudo systemctl enable fail2ban
 sudo systemctl start fail2ban
 sudo service sshd restart
-rm -f ./Install-1.sh 
 adduser admin
 usermod -aG sudo admin
+rm -f ./Install-1.sh 
 su - admin
