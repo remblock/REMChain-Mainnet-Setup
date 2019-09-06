@@ -2,7 +2,7 @@
 
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 remvault &
-sleep 10
+sleep 4
 remcli wallet create --file walletpass
 remcli create key --file producerkey
 cat ./producerkey
