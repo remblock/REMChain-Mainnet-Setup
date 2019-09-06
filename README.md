@@ -1,5 +1,5 @@
-# Installation-Scripts
-**Installation Scripts**
+# Guide to creating a producer node on the REMChain testnet
+**Installation Steps**
 
 `sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh`
 
