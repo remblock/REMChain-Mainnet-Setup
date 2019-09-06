@@ -11,12 +11,16 @@
 * **Change port number**
 * **New user account**
 
+**Step 2:**
+
 `sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-3.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-2.sh`
 
 * **Download and install remnode binaries**
 * **Download and install the genesis file**
 * **Create and adjust the config.ini file**
 * **First run of the remnode**
+
+**Step 3:**
 
 `sudo ./Install-3.sh`
 
