@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-2.sh
-sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-3.sh
-chmod u+x Install-2.sh && chmod u+x Install-3.sh
 sudo apt update && sudo apt upgrade
 passwd root
 sed -i '/^#Port 22/s/#Port 22/Port 3984/' /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
