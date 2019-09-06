@@ -22,6 +22,10 @@ __Step 2:__
 * **Create and adjust the config.ini file**
 * **First run of the remnode**
 
+**<< Wait for your remnode to sync >>>**
+
+> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It usually can take up to an hour for your remnode to be in sync with the network. When its in sync your can exit back to the command line by pressing control + c.
+
 __Step 3:__
 
 ```sudo ./Install-3.sh```
