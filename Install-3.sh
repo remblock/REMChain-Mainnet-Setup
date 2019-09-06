@@ -6,9 +6,11 @@ sleep 4
 remcli wallet create --file walletpass
 remcli create key --file producerkey
 cat ./producerkey
+echo "Copy and paste your producer private key:"
 remcli wallet import
 remcli create key --file requestkey
 cat ./requestkey
+echo "Copy and paste your request private key:"
 remcli wallet import
 echo "What's your producer account name?"
 read -e produceraccountname
