@@ -6,28 +6,42 @@ sleep 4
 remcli wallet create --file walletpass
 echo "Copy and paste your telegram private key (owner key):"
 remcli wallet import
-echo "Take note of your active keys:"
+echo " "
+echo " "
+echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
 remcli create key --to-console
 echo "Copy and paste your active private key:"
 remcli wallet import
 remcli create key --file producerkeys
+echo " "
+echo " "
+echo "THIS IS YOUR PRODUCER KEYS:"
 cat ./producerkeys
 echo "Copy and paste your producer private key:"
 remcli wallet import
+echo " "
+echo " "
 remcli create key --file requestkeys
+echo "THIS IS YOUR REQUEST KEYS:"
 cat ./requestkeys
 echo "Copy and paste your request private key:"
 remcli wallet import
+echo " "
 echo "What's your producer account name?"
 read -e produceraccountname
+echo " "
 echo "What's your active public key?"
 read -e activepublickey
+echo " "
 echo "What's your request public key?"
 read -e requestpublickey
+echo " "
 echo "What's your producer public key?"
 read -e producerpublickey
+echo " "
 echo "What's your producer private key?"
 read -e producerprivatekey
+echo " "
 echo "What's your producer domain address?"
 read -e domain
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
