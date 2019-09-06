@@ -22,9 +22,9 @@ __Step 2:__
 * **Create and adjust the config.ini file**
 * **First run of the remnode**
 
-**<< Wait for your remnode to sync >>>**
+**<< Wait for node to be in sync with the chain >>>**
 
-> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It usually can take up to an hour for your remnode to be in sync with the network. When its in sync your can exit back to the command line by pressing control + c.
+> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It usually can take up to an hour for your node to be in sync with the chain. Once its synchronize you can exit back to the command line by pressing control + c.
 
 __Step 3:__
 
