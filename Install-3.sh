@@ -4,7 +4,9 @@ remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 remvault &
 sleep 4
 remcli wallet create --file walletpass
-echo "Copy and paste your telegram private key (owner key):"
+echo " "
+echo " "
+echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
 remcli wallet import
 echo " "
 echo " "
@@ -40,7 +42,7 @@ echo "What's your request public key?"
 read -e requestpublickey
 echo " "
 echo "What's your producer account name?"
-read -p produceraccountname
+read -e produceraccountname
 echo " "
 echo "What's your producer domain address?"
 read -e domain
