@@ -40,7 +40,7 @@ echo "What's your request public key?"
 read -e requestpublickey
 echo " "
 echo "What's your producer account name?"
-read -e produceraccountname
+read -p produceraccountname
 echo " "
 echo "What's your producer domain address?"
 read -e domain
