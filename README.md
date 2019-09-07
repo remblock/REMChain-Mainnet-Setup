@@ -1,5 +1,5 @@
 #
-# **Installation Steps - Ubuntu 18.04**
+# **Ubuntu 18.04 - Installation Steps**
 
 __Step 1:__
 
