@@ -12,7 +12,7 @@ The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with gett
 
 __Step 2:__
 
-```sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh```
+```sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh```
 
 * **Update and upgrade**
 * **Change root password**
