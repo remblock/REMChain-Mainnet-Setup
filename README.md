@@ -101,7 +101,7 @@ __Step 2:__
 
 `sudo service sshd restart`
 
-> Copy and paste the above codes into your remnode terminal.
+> Copy and paste the above two codes into your remnode terminal.
 
 #
 # Important REMCLI Command Lines
