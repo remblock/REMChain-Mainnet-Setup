@@ -34,7 +34,7 @@ __Step 3:__
 * **Install canonical livepatch service**
 * **First run of the remnode**
 
-> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the first and second steps again.
+> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the second and third steps again.
 
 #
 
@@ -91,7 +91,7 @@ __Step 2:__
 
 > Having a passphrase provides an extra level of protection if you happen to lose your device, however if you don't wish to set a passphrase just hit enter.
 
-`ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p 3984`
+`ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p YOURPORTNUMBER`
 
 > Your SSH keys will now be copied over to your remnode.
 
