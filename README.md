@@ -43,7 +43,7 @@ __Step 4:__
 ```sudo ./Install-3.sh```
 
 * **Run remnode in the background**
-* **Create a new remnode wallet account**
+* **Create a new remnode wallet file**
 * **Create 3 new keys, active, request and producer keys**
 * **Import your owner, active, request and producer keys**
 * **Input your new active, request and producer public keys**
