@@ -139,3 +139,58 @@ __Step 2:__
 `remcli transfer YOUR_ACCOUNT_NAME RECEIVERS_ACCOUNT_NAME "AMOUNT REM" -p YOUR_ACCOUNT_NAME@transfer`
 
 > This command line is used for making transfers, make sure that your wallet is unlocked before transferring your rewards.
+
+#
+# Additional REMCLI command lines
+
+`remcli get info`
+<br>
+
+> This command line is used for getting current information of the blockchain.
+
+`remcli version client`
+<br>
+
+> This command line is used for obtaining the current client version.
+
+`tail -n 1 remnode.log`
+
+> This command line will output the last produced block.
+
+`remcli wallet lock`
+
+> This command line is used for locking the default wallet.
+
+`remcli wallet lock_all`
+
+> This command line is used for locking all wallets.
+
+`remcli wallet lock -n YOUR_WALLET_NAME`
+
+> This command line is used for locking a specific wallet.
+
+`remcli wallet list`
+
+> This command line is used for listsing opened wallets, * = unlocked.
+
+`remcli wallet keys`
+
+> This command line is used for listing your public keys from all your unlocked wallets.
+
+`echo $(cat walletpass)`
+
+`remcli wallet remove_key YOURKEY`
+
+> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, remnode will ask you for your default wallet password.
+
+`remcli get account BP_ACCOUNT_NAME`
+
+> This command line is used for retrieving information on an account.
+
+`remcli system listproducers`
+
+> This command line is used to return a list of producers.
+
+`remcli system unregprod YOUR_ACCOUNT_NAME`
+
+> This command line is used to unregister as a block producer.
