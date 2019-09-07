@@ -5,7 +5,7 @@ echo " "
 echo "SET YOUR NEW ROOT PASSWORD:"
 passwd root
 echo " "
-echo "SET YOUR 5 DIGIT PORT NUMBER (USE 39844 IF YOUR UNSURE):"
+echo "SET YOUR 5 DIGIT PORT NUMBER (USE 39844 IF UNSURE):"
 read -e portnumber
 sed -i '/^#Port 22/s/#Port 22/Port $portnumber/' /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sudo apt-get install ufw -y
