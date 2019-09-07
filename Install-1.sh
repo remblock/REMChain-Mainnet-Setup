@@ -19,7 +19,9 @@ sudo service sshd restart
 echo " "
 echo " "
 echo "CREATING YOUR NEW USER ACCOUNT:"
-adduser admin
-usermod -aG sudo admin
+echo "YOUR USERNAME:"
+read -e username
+adduser $username
+usermod -aG sudo $username
 rm -f ./Install-1.sh 
-su - admin
+su - $username
