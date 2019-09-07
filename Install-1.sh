@@ -5,7 +5,7 @@ echo " "
 echo "SET YOUR NEW ROOT PASSWORD:"
 passwd root
 echo " "
-echo "SET YOUR NEW PORT NUMBER(USE 39844 IF UNSURE):"
+echo "SET YOUR NEW PORT NUMBER (USE 39844 IF UNSURE):"
 read -e portnumber
 sed -i '/^#Port 22/s/#Port 22/Port $portnumber/' /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sudo apt-get install ufw -y
@@ -21,7 +21,7 @@ sudo systemctl start fail2ban
 sudo service sshd restart
 echo " "
 echo " "
-echo "CREATING YOUR NEW USER ACCOUNT:"
+echo "CREATING YOUR NEW USER ACCOUNT"
 echo "SET YOUR USERNAME:"
 read -e username
 adduser $username
