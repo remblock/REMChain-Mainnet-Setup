@@ -63,3 +63,23 @@ This service will apply critical kernel security fixes to your ubuntu server aut
 `canonical-livepatch status —verbose`
 
 > This will allow you to check your live patch status, fixes, uptime, boot time and last check time. 
+
+__Step 2:__
+
+**Creating and installing SSH keys**
+
+`ssh-keygen -t rsa -b 4096`
+
+> Generate your new SSH keys in your OS terminal (Ubuntu App or MacOS).
+
+**Enter file in which to save the key** `enter`
+
+> Hit enter to have the SSH keys saved at the default location.
+
+**Enter passphrase (empty for no passphrase):** `SETYOURPASSPHRASE`
+
+> Having a passphrase provides an extra level of protection if you happen to lose your device, however if you don't wish to set a passphrase just hit enter.
+
+`ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p 3984`
+
+> Your SSH keys will now be copied over to your remnode.
