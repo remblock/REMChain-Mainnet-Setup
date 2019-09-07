@@ -50,7 +50,7 @@ This service will apply critical kernel security fixes to your ubuntu server aut
 
 `https://auth.livepatch.canonical.com/`
 
-> Visit the site, register an account and generate your credentials. Via the canonical livepatch portal.
+> Visit the site, register for an account and generate your live patch key. Via the canonical livepatch portal.
 
 `sudo canonical-livepatch enable YOURLIVEPATCHKEY`
 
