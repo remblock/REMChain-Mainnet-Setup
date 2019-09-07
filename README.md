@@ -141,7 +141,7 @@ __Step 2:__
 > This command line is used for making transfers, make sure that your wallet is unlocked before transferring your rewards.
 
 #
-# Additional REMCLI command lines
+# Additional REMCLI Command Lines
 
 `remcli get info`
 <br>
