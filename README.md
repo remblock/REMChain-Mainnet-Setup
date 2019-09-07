@@ -144,12 +144,10 @@ __Step 2:__
 # Additional REMCLI Command Lines
 
 `remcli get info`
-<br>
 
 > This command line is used for getting current information of the blockchain.
 
 `remcli version client`
-<br>
 
 > This command line is used for obtaining the current client version.
 
@@ -179,7 +177,7 @@ __Step 2:__
 
 `echo $(cat walletpass)`
 
-`remcli wallet remove_key YOURKEY`
+`remcli wallet remove_key YOUR_KEY`
 
 > This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, remnode will ask you for your default wallet password.
 
