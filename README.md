@@ -57,7 +57,7 @@ __Step 4:__
 # Optional Steps
 <br>
 
-__Step 1:__
+__Step 5:__
 
 **Setup canonical livepatch service**
 
@@ -77,7 +77,7 @@ This service will apply critical kernel security fixes to your ubuntu server aut
 
 #
 
-__Step 2:__
+__Step 6:__
 
 **Creating and installing SSH keys**
 
