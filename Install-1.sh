@@ -23,7 +23,7 @@ echo " "
 echo " "
 echo "CREATING YOUR NEW USER ACCOUNT"
 echo "SET YOUR USERNAME:"
-read -e username
+read username
 adduser $username
 usermod -aG sudo $username
 rm -f ./Install-1.sh 
