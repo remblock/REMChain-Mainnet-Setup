@@ -3,7 +3,6 @@
 
 __Step 1:__
 
-Getting started with testnet token faucet bot<br>
 The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with getting set up and creating an account with some tokens in it. With the help of this bot you will get the following data about your testnet account:
 
 * Account name
