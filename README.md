@@ -1,5 +1,6 @@
 # Guide to creating a producer node on the REMChain testnet
-**Installation Steps**
+
+# **Installation Steps**
 
 __Step 1:__
 
@@ -38,3 +39,23 @@ __Step 3:__
 * **Setup key permissions for better security, request and producer keys**
 * **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
+
+# Additional Steps
+
+__Step 1:__
+
+**Setup canonical livepatch service**
+
+This will enable you to apply critical kernel security fixes to your ubuntu server automatically without the need of rebooting the server. Therefore this livepatch will reduce downtime while maintaining compliance and security.
+
+`https://auth.livepatch.canonical.com/`
+
+> Visit the site, register an account and generate your credentials. Via the canonical livepatch portal.
+
+`sudo canonical-livepatch enable YOURLIVEPATCHKEY`
+
+> Enable the canonical livepatch on your ubuntu server.
+
+`canonical-livepatch status —verbose`
+
+> This will allow you to check your live patch status, fixes, uptime, boot time and last check time. 
