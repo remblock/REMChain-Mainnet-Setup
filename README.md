@@ -104,6 +104,10 @@ __Step 2:__
 #
 # Important REMCLI Command Lines
 
+`remcli wallet unlock < walletpass`
+
+> This command line will unlock your wallet.
+
 `remcli system claimrewards YOUR_ACCOUNT_NAME -p YOUR_ACCOUNT_NAME@claim`
 
 > This command line is used for claiming your rewards, make sure that your wallet is unlocked before claiming your rewards.
