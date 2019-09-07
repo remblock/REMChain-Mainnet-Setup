@@ -85,3 +85,9 @@ __Step 2:__
 `ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p 3984`
 
 > Your SSH keys will now be copied over to your remnode.
+
+`sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config`
+
+`sudo service sshd restart`
+
+> Copy and paste the above codes into your remnode terminal.
