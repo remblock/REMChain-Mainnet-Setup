@@ -16,9 +16,9 @@ __Step 2:__
 
 * **Update and upgrade**
 * **Change root password**
-* **Change SSH port number**
 * **Setup new user account**
 * **Disable SSH root access**
+* **Change SSH port number**
 * **Protect SSH with Fail2Ban**
 * **Setup a firewall with UFW**
 
