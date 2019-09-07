@@ -17,14 +17,14 @@ remcli wallet import
 echo " "
 remcli create key --file producerkeys
 echo " "
-echo "THIS IS YOUR PRODUCER KEYS:"
+echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
 cat ./producerkeys
 echo "Copy and paste your producer private key:"
 remcli wallet import
 echo " "
 remcli create key --file requestkeys
 echo " "
-echo "THIS IS YOUR REQUEST KEYS:"
+echo "TAKE NOTE OF YOUR REQUEST KEYS:"
 cat ./requestkeys
 echo "Copy and paste your request private key:"
 remcli wallet import
