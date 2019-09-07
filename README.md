@@ -1,5 +1,4 @@
-# Guide to creating a producer node on the REMChain testnet
-
+#
 # **Installation Steps**
 
 __Step 1:__
@@ -14,6 +13,8 @@ __Step 1:__
 * **Protect SSH with Fail2Ban**
 * **Setup a firewall with UFW**
 
+#
+
 __Step 2:__
 
 ```sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-3.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-2.sh```
@@ -25,6 +26,8 @@ __Step 2:__
 * **First run of the remnode**
 
 > Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the first and second steps again.
+
+#
 
 __Step 3:__
 
@@ -40,6 +43,7 @@ __Step 3:__
 * **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
 
+#
 # Additional Steps
 
 __Step 1:__
