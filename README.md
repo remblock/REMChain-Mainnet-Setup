@@ -64,6 +64,8 @@ This service will apply critical kernel security fixes to your ubuntu server aut
 
 > This will allow you to check your live patch status, fixes, uptime, boot time and last check time. 
 
+#
+
 __Step 2:__
 
 **Creating and installing SSH keys**
