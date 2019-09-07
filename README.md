@@ -100,3 +100,38 @@ __Step 2:__
 `sudo service sshd restart`
 
 > Copy and paste the above codes into your remnode terminal.
+
+#
+# Important REMCLI Command Lines
+
+`remcli system claimrewards YOUR_ACCOUNT_NAME -p YOUR_ACCOUNT_NAME@claim`
+
+> This command line is used for claiming your rewards, make sure that your wallet is unlocked before claiming your rewards.
+
+`remcli system voteproducer prods YOUR_ACCOUNT_NAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOUR_ACCOUNT_NAME@vote`
+
+> This command line is used for voting for more block producers.
+
+`remcli system voteproducer approve BP_ACCOUNT_NAME -p YOUR_ACCOUNT_NAME@vote`
+
+> This command line is used for adding a new block producer to your list of voted producers.
+
+`remcli system voteproducer unapprove BP_ACCOUNT_NAME -p YOUR_ACCOUNT_NAME@vote`
+
+> This command line is used for removing a block producer from your list of voted producers.
+
+`remcli system delegatebw YOUR_ACCOUNT_NAME YOUR_ACCOUNT_NAME "AMOUNT REM" -p YOUR_ACCOUNT_NAME@stake`
+
+> This command line is used for staking your block rewards to yourself, make sure that your wallet is unlocked before restaking your rewards.
+
+`remcli system delegatebw YOUR_ACCOUNT_NAME BP_ACCOUNT_NAME "AMOUNT REM" -p YOUR_ACCOUNT_NAME@stake`
+
+> This command line is used for staking your block rewards to another block producer, make sure that your wallet is unlocked before restaking your rewards to another block producer.
+
+`remcli system undelegatebw YOUR_ACCOUNT_NAME BP_ACCOUNT_NAME "AMOUNT REM" -p YOUR_ACCOUNT_NAME@stake`
+
+> This command line is used for taking back your stake from a block producer, make sure that your wallet is unlocked before taking back your stake.
+
+`remcli transfer YOUR_ACCOUNT_NAME RECEIVERS_ACCOUNT_NAME "AMOUNT REM" -p YOUR_ACCOUNT_NAME@transfer`
+
+> This command line is used for making transfers, make sure that your wallet is unlocked before transferring your rewards.
