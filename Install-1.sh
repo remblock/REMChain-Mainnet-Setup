@@ -22,7 +22,7 @@ sudo service sshd restart
 echo " "
 echo " "
 echo "CREATING YOUR NEW USER ACCOUNT:"
-echo "YOUR USERNAME:"
+echo "SET YOUR USERNAME:"
 read -e username
 adduser $username
 usermod -aG sudo $username
