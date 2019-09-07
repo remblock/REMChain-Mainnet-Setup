@@ -54,7 +54,7 @@ __Step 4:__
 * **Producer key will be used for signing blocks as a block producer on the network**
 
 #
-# Additional Steps
+# Optional Steps
 <br>
 
 __Step 1:__
