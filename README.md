@@ -19,8 +19,8 @@ __Step 2:__
 * **Setup new user account**
 * **Disable SSH root access**
 * **Change SSH port number**
-* **Protect SSH with Fail2Ban**
 * **Setup a firewall with UFW**
+* **Protect SSH with Fail2Ban**
 
 #
 
