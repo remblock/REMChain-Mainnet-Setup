@@ -15,10 +15,10 @@ __Step 2:__
 ```sudo wget https://github.com/SooSDExZ/Installation-Scripts/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh```
 
 * **Update and upgrade**
-* **Set new root password**
+* **Change root password**
 * **Change SSH port number**
-* **Disable SSH root access**
 * **Setup new user account**
+* **Disable SSH root access**
 * **Protect SSH with Fail2Ban**
 * **Setup a firewall with UFW**
 
