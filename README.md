@@ -46,7 +46,7 @@ __Step 1:__
 
 **Setup canonical livepatch service**
 
-This will enable you to apply critical kernel security fixes to your ubuntu server automatically without the need of rebooting the server. Therefore this livepatch will reduce downtime while maintaining compliance and security.
+This service will apply critical kernel security fixes to your ubuntu server automatically without the need of you rebooting the server. Therefore this livepatch will reduce your server downtime while it maintains compliance and security.
 
 `https://auth.livepatch.canonical.com/`
 
