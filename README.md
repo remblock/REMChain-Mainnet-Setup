@@ -24,7 +24,9 @@ __Step 2:__
 * **Install canonical livepatch service**
 * **First run of the remnode**
 
-> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take up to an hour for your node to be in sync with the REMME blockchain. Once it has synchronised you can exit back to the command line by pressing control + c.
+> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c.
+
+> Take a snapshot of your remnode if your using a service provider, so that in the future it can be restored from this point without the need of redoing the first and second steps again.
 
 __Step 3:__
 
