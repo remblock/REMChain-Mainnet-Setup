@@ -1,5 +1,6 @@
 #
 # **Ubuntu 18.04 - Installation Steps**
+<br>
 
 __Step 1:__
 
@@ -54,6 +55,7 @@ __Step 4:__
 
 #
 # Additional Steps
+<br>
 
 __Step 1:__
 
@@ -103,6 +105,7 @@ __Step 2:__
 
 #
 # Important REMCLI Command Lines
+<br>
 
 `remcli wallet unlock < walletpass`
 
@@ -142,6 +145,7 @@ __Step 2:__
 
 #
 # Additional REMCLI Command Lines
+<br>
 
 `remcli get info`
 
