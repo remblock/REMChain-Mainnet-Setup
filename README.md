@@ -83,7 +83,7 @@ __Step 2:__
 
 `ssh-keygen -t rsa -b 4096`
 
-> Generate your new SSH keys in your OS terminal (Ubuntu App or MacOS).
+> Generate your new SSH keys on your OS terminal (MacOS or Ubuntu App).
 
 **Enter file in which to save the key** `enter`
 
