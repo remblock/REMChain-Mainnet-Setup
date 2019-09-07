@@ -17,7 +17,8 @@ sudo systemctl enable fail2ban
 sudo systemctl start fail2ban
 sudo service sshd restart
 echo " "
-echo "SETUP YOUR NEW USER ACCOUNT:"
+echo " "
+echo "CREATING YOUR NEW USER ACCOUNT:"
 adduser admin
 usermod -aG sudo admin
 rm -f ./Install-1.sh 
