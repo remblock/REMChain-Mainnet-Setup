@@ -25,7 +25,6 @@ echo "CREATING YOUR NEW USER ACCOUNT"
 echo "SET YOUR USERNAME:"
 read username
 adduser $username
-sudo usermod -a -G sudo $username
+usermod -aG sudo -S $username
 rm -f ./Install-1.sh
-su $username 
-sh -c "wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && chmod +x Install-2.sh && chmod +x Install-3.sh && ./Install-2.sh"
+su "$username" sh -c "sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo -S chmod u+x Install-2.sh && sudo -S chmod u+x Install-3.sh && sudo -S ./Install-2.sh"
