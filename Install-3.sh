@@ -13,7 +13,7 @@ remcli create key --file key1
 cp key1 activekeys
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
-cat ./key1
+cat ./activekeys
 echo "Copy and paste your active private key:"
 remcli wallet import
 echo " "
@@ -21,7 +21,7 @@ remcli create key --file key2
 cp key2 requestkeys
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
-cat ./key2
+cat ./requestkeys
 echo "Copy and paste your request private key:"
 remcli wallet import
 echo " "
@@ -29,7 +29,7 @@ remcli create key --file key3
 cp key3 producerkeys
 echo " "
 echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
-cat ./key3
+cat ./producerkeys
 echo "Copy and paste your producer private key:"
 remcli wallet import
 echo " "
