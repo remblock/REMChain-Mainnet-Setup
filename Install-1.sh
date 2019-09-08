@@ -27,4 +27,5 @@ read username
 adduser $username
 sudo usermod -a -G sudo $username
 rm -f ./Install-1.sh
-su "$username" sh -c "wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && chmod +x Install-2.sh && chmod +x Install-3.sh && ./Install-2.sh"
+su $username 
+sh -c "wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && chmod +x Install-2.sh && chmod +x Install-3.sh && ./Install-2.sh"
