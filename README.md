@@ -41,7 +41,8 @@ __Step 3:__
 * **Input your account name and domain address**
 * **Create 3 new keys, active, request and producer keys**
 * **Import your owner, active, request and producer keys**
-* **Setup key permissions for each of the keys better security**
+* **Setup key permissions for two of your keys for better security**
+* **Change your active keys so that it not directly linked to the owner keys
 * **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
 
