@@ -27,4 +27,4 @@ read username
 adduser $username
 sudo adduser $username sudo
 rm -f ./Install-1.sh 
-su - “$username” -c
+su - “$username” -c “commands in one line ; separated by semicolon”
