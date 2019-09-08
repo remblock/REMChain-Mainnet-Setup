@@ -42,7 +42,7 @@ __Step 3:__
 * **Create 3 new keys, active, request and producer keys**
 * **Import your owner, active, request and producer keys**
 * **Setup key permissions for two of your keys for better security**
-* **Change your active key so that it not directly linked to the owner keys**
+* **Change your active key so that its not linked directly to your owner key**
 * **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
 
