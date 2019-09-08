@@ -7,7 +7,8 @@ remcli wallet create --file walletpass
 echo " "
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
-remcli wallet import
+read -e ownerprivatekey
+remcli wallet import --private-key=$ownerprivatekey
 echo " "
 remcli create key --file key1
 cp key1 activekeys
