@@ -22,24 +22,17 @@ __Step 2:__
 * **Change SSH port number**
 * **Setup a firewall with UFW**
 * **Protect SSH with Fail2Ban**
-
-#
-
-__Step 3:__
-
-```sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-2.sh```
-
 * **Download and install remnode binaries**
 * **Download and install the genesis file**
 * **Create and adjust the config.ini file**
 * **Install canonical livepatch service**
 * **First run of the remnode**
 
-> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the second and third steps again.
+> Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the second step again.
 
 #
 
-__Step 4:__
+__Step 3:__
 
 ```sudo ./Install-3.sh```
 
@@ -57,7 +50,7 @@ __Step 4:__
 # Optional Steps
 <br>
 
-__Step 5:__
+__Step 4:__
 
 **Setup canonical livepatch service**
 
@@ -77,7 +70,7 @@ This service will apply critical kernel security fixes to your ubuntu server aut
 
 #
 
-__Step 6:__
+__Step 5:__
 
 **Creating and installing SSH keys**
 
