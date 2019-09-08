@@ -6,6 +6,10 @@ sleep 4
 remcli wallet create --file walletpass
 echo " "
 echo " "
+echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY (OWNER KEY):"
+read -e ownerpublickey
+echo " "
+echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
 read -e ownerprivatekey
 remcli wallet import --private-key=$ownerprivatekey
