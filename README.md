@@ -22,10 +22,10 @@ __Step 2:__
 * **Change SSH port number**
 * **Setup a firewall with UFW**
 * **Protect SSH with Fail2Ban**
-* **Download and install remnode binaries**
-* **Download and install the genesis file**
-* **Create and adjust the config.ini file**
 * **Install canonical livepatch service**
+* **Create and adjust the config.ini file**
+* **Download and install the genesis file**
+* **Download and install remme binaries**
 * **Initialised the first run of the remnode**
 
 > Wait for the two dates shown on each block to be in sync with one another before proceeding onto the next step. It can usually take a few hours for your node to be in sync with the REMME blockchain. Once it has synchronised you can then exit back to the command line by pressing control + c. Now if your using a VPS take a snapshot of your remnode, so that in the future it can be restored from this point without the need of redoing the second step again.
