@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+su $username
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 remvault &
 sleep 4
