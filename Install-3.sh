@@ -57,5 +57,5 @@ remcli set action permission $produceraccountname rem delegatebw stake -p $produ
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
 remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
-rm keys1 key2 key3 activekeys
+rm key1 key2 key3 activekeys
 rm -f ./Install-2.sh Install-3.sh
