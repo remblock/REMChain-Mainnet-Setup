@@ -38,11 +38,10 @@ __Step 3:__
 
 * **Run remnode in the background**
 * **Create a new remnode wallet file**
+* **Input your account name and domain**
 * **Create 3 new keys, active, request and producer keys**
 * **Import your owner, active, request and producer keys**
-* **Input your new active, request and producer public keys**
-* **Input your account name, producer private key and domain**
-* **Setup key permissions for better security, request and producer keys**
+* **Setup key permissions for each of the keys better security**
 * **Request key will be used for claiming, voting, transfering and restaking**
 * **Producer key will be used for signing blocks as a block producer on the network**
 
