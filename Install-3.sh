@@ -9,38 +9,37 @@ echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
 remcli wallet import
 echo " "
+remcli create key --file key1
+cp key1 activekeys
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
-remcli create key --to-console
+cat ./key1
 echo "Copy and paste your active private key:"
 remcli wallet import
 echo " "
-remcli create key --file producerkeys
-echo " "
-echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
-cat ./producerkeys
-echo "Copy and paste your producer private key:"
-remcli wallet import
-echo " "
-remcli create key --file requestkeys
+remcli create key --file key2
+cp key2 requestkeys
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
-cat ./requestkeys
+cat ./key2
 echo "Copy and paste your request private key:"
 remcli wallet import
 echo " "
-echo "What's your active public key?"
-read -e activepublickey
+remcli create key --file key3
+cp key3 producerkeys
 echo " "
-echo "What's your producer private key?"
-read -e producerprivatekey
+echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
+cat ./key3
+echo "Copy and paste your producer private key:"
+remcli wallet import
 echo " "
-echo "What's your producer public key?"
-read -e producerpublickey
-echo " "
-echo "What's your request public key?"
-read -e requestpublickey
-echo " "
+sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
+sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
+sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
+activepublickey=$(head -n 2 key1)
+requestpublickey=$(head -n 2 key2)
+producerprivatekey=$(head -n 1 key3)
+producerpublickey=$(head -n 2 key3)
 echo "What's your producer account name?"
 read -e produceraccountname
 echo " "
@@ -58,4 +57,5 @@ remcli set action permission $produceraccountname rem delegatebw stake -p $produ
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
 remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
+rm keys1 key2 key3 activekeys
 rm -f ./Install-2.sh Install-3.sh
