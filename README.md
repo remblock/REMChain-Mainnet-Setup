@@ -38,7 +38,7 @@ __Step 3:__
 
 * **Run remnode in the background**
 * **Create a new remnode wallet file**
-* **Input your account name and domain**
+* **Input your account name and domain address**
 * **Create 3 new keys, active, request and producer keys**
 * **Import your owner, active, request and producer keys**
 * **Setup key permissions for each of the keys better security**
