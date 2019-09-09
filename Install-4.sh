@@ -27,7 +27,6 @@ echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
 cat ./activekeys
 echo " "
 pause 'Press [Enter] key to continue...'
-remcli wallet import --private-key=$activeprivatekey
 echo " "
 remcli create key --file key2
 cp key2 requestkeys
@@ -53,16 +52,16 @@ read -e domain
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli system regproducer $produceraccountname $producerpublickey $domain
-remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
-remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
-remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
-remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
+remcli set account permission $produceraccountname vote $requestpublickey owner -p $produceraccountname@owner
+remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@owner
+remcli set account permission $produceraccountname claim $requestpublickey owner -p $produceraccountname@owner
+remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@owner
+remcli set account permission $produceraccountname stake $requestpublickey owner -p $produceraccountname@owner
+remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@owner
+remcli set account permission $produceraccountname transfer $requestpublickey owner -p $produceraccountname@owner
+remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@owner
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
 walletpassword=$(cat walletpass)
-remcli wallet remove_key $ownerpublickey --password=$walletpassword && remcli wallet remove_key --password=$walletpassword $activepublickey
+remcli wallet remove_key $ownerpublickey --password=$walletpassword
 rm key1 key2 key3 activekeys produceraccountname.txt
 rm -f ./Install-4.sh
