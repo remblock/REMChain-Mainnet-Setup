@@ -65,18 +65,18 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli system regproducer $produceraccountname $producerpublickey $domain
 remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
+remcli set action permission $produceraccountname voteproducer vote -p $produceraccountname@active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
+remcli set action permission $produceraccountname claimrewards claim -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
+remcli set action permission $produceraccountname delegatebw stake -p $produceraccountname@active
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
+remcli set action permission $produceraccountname transfer transfer -p $produceraccountname@active
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
-walletpassword=$(cat walletpass)
-echo $walletpassword > producerwalletpass.txt
-producerwalletpass=$(cat producerwalletpass.txt)
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-remcli wallet remove_key $activepublickey --password=$producerwalletpass
-rm key1 key2 key3 activekeys produceraccountname.txt producerwalletpass.txt
-rm -f ./Install-2.sh
+#walletpassword=$(cat walletpass)
+#echo $walletpassword > producerwalletpass.txt
+#producerwalletpass=$(cat producerwalletpass.txt)
+#remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
+#remcli wallet remove_key $activepublickey --password=$producerwalletpass
+#rm key1 key2 key3 activekeys produceraccountname.txt producerwalletpass.txt
+#rm -f ./Install-2.sh
