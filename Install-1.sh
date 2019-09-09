@@ -27,6 +27,7 @@ read username
 echo $username > username.txt
 adduser $username
 usermod -aG sudo $username
+sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo -S chmod u+x Install-2.sh
 sudo snap install canonical-livepatch
 wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotocol_0.1.0-ubuntu-18.04_amd64.deb && sudo apt install ./remprotocol_0.1.0-ubuntu-18.04_amd64.deb
 wget https://testchain.remme.io/genesis.json
