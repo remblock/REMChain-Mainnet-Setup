@@ -13,7 +13,9 @@ The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with gett
 
 __Step 2:__
 
-```sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh```
+```
+sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh
+```
 
 * **Update and upgrade**
 * **Change root password**
@@ -36,7 +38,9 @@ __Step 2:__
 
 __Step 3:__
 
-```sudo ./Install-3.sh```
+```
+sudo ./Install-3.sh
+```
 
 * **Run remnode in the background**
 * **Create a new remnode wallet file**
