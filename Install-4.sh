@@ -20,7 +20,7 @@ echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY:"
 read -e ownerprivatekey
 remcli wallet import --private-key=$ownerprivatekey
 echo " "
-echo "COPY AND PASTE YOUR TELEGRAM REMME ACCOUNT NAME:"
+echo "COPY AND PASTE YOUR TESTNET ACCOUNT NAME:"
 read -e produceraccountname
 echo $produceraccountname > produceraccountname.txt
 produceraccountname=$(cat produceraccountname.txt)
