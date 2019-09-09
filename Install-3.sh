@@ -16,6 +16,9 @@ remcli wallet import --private-key=$ownerprivatekey
 echo " "
 remcli create key --file key1
 cp key1 activekeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
+activeprivatekey=$(head -n 1 key1)
+activepublickey=$(head -n 2 key1)
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
 cat ./activekeys
@@ -24,27 +27,24 @@ remcli wallet import
 echo " "
 remcli create key --file key2
 cp key2 requestkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
+requestprivatekey=$(head -n 1 key2)
+requestpublickey=$(head -n 2 key2)
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
 cat ./requestkeys
-echo "Copy and paste your request private key:"
-remcli wallet import
+remcli wallet import --private-key=$requestprivatekey
 echo " "
 remcli create key --file key3
 cp key3 producerkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
+producerprivatekey=$(head -n 1 key3)
+producerpublickey=$(head -n 2 key3)
 echo " "
 echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
 cat ./producerkeys
-echo "Copy and paste your producer private key:"
-remcli wallet import
+remcli wallet import --private-key=$producerprivatekey
 echo " "
-sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
-sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
-sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
-activepublickey=$(head -n 2 key1)
-requestpublickey=$(head -n 2 key2)
-producerprivatekey=$(head -n 1 key3)
-producerpublickey=$(head -n 2 key3)
 echo "What's your producer account name?"
 read -e produceraccountname
 echo " "
@@ -66,4 +66,4 @@ walletpassword=$(cat walletpass)
 remcli wallet remove_key $ownerpublickey --password=$walletpassword
 remcli wallet remove_key $activepublickey --password=$walletpassword
 rm key1 key2 key3 activekeys
-rm -f ./Install-2.sh Install-3.sh
+rm -f ./Install-3.sh
