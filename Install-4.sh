@@ -37,12 +37,22 @@ requestprivatekey=$(head -n 1 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo " "
+echo "TAKE NOTE OF YOUR REQUEST KEYS:"
+cat ./requestkeys
+echo " "
+pause 'Press [Enter] key to continue...'
+echo " "
 remcli create key --file key3
 cp key3 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 producerprivatekey=$(head -n 1 key3 | tail -1)
 producerpublickey=$(head -n 2 key3 | tail -1)
 remcli wallet import --private-key=$producerprivatekey
+echo " "
+echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
+cat ./producerkeys
+echo " "
+pause 'Press [Enter] key to continue...'
 echo " "
 echo "WHATS YOUR PRODUCER ACCOUNT NAME?"
 read -e produceraccountname
