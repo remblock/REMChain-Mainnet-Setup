@@ -66,5 +66,5 @@ remcli system voteproducer prods $produceraccountname $requestpublickey -p $prod
 walletpassword=$(cat walletpass)
 remcli wallet remove_key $ownerpublickey --password=$walletpassword
 remcli wallet remove_key $activepublickey --password=$walletpassword
-rm key1 key2 key3 activekeys produceraccountname
+rm key1 key2 key3 activekeys produceraccountname.txt
 rm -f ./Install-4.sh
