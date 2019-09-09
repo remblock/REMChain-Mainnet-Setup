@@ -30,9 +30,6 @@ cp key2 requestkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 requestprivatekey=$(head -n 1 key2)
 requestpublickey=$(head -n 2 key2)
-echo " "
-echo "TAKE NOTE OF YOUR REQUEST KEYS:"
-cat ./requestkeys
 remcli wallet import --private-key=$requestprivatekey
 echo " "
 remcli create key --file key3
@@ -40,9 +37,6 @@ cp key3 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 producerprivatekey=$(head -n 1 key3)
 producerpublickey=$(head -n 2 key3)
-echo " "
-echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
-cat ./producerkeys
 remcli wallet import --private-key=$producerprivatekey
 echo " "
 echo "What's your producer account name?"
