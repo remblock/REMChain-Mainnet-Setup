@@ -13,7 +13,6 @@ echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY (OWNER KEY):"
 read -e ownerpublickey
 echo " "
-echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
 read -e ownerprivatekey
 remcli wallet import --private-key=$ownerprivatekey
@@ -44,12 +43,12 @@ producerprivatekey=$(head -n 1 key3)
 producerpublickey=$(head -n 2 key3)
 remcli wallet import --private-key=$producerprivatekey
 echo " "
-echo "What's your producer account name?"
+echo "WHATS YOUR PRODUCER ACCOUNT NAME?"
 read -e produceraccountname
 echo $produceraccountname > produceraccountname.txt
 produceraccountname=$(cat produceraccountname.txt)
 echo " "
-echo "What's your producer domain address?"
+echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
