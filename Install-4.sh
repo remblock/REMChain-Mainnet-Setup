@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+function pause(){
+   read -p "$*"
+}
+
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 remvault &
 sleep 4
@@ -22,8 +26,9 @@ activepublickey=$(head -n 2 key1)
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
 cat ./activekeys
-echo "Copy and paste your active private key:"
-remcli wallet import
+echo " "
+pause 'Press [Enter] key to continue...'
+remcli wallet import --private-key=$activeprivatekey
 echo " "
 remcli create key --file key2
 cp key2 requestkeys
