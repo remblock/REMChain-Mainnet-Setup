@@ -10,6 +10,13 @@ remvault &
 sleep 4
 remcli wallet create --file walletpass
 echo " "
+echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
+read -e domain
+echo " "
+echo "COPY AND PASTE YOUR TELEGRAM REMME ACCOUNT NAME:"
+read -e produceraccountname
+echo $produceraccountname > produceraccountname.txt
+produceraccountname=$(cat produceraccountname.txt)
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY (OWNER KEY):"
 read -e ownerpublickey
@@ -54,13 +61,6 @@ cat ./producerkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
-echo "WHATS YOUR PRODUCER ACCOUNT NAME?"
-read -e produceraccountname
-echo $produceraccountname > produceraccountname.txt
-produceraccountname=$(cat produceraccountname.txt)
-echo " "
-echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
-read -e domain
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli system regproducer $produceraccountname $producerpublickey $domain
