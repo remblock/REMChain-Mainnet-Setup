@@ -13,17 +13,17 @@ echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
 echo " "
+echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY:"
+read -e ownerpublickey
+echo " "
+echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY:"
+read -e ownerprivatekey
+remcli wallet import --private-key=$ownerprivatekey
+echo " "
 echo "COPY AND PASTE YOUR TELEGRAM REMME ACCOUNT NAME:"
 read -e produceraccountname
 echo $produceraccountname > produceraccountname.txt
 produceraccountname=$(cat produceraccountname.txt)
-echo " "
-echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY (OWNER KEY):"
-read -e ownerpublickey
-echo " "
-echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY (OWNER KEY):"
-read -e ownerprivatekey
-remcli wallet import --private-key=$ownerprivatekey
 echo " "
 remcli create key --file key1
 cp key1 activekeys
