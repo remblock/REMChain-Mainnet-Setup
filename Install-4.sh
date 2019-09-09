@@ -46,6 +46,8 @@ remcli wallet import --private-key=$producerprivatekey
 echo " "
 echo "What's your producer account name?"
 read -e produceraccountname
+echo $produceraccountname > produceraccountname.txt
+produceraccountname=$(cat produceraccountname.txt)
 echo " "
 echo "What's your producer domain address?"
 read -e domain
@@ -64,5 +66,5 @@ remcli system voteproducer prods $produceraccountname $requestpublickey -p $prod
 walletpassword=$(cat walletpass)
 remcli wallet remove_key $ownerpublickey --password=$walletpassword
 remcli wallet remove_key $activepublickey --password=$walletpassword
-rm key1 key2 key3 activekeys
+rm key1 key2 key3 activekeys produceraccountname
 rm -f ./Install-4.sh
