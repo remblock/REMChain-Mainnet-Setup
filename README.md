@@ -39,7 +39,7 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 __Step 3:__
 
 ```
-sudo ./Install-3.sh
+sudo ./Install-2.sh
 ```
 
 * **Run remnode in the background**
