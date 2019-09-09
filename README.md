@@ -182,7 +182,7 @@ remcli transfer YOURACCOUNTNAME RECEIVERSACCOUNTNAME "AMOUNT REM" -p YOURACCOUNT
 remcli get info
 ```
 
-> This command line is used for getting current information of the blockchain.
+> This command line is used for getting current state of the blockchain.
 
 ```
 remcli version client
