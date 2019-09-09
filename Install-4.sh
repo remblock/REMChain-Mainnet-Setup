@@ -62,6 +62,8 @@ remcli set account permission $produceraccountname transfer $requestpublickey ow
 remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@owner
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
 walletpassword=$(cat walletpass)
-remcli wallet remove_key $ownerpublickey --password=$walletpassword
+echo $walletpassword > producerwalletpass.txt
+producerwalletpass=$(cat producerwalletpass.txt)
+remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 rm key1 key2 key3 activekeys produceraccountname.txt
 rm -f ./Install-4.sh
