@@ -42,7 +42,6 @@ remcli create key --file key2
 cp key2 requestkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 requestprivatekey=$(head -n 1 key2 | tail -1)
-requestpublickey=$(head -n 2 key2 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
