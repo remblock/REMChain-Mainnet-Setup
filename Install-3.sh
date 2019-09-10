@@ -7,6 +7,8 @@ function pause(){
 produceraccountname=$(cat produceraccountname.txt)
 activepublickey=$(head -n 2 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
+producerpublickey=$(head -n 2 key3 | tail -1)
+remcli system regproducer $produceraccountname $producerpublickey $domain
 remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
@@ -20,5 +22,5 @@ walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
 producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $activepublickey --password=$producerwalletpass
-rm key1 key2 activekeys produceraccountname.txt producerwalletpass.txt
+rm key1 key2 key3 activekeys produceraccountname.txt producerwalletpass.txt
 rm -f ./Install-3.sh
