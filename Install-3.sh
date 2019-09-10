@@ -5,6 +5,7 @@ function pause(){
 }
 
 domain=$(cat domain.txt)
+ownerpublickey=$(cat ownerpublickey.txt)
 produceraccountname=$(cat produceraccountname.txt)
 activepublickey=$(head -n 2 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
@@ -26,5 +27,5 @@ echo $walletpassword > producerwalletpass.txt
 producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey --password=$producerwalletpass
-rm key1 key2 key3 activekeys domain.txt produceraccountname.txt producerwalletpass.txt
+rm key1 key2 key3 activekeys domain.txt ownerpublickey.txt produceraccountname.txt producerwalletpass.txt
 rm -f ./Install-3.sh
