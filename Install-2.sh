@@ -13,6 +13,7 @@ remcli wallet create --file walletpass
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
+echo $domain > domain.txt
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY:"
 read -e ownerpublickey
