@@ -3,7 +3,7 @@
 function pause(){
    read -p "$*"
 }
-
+domain=$(cat domain.txt)
 produceraccountname=$(cat produceraccountname.txt)
 activepublickey=$(head -n 2 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
