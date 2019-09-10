@@ -73,10 +73,10 @@ remcli set action permission $produceraccountname rem delegatebw stake -p $produ
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
 remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
-walletpassword=$(cat walletpass)
-echo $walletpassword > producerwalletpass.txt
-producerwalletpass=$(cat producerwalletpass.txt)
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-remcli wallet remove_key $activepublickey --password=$producerwalletpass
-rm key1 key2 key3 activekeys produceraccountname.txt producerwalletpass.txt
-rm -f ./Install-2.sh
+#walletpassword=$(cat walletpass)
+#echo $walletpassword > producerwalletpass.txt
+#producerwalletpass=$(cat producerwalletpass.txt)
+#remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
+#remcli wallet remove_key $activepublickey --password=$producerwalletpass
+#rm key1 key2 key3 activekeys produceraccountname.txt producerwalletpass.txt
+#rm -f ./Install-2.sh
