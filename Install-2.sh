@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-set -x
 
 function pause(){
    read -p "$*"
 }
 
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
-sleep 2
+sleep 1
 remvault &
 sleep 4
 remcli wallet create --file walletpass
