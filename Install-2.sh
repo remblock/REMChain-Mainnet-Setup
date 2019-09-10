@@ -1,5 +1,5 @@
-cat Install-2.sh
 #!/usr/bin/env bash
+set -x
 
 function pause(){
    read -p "$*"
