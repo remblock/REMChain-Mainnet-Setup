@@ -5,3 +5,5 @@ sleep 1
 remvault &
 sleep 4
 remcli wallet create --file walletpass
+sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo -S chmod u+x Install-3.sh
+sudo ./Install-3.sh
