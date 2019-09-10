@@ -62,8 +62,8 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
-remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli system regproducer $produceraccountname $producerpublickey $domain
+remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
@@ -72,7 +72,7 @@ remcli set action permission $produceraccountname rem voteproducer vote -p $prod
 remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
 remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
 #remcli set action permission $produceraccountname rem.token transfer transfer -p $produceraccountname@active
-remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
+remcli system voteproducer prods $produceraccountname $produceraccountname -p $produceraccountname@vote
 #walletpassword=$(cat walletpass)
 #echo $walletpassword > producerwalletpass.txt
 #producerwalletpass=$(cat producerwalletpass.txt)
