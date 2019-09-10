@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x Install-2.sh
 
 function pause(){
    read -p "$*"
