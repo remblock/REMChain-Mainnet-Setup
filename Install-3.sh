@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-function pause(){
-   read -p "$*"
-}
-
 domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
 produceraccountname=$(cat produceraccountname.txt)
