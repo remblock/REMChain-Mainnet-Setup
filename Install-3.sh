@@ -14,7 +14,7 @@ remcli set account permission $produceraccountname vote $requestpublickey active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem regproducer producer -p $produceraccountname@active
+#remcli set action permission $produceraccountname rem regproducer producer -p $produceraccountname@active
 remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
 remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
 remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
