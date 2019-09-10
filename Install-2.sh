@@ -17,6 +17,7 @@ echo $domain > domain.txt
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY:"
 read -e ownerpublickey
+echo $ownerpublickey > ownerpublickey.txt
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY:"
 read -e ownerprivatekey
