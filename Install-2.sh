@@ -65,12 +65,12 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 remcli system regproducer $produceraccountname $producerpublickey $domain
 remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
-remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
+remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
+remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
+remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
 remcli set action permission $produceraccountname rem transfer transfer -p $produceraccountname@active
 remcli system voteproducer prods $produceraccountname $requestpublickey -p $produceraccountname@vote
 #walletpassword=$(cat walletpass)
