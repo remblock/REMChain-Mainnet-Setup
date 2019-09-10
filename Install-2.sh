@@ -65,6 +65,4 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
-producerwalletpass=$(cat producerwalletpass.txt)
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 rm -f ./Install-2.sh
