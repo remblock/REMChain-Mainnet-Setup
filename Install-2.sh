@@ -53,7 +53,6 @@ remcli create key --file key3
 cp key3 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 producerprivatekey=$(head -n 1 key3 | tail -1)
-producerpublickey=$(head -n 2 key3 | tail -1)
 remcli wallet import --private-key=$producerprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
@@ -62,11 +61,9 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
-remcli system regproducer $produceraccountname $producerpublickey $domain
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
 producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-rm key3
 rm -f ./Install-2.sh
