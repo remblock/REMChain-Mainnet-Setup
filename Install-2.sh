@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash -x
 
 function pause(){
    read -p "$*"
