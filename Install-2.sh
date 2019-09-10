@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -v
 
 function pause(){
    read -p "$*"
