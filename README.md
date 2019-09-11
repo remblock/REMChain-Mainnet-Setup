@@ -46,9 +46,6 @@ sudo ./Install-3.sh
 ```
 sudo ./Install-4.sh
 ```
-```
-sudo ./Install-5.sh
-```
 
 * **Running remnode in the background**
 * **Creating two additional keys producer and request**
