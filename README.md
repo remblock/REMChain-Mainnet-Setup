@@ -45,14 +45,6 @@ sudo ./Install-2.sh
 sudo ./Install-3.sh
 ```
 ```
-remcli set action permission $produceraccountname rem regproducer produce -p $produceraccountname@active
-remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
-remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
-remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
-remcli set action permission $produceraccountname rem.token transfer transfer -p $produceraccountname@active
-remcli system voteproducer prods $produceraccountname $produceraccountname -p $produceraccountname@vote
-```
-```
 sudo ./Install-4.sh
 ```
 
