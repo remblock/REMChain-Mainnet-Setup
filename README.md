@@ -44,6 +44,9 @@ sudo ./Install-2.sh
 ```
 sudo ./Install-3.sh
 ```
+```
+sudo ./Install-4.sh
+```
 
 * **Run remnode in the background**
 * **Create a new remnode wallet file**
