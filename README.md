@@ -256,4 +256,4 @@ remcli system listproducers
 remcli system unregprod YOURACCOUNTNAME
 ```
 
-> This command line is used to unregister as a block producer.
+> This command line is used to unregister you as a block producer.
