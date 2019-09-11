@@ -26,8 +26,8 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 * **Install canonical livepatch service**
 * **Create and adjust the config.ini file**
 * **Download and install the genesis file**
-* **Initialised the first run of your remnode**
 * **Download and install remnode binaries**
+* **Initialised the first run of your remnode**
 
 ![image](https://i.imgur.com/omiCyUr.png)
 
