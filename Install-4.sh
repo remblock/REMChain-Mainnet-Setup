@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
 produceraccountname=$(cat produceraccountname.txt)
 activepublickey=$(head -n 2 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
 producerpublickey=$(head -n 2 key3 | tail -1)
-remcli system regproducer $produceraccountname $producerpublickey $domain
 remcli set account permission $produceraccountname produce $producerpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
