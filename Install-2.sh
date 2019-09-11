@@ -31,8 +31,8 @@ echo " "
 remcli create key --file key1
 cp key1 activekeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
-activeprivatekey=$(head -n 1 key1 | tail -1)
 activepublickey=$(head -n 2 key1 | tail -1)
+activeprivatekey=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$activeprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
@@ -54,8 +54,8 @@ echo " "
 remcli create key --file key3
 cp key3 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
+producerpublickey=$(head -n 2 key3 | tail -1)
 producerprivatekey=$(head -n 1 key3 | tail -1)
-producerprivatekey=$(head -n 2 key3 | tail -1)
 remcli wallet import --private-key=$producerprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
