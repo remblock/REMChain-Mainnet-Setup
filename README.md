@@ -238,7 +238,7 @@ echo $(cat walletpass)
 remcli wallet remove_key YOURKEY
 ```
 
-> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your default wallet password which can be found here `echo $(cat walletpass)`
+> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your default wallet password which can be found here:<br>`echo $(cat walletpass)`
 
 ```
 remcli get account BPACCOUNTNAME
