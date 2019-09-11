@@ -53,7 +53,7 @@ sudo ./Install-4.sh
 * **Changing your active key so that its not directly linked to your owner key**
 * **Your request key will be used for claiming, voting, transfering and restaking**
 * **Your producer key will be used for signing blocks as a block producer on the network**
-* **If your server gets compromised, the hacker will only be able to transfer your rewards, and wont have access your locked stake**
+* **If your server gets compromised, the hacker will only be able to transfer your rewards. They wont have access your locked stake**
 * **When accessing your server you will need to login using your username and portnumber, once in log into your root directory** `su - root`
 
 #
