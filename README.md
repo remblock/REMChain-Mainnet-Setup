@@ -17,18 +17,17 @@ __Step 2:__
 sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh && sudo ./Install-1.sh
 ```
 
-* **Update and upgrade**
 * **Change root password**
-* **Setup new user account**
-* **Disable SSH root access**
 * **Change SSH port number**
+* **Setup a new user account**
 * **Setup a firewall with UFW**
 * **Protect SSH with Fail2Ban**
+* **Update and upgrade server**
 * **Install canonical livepatch service**
 * **Create and adjust the config.ini file**
 * **Download and install the genesis file**
-* **Download and install remme binaries**
-* **Initialised the first run of the remnode**
+* **Initialised the first run of your remnode**
+* **Download and install remnode binaries**
 
 ![image](https://i.imgur.com/omiCyUr.png)
 
