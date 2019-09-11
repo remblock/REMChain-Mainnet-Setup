@@ -48,6 +48,7 @@ sudo ./Install-4.sh
 ```
 
 * **Running remnode in the background**
+* **Creating two additional keys producer and request**
 * **Setting up multiple key permissions for your account**
 * **Changing your active key so that its not directly linked to your owner key**
 * **Your request key will be used for claiming, voting, transfering and restaking**
