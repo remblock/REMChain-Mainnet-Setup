@@ -231,11 +231,7 @@ remcli wallet keys
 > This command line is used for listing your public keys from all your unlocked wallets.
 
 ```
-echo $(cat walletpass)
-```
-
-```
-remcli wallet remove_key YOURKEY
+remcli wallet remove_key YOURPUBLICKEY
 ```
 
 > This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your default wallet password which can be found here:<br>`echo $(cat walletpass)`
