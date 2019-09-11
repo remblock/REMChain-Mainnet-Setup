@@ -22,7 +22,7 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 * **Setup a new user account**
 * **Setup a firewall with UFW**
 * **Protect SSH with Fail2Ban**
-* **Update and upgrade server**
+* **Update and upgrade the server**
 * **Install canonical livepatch service**
 * **Create and adjust the config.ini file**
 * **Download and install the genesis file**
