@@ -134,13 +134,13 @@ remcli wallet unlock < walletpass
 remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
 ```
 
-> This command line is used for claiming your rewards, make sure that your wallet is unlocked before claiming your rewards.
+> This command line is used for claiming your rewards, make sure that your wallet is unlocked before making a claim.
 
 ```
 remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@vote
 ```
 
-> This command line is used for voting for more block producers.
+> This command line is used for voting for multiple block producers.
 
 ```
 remcli system voteproducer approve BPACCOUNTNAME -p YOURACCOUNTNAME@vote
@@ -176,7 +176,7 @@ remcli system undelegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACC
 remcli transfer YOURACCOUNTNAME RECEIVERSACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@transfer
 ```
 
-> This command line is used for making transfers, make sure that your wallet is unlocked before transferring your rewards.
+> This command line is used for making transfers, make sure that your wallet is unlocked before making any transfers.
 
 #
 # Additional REMCLI Command Lines
