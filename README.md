@@ -54,6 +54,8 @@ sudo ./Install-4.sh
 * **Your request key will be used for claiming, voting, transfering and restaking**
 * **Your producer key will be used for signing blocks as a block producer on the network**
 
+* **When accessing your server you will need it login back into root** `su - root`
+
 #
 # Optional Steps
 <br>
