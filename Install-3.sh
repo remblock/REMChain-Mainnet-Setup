@@ -10,4 +10,7 @@ remcli set account permission $produceraccountname vote $requestpublickey active
 remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
+sudo killall remnode
+sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
+sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 rm -f ./Install-3.sh
