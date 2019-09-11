@@ -24,4 +24,4 @@ producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey --password=$producerwalletpass
 rm key1 key2 key3 activekeys domain.txt ownerpublickey.txt produceraccountname.txt producerwalletpass.txt
-rm -f ./Install-3.sh
+rm -f ./Install-4.sh
