@@ -4,8 +4,6 @@ function pause(){
    read -p "$*"
 }
 
-sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo -S chmod u+x Install-3.sh
-sudo -S wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-4.sh && sudo -S chmod u+x Install-4.sh
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 remvault &
