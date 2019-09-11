@@ -11,7 +11,7 @@ sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config &&
 sudo -S apt-get install ufw -y
 sudo -S ufw allow ssh/tcp
 sudo -S ufw limit ssh/tcp
-sudo -S ufw allow 3984/tcp
+sudo -S ufw allow $portnumber/tcp
 sudo -S ufw allow 8888/tcp
 sudo -S ufw logging on
 sudo -S ufw enable
