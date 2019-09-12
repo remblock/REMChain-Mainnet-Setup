@@ -108,7 +108,7 @@ ssh-keygen -t rsa -b 4096
 ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p YOURPORTNUMBER
 ```
 
-> Your SSH keys will now be copied over to your remnode.
+> Your SSH keys will now be copied over to your server.
 
 ```
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
@@ -118,7 +118,7 @@ sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/s
 sudo service sshd restart
 ```
 
-> Copy and paste the above two lines of code into your remnode terminal.
+> Copy and paste the above two lines of code into your server terminal.
 
 #
 # Important REMCLI Command Lines
