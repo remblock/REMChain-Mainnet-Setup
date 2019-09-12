@@ -134,7 +134,7 @@ remcli wallet unlock < walletpass
 remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
 ```
 
-> This command line is used for claiming rewards, make sure that your wallet is unlocked before making a claim.
+> This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.
 
 ```
 remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@vote
