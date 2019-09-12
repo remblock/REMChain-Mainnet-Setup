@@ -18,8 +18,8 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 ```
 
 * **Root password changed**
-* **New user account created**
 * **Setup a firewall with UFW**
+* **New user account created**
 * **SSH port number changed**
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
