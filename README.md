@@ -24,10 +24,10 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
 * **Installed canonical livepatch service**
+* **Initialised the first run of your remnode**
 * **Created and adjusted the config.ini file**
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
-* **Initialised the first run of your remnode**
 
 ![image](https://i.imgur.com/omiCyUr.png)
 
@@ -48,9 +48,9 @@ sudo ./Install-4.sh
 ```
 
 * **Running remnode in the background**
-* **Creating two additional keys producer and request**
+* **Created two additional keys producer and request**
 * **Setting up multiple key permissions for your account**
-* **Changing your active key so that its not directly linked to your owner key**
+* **Changed your active key so that its not directly linked to your owner key**
 * **Your request key will be used for claiming, voting, transfering and restaking**
 * **Your producer key will be used for signing blocks as a block producer on the network**
 * **If your server is compromised, the hacker only gets access to your rewards and not your locked stake**
