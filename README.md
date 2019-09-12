@@ -24,8 +24,8 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
 * **Installed canonical livepatch service**
-* **Initialised the first run of your remnode**
 * **Created and adjusted the config.ini file**
+* **Initialised the first run of your remnode**
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
 
