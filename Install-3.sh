@@ -11,4 +11,4 @@ remcli set account permission $produceraccountname claim $requestpublickey activ
 remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
 remcli set account permission $produceraccountname transfer $requestpublickey active -p $produceraccountname@active
 rm -f ./Install-3.sh
-sudo ./Install-4
+./Install-4
