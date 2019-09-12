@@ -17,16 +17,16 @@ __Step 2:__
 sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-4.sh && sudo chmod u+x Install-1.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo chmod u+x Install-4.sh && sudo ./Install-1.sh
 ```
 
-* **Change root password**
-* **Change SSH port number**
+* **Root password changed**
+* **SSH port number changed**
 * **Setup a new user account**
 * **Setup a firewall with UFW**
-* **Protect SSH with Fail2Ban**
-* **Update and upgrade the server**
-* **Install canonical livepatch service**
-* **Create and adjust the config.ini file**
-* **Download and install the genesis file**
-* **Download and install remnode binaries**
+* **Protected SSH with Fail2Ban**
+* **Updated and upgraded the server**
+* **Installed canonical livepatch service**
+* **Created and adjusted the config.ini file**
+* **Downloaded and installed the genesis file**
+* **Downloaded and installed remnode binaries**
 * **Initialised the first run of your remnode**
 
 ![image](https://i.imgur.com/omiCyUr.png)
