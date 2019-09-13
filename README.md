@@ -53,7 +53,7 @@ sudo ./Install-4.sh
 * **Your request key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
 * **Your active key has been changed so that its not directly linked with the owner key**
-* **If your server gets compromised, the hacker only has access to your rewards and not your locked stake**
+* **If your server is compromised, the hacker only has access to your rewards and not your locked stake**
 * **When accessing your server you will need to login using your username and port number. Once in you will need to log into your root directory to use the remcli commands** `su - root`
 
 #
