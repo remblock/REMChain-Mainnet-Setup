@@ -6,6 +6,8 @@ activepublickey=$(head -n 2 key1 | tail -1)
 requestpublickey=$(head -n 2 key2 | tail -1)
 produceraccountname=$(cat produceraccountname.txt)
 remcli system regproducer $produceraccountname $requestpublickey $domain
+remcli set action permission $produceraccountname rem regproducer safemode -p $produceraccountname@owner
+remcli set action permission $produceraccountname rem unregprod safemode -p $produceraccountname@owner
 remcli set action permission $produceraccountname rem voteproducer vote -p $produceraccountname@active
 remcli set action permission $produceraccountname rem claimrewards claim -p $produceraccountname@active
 remcli set action permission $produceraccountname rem delegatebw stake -p $produceraccountname@active
