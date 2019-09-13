@@ -42,6 +42,7 @@ echo " "
 remcli create key --file key2
 cp key2 requestkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
+requestpublickey=$(head -n 2 key2 | tail -1)
 requestprivatekey=$(head -n 1 key2 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo " "
@@ -53,15 +54,14 @@ echo " "
 remcli create key --file key3
 cp key3 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
-producerpublickey=$(head -n 2 key3 | tail -1)
-producerprivatekey=$(head -n 1 key3 | tail -1)
-remcli wallet import --private-key=$producerprivatekey
+transferprivatekey=$(head -n 1 key3 | tail -1)
+remcli wallet import --private-key=$transferprivatekey
 echo " "
-echo "TAKE NOTE OF YOUR PRODUCER KEYS:"
-cat ./producerkeys
+echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
+cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
-echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey" > ./config/config.ini
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
 remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
 rm -f ./Install-2.sh
