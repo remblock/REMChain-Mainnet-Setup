@@ -50,7 +50,7 @@ sudo ./Install-4.sh
 * **Running remnode in the background**
 * **Created two additional keys producer and request**
 * **Setting up multiple key permissions for your account**
-* **Created two safemode permission for regprod and unregprod**
+* **Created two safemode permissions for regprod and unregprod**
 * **Your request key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
 * **Your active key has been changed so that its not directly linked with the owner key**
