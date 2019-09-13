@@ -52,7 +52,7 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 remcli create key --file key3
-cp key3 producerkeys
+cp key3 transferkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 transferprivatekey=$(head -n 1 key3 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
