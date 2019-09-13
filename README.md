@@ -50,9 +50,9 @@ sudo ./Install-4.sh
 * **Running remnode in the background**
 * **Created two additional keys producer and request**
 * **Setting up multiple key permissions for your account**
-* **Changed your active key so that its not directly linked to your owner key**
 * **Your request key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
+* **Changed your active key so that its not directly linked to your owner key**
 * **If your server gets compromised, the hacker only has access to your rewards and not your locked stake**
 * **When accessing your server you will need to login using your username and port number. Once in you will need to log into your root directory to use the remcli commands** `su - root`
 
