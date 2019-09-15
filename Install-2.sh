@@ -37,7 +37,7 @@ echo $activeproducername1 > activeproducername1.txt
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 1:”
+echo "TAKE NOTE OF YOUR ACTIVE KEY 1:"
 echo "Account Name:" $activeproducername1
 cat ./activekeys1
 echo " "
@@ -53,12 +53,12 @@ echo $activeproducername2 > activeproducername2.txt
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 2”
+echo "TAKE NOTE OF YOUR ACTIVE KEY 2:"
 echo "Account Name:" $activeproducername2
 cat ./activekeys2
 echo " "
 pause 'Press [Enter] key to continue...'
-echo " “
+echo " "
 remcli create key --file key3
 cp key3 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
@@ -69,7 +69,7 @@ echo $activeproducername3 > activeproducername3.txt
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 3”
+echo "TAKE NOTE OF YOUR ACTIVE KEY 3:"
 echo "Account Name:" $activeproducername3
 cat ./activekeys3
 echo " "
