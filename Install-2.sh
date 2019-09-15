@@ -34,6 +34,7 @@ activepublickey1=$(head -n 2 key1 | tail -1)
 activeprivatekey1=$(head -n 1 key1 | tail -1)
 activeproducername1=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername1 > activeproducername1.txt
+remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 1:”
@@ -49,6 +50,7 @@ activepublickey2=$(head -n 2 key2 | tail -1)
 activeprivatekey2=$(head -n 1 key2 | tail -1)
 activeproducername2=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername2 > activeproducername2.txt
+remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 2”
@@ -64,6 +66,7 @@ activepublickey3=$(head -n 2 key3 | tail -1)
 activeprivatekey3=$(head -n 1 key3 | tail -1)
 activeproducername3=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername3 > activeproducername3.txt
+remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 3”
