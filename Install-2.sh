@@ -28,7 +28,7 @@ echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
 echo " "
 remcli create key --file key1
-cp key1 activekey1
+cp key1 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
 activepublickey1=$(head -n 2 key1 | tail -1)
 activeprivatekey1=$(head -n 1 key1 | tail -1)
@@ -44,7 +44,7 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 remcli create key --file key2
-cp key2 activekey2
+cp key2 activekeys2
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 activepublickey2=$(head -n 2 key2 | tail -1)
 activeprivatekey2=$(head -n 1 key2 | tail -1)
@@ -60,7 +60,7 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " “
 remcli create key --file key3
-cp key3 activekey3
+cp key3 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 activepublickey3=$(head -n 2 key3 | tail -1)
 activeprivatekey3=$(head -n 1 key3 | tail -1)
