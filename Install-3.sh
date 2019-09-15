@@ -2,13 +2,13 @@
 
 domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
+owneraccountname=$(cat owneraccountname.txt)
 requestpublickey=$(head -n 2 key2 | tail -1)
 transferpublickey=$(head -n 2 key3 | tail -1)
-produceraccountname=$(cat produceraccountname.txt)
-remcli system regproducer $produceraccountname $requestpublickey $domain
-remcli set account permission $produceraccountname safemode $ownerpublickey owner -p $produceraccountname@owner
-remcli set account permission $produceraccountname vote $requestpublickey active -p $produceraccountname@active
-remcli set account permission $produceraccountname claim $requestpublickey active -p $produceraccountname@active
-remcli set account permission $produceraccountname stake $requestpublickey active -p $produceraccountname@active
-remcli set account permission $produceraccountname transfer $transferpublickey active -p $produceraccountname@active
+remcli system regproducer $owneraccountname $requestpublickey $domain
+remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
+remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@active
 rm -f ./Install-3.sh
