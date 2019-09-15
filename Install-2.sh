@@ -99,5 +99,5 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
-remcli set account permission $owneraccountname active {"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"$activeproducername1","permission":"active"},"weight":1},{"permission":{"actor":"$activeproducername2","permission":"active"},"weight”:1},{"permission":{"actor":"$activeproducername3","permission":"active"},"weight":1}],”waits":[]} owner -p $owneraccountname@owner 
+remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"$activeproducername1","permission":"active"},"weight":1},{"permission":{"actor":"$activeproducername2","permission":"active"},"weight”:1},{"permission":{"actor":"$activeproducername3","permission":"active"},"weight":1}],”waits":[]}' owner -p $owneraccountname@owner 
 rm -f ./Install-2.sh
