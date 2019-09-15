@@ -23,27 +23,57 @@ read -e ownerprivatekey
 remcli wallet import --private-key=$ownerprivatekey
 echo " "
 echo "COPY AND PASTE YOUR TESTNET ACCOUNT NAME:"
-read -e produceraccountname
-echo $produceraccountname > produceraccountname.txt
-produceraccountname=$(cat produceraccountname.txt)
+read -e owneraccountname
+echo $owneraccountname > owneraccountname.txt
+owneraccountname=$(cat owneraccountname.txt)
 echo " "
 remcli create key --file key1
-cp key1 activekeys
+cp key1 activekey1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
-activepublickey=$(head -n 2 key1 | tail -1)
-activeprivatekey=$(head -n 1 key1 | tail -1)
-remcli wallet import --private-key=$activeprivatekey
+activepublickey1=$(head -n 2 key1 | tail -1)
+activeprivatekey1=$(head -n 1 key1 | tail -1)
+activeproducername1=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+echo $activeproducername1 > activeproducername1.txt
+remcli wallet import --private-key=$activeprivatekey1
 echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEYS:"
-cat ./activekeys
+echo "TAKE NOTE OF YOUR ACTIVE KEY 1:”
+cat ./activekeys1
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 remcli create key --file key2
-cp key2 requestkeys
+cp key2 activekey2
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
-requestpublickey=$(head -n 2 key2 | tail -1)
-requestprivatekey=$(head -n 1 key2 | tail -1)
+activepublickey2=$(head -n 2 key2 | tail -1)
+activeprivatekey2=$(head -n 1 key2 | tail -1)
+activeproducername2=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+echo $activeproducername2 > activeproducername2.txt
+remcli wallet import --private-key=$activeprivatekey2
+echo " "
+echo "TAKE NOTE OF YOUR ACTIVE KEY 2”
+cat ./activekeys2
+echo " "
+pause 'Press [Enter] key to continue...'
+echo " “
+remcli create key --file key3
+cp key3 activekey3
+sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
+activepublickey3=$(head -n 2 key3 | tail -1)
+activeprivatekey3=$(head -n 1 key3 | tail -1)
+activeproducername3=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+echo $activeproducername3 > activeproducername3.txt
+remcli wallet import --private-key=$activeprivatekey3
+echo " "
+echo "TAKE NOTE OF YOUR ACTIVE KEY 3”
+cat ./activekeys3
+echo " "
+pause 'Press [Enter] key to continue...'
+echo " "
+remcli create key --file key4
+cp key4 requestkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Public key: /s/Public key: //" key4
+requestpublickey=$(head -n 2 key4 | tail -1)
+requestprivatekey=$(head -n 1 key4 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
@@ -51,10 +81,10 @@ cat ./requestkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
-remcli create key --file key3
-cp key3 transferkeys
-sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
-transferprivatekey=$(head -n 1 key3 | tail -1)
+remcli create key --file key5
+cp key5 transferkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
+transferprivatekey=$(head -n 1 key5 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
@@ -63,5 +93,5 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
-remcli set account permission $produceraccountname active $activepublickey owner -p $produceraccountname@owner
+remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"$activeproducername1","permission":"active"},"weight":1},{"permission":{"actor":"$activeproducername2","permission":"active"},"weight”:1},{"permission":{"actor":"$activeproducername3","permission":"active"},"weight":1}],”waits":[]}' owner -p $owneraccountname@owner
 rm -f ./Install-2.sh
