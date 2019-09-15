@@ -37,7 +37,7 @@ echo $activeproducername1 > activeproducername1.txt
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 1:”
-echo "Username:" $activeproducername1
+echo "Account Name:" $activeproducername1
 cat ./activekeys1
 echo " "
 pause 'Press [Enter] key to continue...'
@@ -52,7 +52,7 @@ echo $activeproducername2 > activeproducername2.txt
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 2”
-echo "Username:" $activeproducername2
+echo "Account Name:" $activeproducername2
 cat ./activekeys2
 echo " "
 pause 'Press [Enter] key to continue...'
@@ -67,7 +67,7 @@ echo $activeproducername3 > activeproducername3.txt
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 3”
-echo "Username:" $activeproducername3
+echo "Account Name:" $activeproducername3
 cat ./activekeys3
 echo " "
 pause 'Press [Enter] key to continue...'
