@@ -35,7 +35,6 @@ activeprivatekey1=$(head -n 1 key1 | tail -1)
 activeproducername1=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername1 > activeproducername1.txt
 activeproducername1=$(cat activeproducername1.txt)
-remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 1:"
@@ -52,7 +51,6 @@ activeprivatekey2=$(head -n 1 key2 | tail -1)
 activeproducername2=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername2 > activeproducername2.txt
 activeproducername2=$(cat activeproducername2.txt)
-remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 2:"
@@ -69,7 +67,6 @@ activeprivatekey3=$(head -n 1 key3 | tail -1)
 activeproducername3=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
 echo $activeproducername3 > activeproducername3.txt
 activeproducername3=$(cat activeproducername3.txt)
-remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 3:"
@@ -102,5 +99,8 @@ echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
+remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
+remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
+remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 rm -f ./Install-2.sh
