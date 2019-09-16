@@ -27,6 +27,11 @@ read -e owneraccountname
 echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
 echo " "
+echo "TAKE NOTE OF YOUR WALLET PASSWORD:"
+cat ./walletpass
+echo " "
+pause 'Press [Enter] key to continue...'
+echo " "
 remcli create key --file key1
 cp key1 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
