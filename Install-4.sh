@@ -21,4 +21,5 @@ remcli wallet remove_key $activepublickey --password=$producerwalletpass
 sudo killall remnode
 sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
 sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
-rm key1 key2 key3 key4 key5 activekeys1 activekeys2 activekeys3 Install-4.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt 
+rm key1 key2 key3 key4 key5 activekeys1 activekeys2 activekeys3 Install-4.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt remprotocol_0.1.0-ubuntu-18.04_amd64.deb
+ 
