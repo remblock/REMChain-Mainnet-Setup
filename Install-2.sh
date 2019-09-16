@@ -32,7 +32,7 @@ cp key1 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
 activepublickey1=$(head -n 2 key1 | tail -1)
 activeprivatekey1=$(head -n 1 key1 | tail -1)
-activeproducername1=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+activeproducername1=$a(cat /dev/urandom | tr -dc 'a-z' | fold -w 11 | head -n 1)
 echo $activeproducername1 > activeproducername1.txt
 activeproducername1=$(cat activeproducername1.txt)
 remcli wallet import --private-key=$activeprivatekey1
@@ -48,7 +48,7 @@ cp key2 activekeys2
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 activepublickey2=$(head -n 2 key2 | tail -1)
 activeprivatekey2=$(head -n 1 key2 | tail -1)
-activeproducername2=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+activeproducername2=$b(cat /dev/urandom | tr -dc 'a-z' | fold -w 11 | head -n 1)
 echo $activeproducername2 > activeproducername2.txt
 activeproducername2=$(cat activeproducername2.txt)
 remcli wallet import --private-key=$activeprivatekey2
@@ -64,7 +64,7 @@ cp key3 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 activepublickey3=$(head -n 2 key3 | tail -1)
 activeprivatekey3=$(head -n 1 key3 | tail -1)
-activeproducername3=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 12 | head -n 1)
+activeproducername3=c$(cat /dev/urandom | tr -dc 'a-z' | fold -w 11 | head -n 1)
 echo $activeproducername3 > activeproducername3.txt
 activeproducername3=$(cat activeproducername3.txt)
 remcli wallet import --private-key=$activeprivatekey3
@@ -102,6 +102,5 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-pause 'Press [Enter] key to continue...'
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 rm -f ./Install-2.sh
