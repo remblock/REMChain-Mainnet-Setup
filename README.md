@@ -236,7 +236,7 @@ remcli wallet keys
 remcli wallet remove_key YOURPUBLICKEY
 ```
 
-> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your default wallet password which can be found here:<br>`echo $(cat walletpass)`
+> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your wallet password.
 
 ```
 remcli get account BPACCOUNTNAME
