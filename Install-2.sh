@@ -28,7 +28,6 @@ echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
 echo " "
 echo "TAKE NOTE OF YOUR WALLET PASSWORD:"
-echo " "
 cat ./walletpass
 echo " "
 pause 'Press [Enter] key to continue...'
