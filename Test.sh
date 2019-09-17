@@ -112,3 +112,16 @@ remcli system newaccount $owneraccountname $activeproducername3 $activepublickey
 pause 'Press [Enter] key to continue...'
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
+domain=$(cat domain.txt)
+ownerpublickey=$(cat ownerpublickey.txt)
+owneraccountname=$(cat owneraccountname.txt)
+requestpublickey=$(head -n 2 key4 | tail -1)
+transferpublickey=$(head -n 2 key5 | tail -1)
+remcli system regproducer $owneraccountname $requestpublickey $domain
+remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
+remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@active
+pause 'Press [Enter] key to continue...'
+
