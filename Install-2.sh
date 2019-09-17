@@ -103,7 +103,7 @@ cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
-echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $produceraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
