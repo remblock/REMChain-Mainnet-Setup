@@ -3,8 +3,10 @@
 domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
 owneraccountname=$(cat owneraccountname.txt)
-activepublickey=$(head -n 2 key1 | tail -1)
-requestpublickey=$(head -n 2 key2 | tail -1)
+activepublickey1=$(head -n 2 key1 | tail -1)
+activepublickey2=$(head -n 2 key2 | tail -1)
+activepublickey3=$(head -n 2 key3 | tail -1)
+requestpublickey=$(head -n 2 key4 | tail -1)
 remcli system regproducer $produceraccountname $requestpublickey $domain
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
@@ -17,7 +19,9 @@ walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
 producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-remcli wallet remove_key $activepublickey --password=$producerwalletpass
+remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
+remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
+remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
 sudo killall remnode
 sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
 sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
