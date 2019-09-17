@@ -127,7 +127,7 @@ sudo service sshd restart
 <br>
 
 ```
-remcli wallet unlock < walletpass
+remcli wallet unlock
 ```
 
 > This command line will unlock your wallet.
