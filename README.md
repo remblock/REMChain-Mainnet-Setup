@@ -215,7 +215,7 @@ remcli wallet lock_all
 > This command line is used for locking all wallets.
 
 ```
-remcli wallet lock -n YOUR_WALLET_NAME
+remcli wallet lock -n YOURWALLETNAME
 ```
 
 > This command line is used for locking a specific wallet.
