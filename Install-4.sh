@@ -7,7 +7,7 @@ activepublickey1=$(head -n 2 key1 | tail -1)
 activepublickey2=$(head -n 2 key2 | tail -1)
 activepublickey3=$(head -n 2 key3 | tail -1)
 requestpublickey=$(head -n 2 key4 | tail -1)
-remcli system regproducer $produceraccountname $requestpublickey $domain
+remcli system regproducer $owneraccountname $requestpublickey $domain
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem voteproducer vote -p $owneraccountname@active
