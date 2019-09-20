@@ -9,6 +9,9 @@ sleep 1
 remvault &
 sleep 4
 remcli wallet create --file walletpass
+walletpassword=$(cat walletpass)
+echo $walletpassword > producerwalletpass.txt
+producerwalletpass=$(cat producerwalletpass.txt)
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
@@ -122,9 +125,6 @@ remcli set action permission $owneraccountname rem voteproducer vote -x 120 -p $
 remcli set action permission $owneraccountname rem claimrewards claim -x 120 -p $owneraccountname@active
 remcli set action permission $owneraccountname rem delegatebw stake -x 120 -p $owneraccountname@active
 remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@active
-walletpassword=$(cat walletpass)
-echo $walletpassword > producerwalletpass.txt
-producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
