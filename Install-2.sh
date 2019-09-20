@@ -103,10 +103,12 @@ echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
 cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
+echo " "
+sleep 5
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-pause 'Press [Enter] key to continue...'
+sleep 5
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-pause 'Press [Enter] key to continue...'
+sleep 5
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-pause 'Press [Enter] key to continue...'
+sleep 5
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
