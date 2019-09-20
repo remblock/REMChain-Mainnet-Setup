@@ -11,12 +11,10 @@ sleep 4
 remcli wallet create --file walletpass
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
-producerwalletpass=$(cat producerwalletpass.txt)
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
 echo $domain > domain.txt
-domain=$(cat domain.txt)
 echo " "
 echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY:"
 read -e ownerpublickey
@@ -108,28 +106,10 @@ cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake -x 120 "100.0000 REM" -p $owneraccountname@owner
+pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 --transfer --stake -x 120 "100.0000 REM" -p $owneraccountname@owner
+pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake -x 120 "100.0000 REM" -p $owneraccountname@owner
+pause 'Press [Enter] key to continue...'
 sudo ./countdown.sh -m 1
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-sudo ./countdown.sh -m 1
-remcli system regproducer $owneraccountname $requestpublickey $domain
-remcli set account permission $owneraccountname safemode $ownerpublickey owner -x 120 -p $owneraccountname@owner
-remcli set account permission $owneraccountname vote $requestpublickey active -x 120 -p $owneraccountname@active
-remcli set account permission $owneraccountname claim $requestpublickey active -x 120 -p $owneraccountname@active
-remcli set account permission $owneraccountname stake $requestpublickey active -x 120 -p $owneraccountname@active
-remcli set account permission $owneraccountname transfer $transferpublickey active -x 120 -p $owneraccountname@active
-sudo ./countdown.sh -m 1
-remcli set action permission $owneraccountname rem unregprod safemode -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem voteproducer vote -x 120 -p $owneraccountname@active
-remcli set action permission $owneraccountname rem claimrewards claim -x 120 -p $owneraccountname@active
-remcli set action permission $owneraccountname rem delegatebw stake -x 120 -p $owneraccountname@active
-remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@active
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
-remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
-remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
-sudo killall remnode
-sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
-sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
-rm key1 key2 key3 key4 key5 activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys countdown.sh Install-1.sh Install-2.sh Install-3.sh Install-4.sh domain.txt ownerpublickey.txt owneraccountname.txt activeproducername1.txt activeproducername2.txt activeproducername3.txt producerwalletpass.txt
