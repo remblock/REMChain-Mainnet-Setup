@@ -8,7 +8,6 @@ remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 remvault &
 sleep 4
-sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Scripts/raw/master/countdown.sh && sudo chmod u+x countdown.sh
 remcli wallet create --file walletpass
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
