@@ -7,7 +7,7 @@ function pause(){
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 remvault &
-sleep 4
+sleep 2
 remcli wallet create --file walletpass
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
