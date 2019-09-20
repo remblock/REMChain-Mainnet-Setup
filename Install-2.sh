@@ -130,10 +130,12 @@ remcli set action permission $owneraccountname rem claimrewards claim -x 120 -p 
 remcli set action permission $owneraccountname rem delegatebw stake -x 120 -p $owneraccountname@active
 remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@active
 remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $owneraccountname@vote
+pause 'Press [Enter] key to continue...'
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
+pause 'Press [Enter] key to continue...'
 sudo killall remnode
 sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
 sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
