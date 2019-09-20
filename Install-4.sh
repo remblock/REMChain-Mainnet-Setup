@@ -3,6 +3,7 @@
 domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
 owneraccountname=$(cat owneraccountname.txt)
+producerwalletpass=$(cat producerwalletpass.txt)
 activepublickey1=$(head -n 2 key1 | tail -1)
 activepublickey2=$(head -n 2 key2 | tail -1)
 activepublickey3=$(head -n 2 key3 | tail -1)
@@ -14,7 +15,6 @@ remcli set action permission $owneraccountname rem claimrewards claim -p $ownera
 remcli set action permission $owneraccountname rem delegatebw stake -p $owneraccountname@active
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
-producerwalletpass=$(cat producerwalletpass.txt)
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
