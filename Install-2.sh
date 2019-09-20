@@ -104,6 +104,7 @@ cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+echo "Processing ..."
 sleep 5
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 sleep 5
