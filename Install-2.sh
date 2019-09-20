@@ -122,7 +122,6 @@ remcli set action permission $owneraccountname rem voteproducer vote -x 120 -p $
 remcli set action permission $owneraccountname rem claimrewards claim -x 120 -p $owneraccountname@active
 remcli set action permission $owneraccountname rem delegatebw stake -x 120 -p $owneraccountname@active
 remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@active
-sudo ./countdown.sh -m 1
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
 producerwalletpass=$(cat producerwalletpass.txt)
