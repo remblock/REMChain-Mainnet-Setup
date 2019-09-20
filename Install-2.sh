@@ -8,6 +8,7 @@ remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 remvault &
 sleep 4
+sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Scripts/raw/master/countdown.sh && sudo chmod u+x countdown.sh
 remcli wallet create --file walletpass
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
@@ -109,4 +110,5 @@ remcli system newaccount $owneraccountname $activeproducername2 $activepublickey
 pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 --transfer --stake -x 120 "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
+sudo ./countdown.sh -m 2
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
