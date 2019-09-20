@@ -14,7 +14,7 @@ The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with gett
 __Step 2:__
 
 ```
-sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-4.sh && sudo chmod u+x Install-1.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo chmod u+x Install-4.sh && sudo ./Install-1.sh
+sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-1.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-3.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-4.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Scripts/raw/master/countdown.sh && sudo chmod u+x Install-1.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo chmod u+x Install-4.sh && sudo chmod u+x countdown.sh && sudo ./Install-1.sh
 ```
 
 * **Root password changed**
