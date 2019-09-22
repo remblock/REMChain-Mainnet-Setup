@@ -9,7 +9,7 @@ The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with gett
 * Account name
 * Public and private keys to be able to create transactions.
 
-#
+***
 
 __Step 2:__
 
@@ -33,7 +33,7 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-Guide/raw/master/Install-
 
 > The dates shown on each block must be in sync with one another before proceeding onto the next step, it usually takes a couple of hours for the node to be in sync. Once synchronised you can then exit back to the command line by pressing control + c.
 
-#
+***
 
 __Step 3:__
 
@@ -86,7 +86,7 @@ canonical-livepatch status —verbose
 
 > This will allow you to check your live patch status, fixes, uptime, boot time and last check time. 
 
-#
+***
 
 __Step 5:__
 
