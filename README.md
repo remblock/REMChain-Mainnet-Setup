@@ -4,7 +4,7 @@
 
 __Step 1:__
 
-The [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with getting set up and creating an account with some tokens in it. With the help of this bot you will get the following data about your testnet account:
+The REMME [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with getting set up and creating an account with some tokens in it. With the help of this bot you will get the following data about your testnet account:
 
 * Account name
 * Public and private keys to be able to create transactions.
@@ -139,6 +139,12 @@ remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
 > This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.
 
 ```
+remcli system voteproducer prods YOURACCOUNTNAME YOURACCOUNTNAME -p YOURACCOUNTNAME@vote
+```
+
+> This command line is used for voting for voting for yourself.
+
+```
 remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@vote
 ```
 
@@ -194,7 +200,7 @@ remcli get info
 remcli version client
 ```
 
-> This command line is used for obtaining the current client version.
+> This command line is used for retrieving the current client version.
 
 ```
 tail -n 1 remnode.log
@@ -206,7 +212,7 @@ tail -n 1 remnode.log
 remcli wallet lock
 ```
 
-> This command line is used for locking the default wallet.
+> This command line is used for locking your default wallet.
 
 ```
 remcli wallet lock_all
@@ -236,7 +242,7 @@ remcli wallet keys
 remcli wallet remove_key YOURPUBLICKEY
 ```
 
-> This command line is used for removing a key from your wallet. Each time you remove a key from your wallet, you will be promted for your wallet password.
+> This command line is used for removing a key from your wallet.
 
 ```
 remcli get account BPACCOUNTNAME
@@ -248,7 +254,7 @@ remcli get account BPACCOUNTNAME
 remcli system listproducers
 ```
 
-> This command line is used to return a list of producers.
+> This command line will return a list of all block producers.
 
 ```
 remcli system unregprod YOURACCOUNTNAME
