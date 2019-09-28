@@ -66,25 +66,25 @@ __Step 4:__
 
 **Setup canonical livepatch service**
 
-This service will apply critical kernel security fixes to your ubuntu server automatically without the need of you rebooting the server, therefore reducing the downtime of the server.
+**This service will apply critical kernel security fixes to your ubuntu server automatically without the need of you rebooting the server, therefore reducing the downtime of the server.**
 
 ```
 https://auth.livepatch.canonical.com
 ```
 
-> Visit the site, register for an account and generate your live patch key. Via the canonical livepatch portal.
+> **Visit the site, register for an account and generate your live patch key. Via the canonical livepatch portal.**
 
 ```
 sudo canonical-livepatch enable YOURLIVEPATCHKEY
 ```
 
-> Enable the canonical livepatch on your ubuntu server.
+> **Enable the canonical livepatch on your ubuntu server.**
 
 ```
 canonical-livepatch status —verbose
 ```
 
-> This will allow you to check your live patch status, fixes, uptime, boot time and last check time. 
+> **This will allow you to check your live patch status, fixes, uptime, boot time and last check time.** 
 
 ***
 
@@ -96,21 +96,21 @@ __Step 5:__
 ssh-keygen -t rsa -b 4096
 ```
 
-> Generate your new SSH keys on your OS terminal (MacOS or Ubuntu App).
+> **Generate your new SSH keys on your OS terminal (MacOS or Ubuntu App).**
 
 **Enter file in which to save the key** `enter`
 
-> Hit enter to have the SSH keys saved at the default location.
+> **Hit enter to have the SSH keys saved at the default location.**
 
 **Enter passphrase (empty for no passphrase):** `SETYOURPASSPHRASE`
 
-> Having a passphrase provides an extra level of protection if you happen to lose your device, however if you don't wish to set a passphrase just hit enter.
+> **Having a passphrase provides an extra level of protection if you happen to lose your device, however if you don't wish to set a passphrase just hit enter.**
 
 ```
 ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p YOURPORTNUMBER
 ```
 
-> Your SSH keys will now be copied over to your ubuntu server.
+> **Your SSH keys will now be copied over to your ubuntu server.**
 
 ```
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
@@ -120,7 +120,7 @@ sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/s
 sudo service sshd restart
 ```
 
-> Copy and paste the above two lines of code into your ubuntu server terminal.
+> **Copy and paste the above two lines of code into your ubuntu server terminal.**
 
 #
 # Important REMCLI Command Lines
@@ -130,61 +130,61 @@ sudo service sshd restart
 remcli wallet unlock
 ```
 
-> This command line will unlock your wallet.
+> **This command line will unlock your wallet.**
 
 ```
 remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
 ```
 
-> This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.
+> **This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.**
 
 ```
 remcli system voteproducer prods YOURACCOUNTNAME YOURACCOUNTNAME -p YOURACCOUNTNAME@vote
 ```
 
-> This command line is used for voting for voting for yourself.
+> **This command line is used for voting for voting for yourself.**
 
 ```
 remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@vote
 ```
 
-> This command line is used for voting for multiple block producers.
+> **This command line is used for voting for multiple block producers.**
 
 ```
 remcli system voteproducer approve BPACCOUNTNAME -p YOURACCOUNTNAME@vote
 ```
 
-> This command line is used for adding a new block producer to your list of voted producers.
+> **This command line is used for adding a new block producer to your list of voted producers.**
 
 ```
 remcli system voteproducer unapprove BPACCOUNTNAME -p YOURACCOUNTNAME@vote
 ```
 
-> This command line is used for removing a block producer from your list of voted producers.
+> **This command line is used for removing a block producer from your list of voted producers.**
 
 ```
 remcli system delegatebw YOURACCOUNTNAME YOURACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
 ```
 
-> This command line is used for staking your block rewards to yourself, make sure that your wallet is unlocked before restaking your rewards.
+> **This command line is used for staking your block rewards to yourself, make sure that your wallet is unlocked before restaking your rewards.**
 
 ```
 remcli system delegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
 ```
 
-> This command line is used for staking your block rewards to another block producer, make sure that your wallet is unlocked before restaking your rewards to another block producer.
+> **This command line is used for staking your block rewards to another block producer, make sure that your wallet is unlocked before restaking your rewards to another block producer.**
 
 ```
 remcli system undelegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
 ```
 
-> This command line is used for taking back your stake from a block producer, make sure that your wallet is unlocked before taking back your stake.
+> **This command line is used for taking back your stake from a block producer, make sure that your wallet is unlocked before taking back your stake.**
 
 ```
 remcli transfer YOURACCOUNTNAME RECEIVERSACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@transfer
 ```
 
-> This command line is used for making transfers, make sure that your wallet is unlocked before making any transfers.
+> **This command line is used for making transfers, make sure that your wallet is unlocked before making any transfers.**
 
 #
 # Additional REMCLI Command Lines
@@ -194,70 +194,70 @@ remcli transfer YOURACCOUNTNAME RECEIVERSACCOUNTNAME "AMOUNT REM" -p YOURACCOUNT
 remcli get info
 ```
 
-> This command line is used for getting the current state of the blockchain.
+> **This command line is used for getting the current state of the blockchain.**
 
 ```
 remcli version client
 ```
 
-> This command line is used for retrieving the current client version.
+> **This command line is used for retrieving the current client version.**
 
 ```
 tail -n 1 remnode.log
 ```
 
-> This command line will output the last produced block.
+> **This command line will output the last produced block.**
 
 ```
 remcli wallet lock
 ```
 
-> This command line is used for locking your default wallet.
+> **This command line is used for locking your default wallet.**
 
 ```
 remcli wallet lock_all
 ```
 
-> This command line is used for locking all wallets.
+> **This command line is used for locking all wallets.**
 
 ```
 remcli wallet lock -n YOURWALLETNAME
 ```
 
-> This command line is used for locking a specific wallet.
+> **This command line is used for locking a specific wallet.**
 
 ```
 remcli wallet list
 ```
 
-> This command line is used for listsing opened wallets, * = unlocked.
+> **This command line is used for listsing opened wallets, * = unlocked.**
 
 ```
 remcli wallet keys
 ```
 
-> This command line is used for listing your public keys from all your unlocked wallets.
+> **This command line is used for listing your public keys from all your unlocked wallets.**
 
 ```
 remcli wallet remove_key YOURPUBLICKEY
 ```
 
-> This command line is used for removing a key from your wallet.
+> **This command line is used for removing a key from your wallet.**
 
 ```
 remcli get account BPACCOUNTNAME
 ```
 
-> This command line is used for retrieving information on an account.
+> **This command line is used for retrieving information on an account.**
 
 ```
 remcli system listproducers
 ```
 
-> This command line will return a list of all block producers.
+> **This command line will return a list of all block producers.**
 
 ```
 remcli system unregprod YOURACCOUNTNAME
 ```
 
-> This command line is used to unregister you as a block producer.
+> **This command line is used to unregister you as a block producer.**
