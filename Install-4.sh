@@ -14,7 +14,7 @@ activepublickey3=$(head -n 2 key3 | tail -1)
 requestpublickey=$(head -n 2 key4 | tail -1)
 
 #----------------------------------------------
-#CREATING KEY PERMISSIONS 
+#CREATING REMCHAIN KEY PERMISSIONS 
 #----------------------------------------------
 
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
@@ -25,7 +25,7 @@ remcli set action permission $owneraccountname rem delegatebw stake -p $owneracc
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
 
 #----------------------------------------------
-#VOTING FOR YOURSELF 
+#VOTING FOR YOURSELF ON REMCHAIN
 #----------------------------------------------
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
@@ -40,7 +40,7 @@ remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
 
 #----------------------------------------------
-#JUMP STARTING REMNODE
+#JUMP STARTING THE REMNODE
 #----------------------------------------------
 
 sudo killall remnode
