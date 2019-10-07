@@ -14,7 +14,7 @@ echo "SET YOUR NEW ROOT PASSWORD:"
 passwd root
 
 #----------------------------------------------
-#CHANGE DEFAULT SSH PORT NUMBER
+#CHANGING DEFAULT SSH PORT NUMBER
 #----------------------------------------------
 
 echo " "
