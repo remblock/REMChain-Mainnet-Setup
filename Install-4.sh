@@ -25,7 +25,7 @@ remcli set action permission $owneraccountname rem delegatebw stake -p $owneracc
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
 
 #----------------------------------------------
-# CASTING YOUR VOTES FOR YOURSELF
+# CASTING YOUR VOTES TO YOURSELF
 #----------------------------------------------
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
