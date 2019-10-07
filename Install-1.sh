@@ -86,7 +86,7 @@ mkdir data && mkdir config
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true" > ./config/config.ini
 
 #----------------------------------------------
-#THE FIRST RUN OF THE REMNODE
+#THE INITIAL RUN OF THE REMNODE
 #----------------------------------------------
 
 remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
