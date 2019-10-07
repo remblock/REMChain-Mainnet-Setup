@@ -14,7 +14,7 @@ activepublickey3=$(head -n 2 key3 | tail -1)
 requestpublickey=$(head -n 2 key4 | tail -1)
 
 #----------------------------------------------
-#CREATING REMCHAIN KEY PERMISSIONS 
+# CREATING REMCHAIN KEY PERMISSIONS 
 #----------------------------------------------
 
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
@@ -25,13 +25,13 @@ remcli set action permission $owneraccountname rem delegatebw stake -p $owneracc
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
 
 #----------------------------------------------
-#VOTING FOR YOURSELF ON REMCHAIN
+# CASTING YOUR VOTES FOR YOURSELF
 #----------------------------------------------
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
 
 #----------------------------------------------
-#REMOVING OWNER AND ACTIVE KEYS
+# REMOVING OWNER AND ACTIVE KEYS
 #----------------------------------------------
 
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
@@ -40,7 +40,7 @@ remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
 
 #----------------------------------------------
-#JUMP STARTING THE REMNODE
+# JUMP STARTING THE REMNODE
 #----------------------------------------------
 
 sudo killall remnode
@@ -48,7 +48,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks -
 sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 
 #----------------------------------------------
-#REMOVING FILES WHICH ARE NOT NEEDED ANY LONGER
+# REMOVING FILES WHICH ARE NOT NEEDED ANYMORE
 #----------------------------------------------
 
 rm key1 key2 key3 key4 key5 activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys countdown.sh Install-1.sh Install-2.sh Install-3.sh Install-4.sh domain.txt ownerpublickey.txt owneraccountname.txt activeproducername1.txt activeproducername2.txt activeproducername3.txt producerwalletpass.txt
