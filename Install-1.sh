@@ -5,7 +5,7 @@
 #**********************************************#
 
 #----------------------------------------------
-#UPDATING AND UPGRADING PACKAGE DATABASE 
+# UPDATING AND UPGRADING PACKAGE DATABASE 
 #----------------------------------------------
 
 sudo -S apt update && sudo -S apt upgrade
@@ -14,7 +14,7 @@ echo "SET YOUR NEW ROOT PASSWORD:"
 passwd root
 
 #----------------------------------------------
-#CHANGING DEFAULT SSH PORT NUMBER
+# CHANGING DEFAULT SSH PORT NUMBER
 #----------------------------------------------
 
 echo " "
@@ -23,7 +23,7 @@ read -n 5 portnumber
 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 
 #----------------------------------------------
-#INSTALLING UNCOMPLICATED FIREWALL
+# INSTALLING UNCOMPLICATED FIREWALL
 #----------------------------------------------
 
 sudo -S apt-get install ufw -y
@@ -35,7 +35,7 @@ sudo -S ufw logging on
 sudo -S ufw enable
 
 #----------------------------------------------
-#INSTALLING FAIL2BAN
+# INSTALLING FAIL2BAN
 #----------------------------------------------
 
 sudo -S apt -y install fail2ban
@@ -44,7 +44,7 @@ sudo -S systemctl start fail2ban
 sudo -S service sshd restart
 
 #----------------------------------------------
-#CREATING NEW USER ACCOUNT
+# CREATING NEW USER ACCOUNT
 #----------------------------------------------
 
 echo " "
@@ -56,13 +56,13 @@ adduser $username
 usermod -aG sudo $username
 
 #----------------------------------------------
-#INSTALLING CANONICAL LIVEPATCH SERVICE
+# INSTALLING CANONICAL LIVEPATCH SERVICE
 #----------------------------------------------
 
 sudo snap install canonical-livepatch
 
 #----------------------------------------------
-#INSTALLING REM PROTOCOL BINARIES
+# INSTALLING REM PROTOCOL BINARIES
 #----------------------------------------------
 
 wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotocol_0.1.0-ubuntu-18.04_amd64.deb && sudo apt install ./remprotocol_0.1.0-ubuntu-18.04_amd64.deb
@@ -74,19 +74,19 @@ wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotoco
 wget https://testchain.remme.io/genesis.json
 
 #----------------------------------------------
-#CREATING A CONFIG AND DATA DIRECTORIES
+# CREATING A CONFIG AND DATA DIRECTORIES
 #----------------------------------------------
 
 mkdir data && mkdir config
 
 #----------------------------------------------
-#CONFIGURATION FILE (CONFIG/CONFIG.INI)
+# CONFIGURATION FILE (CONFIG/CONFIG.INI)
 #----------------------------------------------
 
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true" > ./config/config.ini
 
 #----------------------------------------------
-#THE INITIAL RUN OF THE REMNODE
+# THE INITIAL RUN OF THE REMNODE
 #----------------------------------------------
 
 remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
