@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#**************************************#
+#            INSTALL-4.SH              #
+#**************************************#
+
 domain=$(cat domain.txt)
 ownerpublickey=$(cat ownerpublickey.txt)
 owneraccountname=$(cat owneraccountname.txt)
