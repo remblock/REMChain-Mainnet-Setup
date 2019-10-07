@@ -17,7 +17,7 @@ transferpublickey=$(head -n 2 key5 | tail -1)
 remcli system regproducer $owneraccountname $requestpublickey $domain
 
 #---------------------------------------
-#CREATING ACCOUNT PERMISSIONS 
+#CREATING REMCHAIN ACCOUNT PERMISSIONS 
 #---------------------------------------
 
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
