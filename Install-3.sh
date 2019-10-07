@@ -11,7 +11,7 @@ requestpublickey=$(head -n 2 key4 | tail -1)
 transferpublickey=$(head -n 2 key5 | tail -1)
 
 #---------------------------------------
-#REGISTERING AS BLOCK PRODUCER 
+#REGISTERING AS NEW BLOCK PRODUCER 
 #---------------------------------------
 
 remcli system regproducer $owneraccountname $requestpublickey $domain
