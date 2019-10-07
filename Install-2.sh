@@ -53,7 +53,7 @@ echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
 
 #----------------------------------------------
-# REMNODE WALLET PASSWORD 
+# YOUR REMNODE WALLET PASSWORD 
 #----------------------------------------------
 
 echo " "
@@ -64,7 +64,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #----------------------------------------------
-# CREATING REMNODE ACTIVE KEY 1 
+# CREATING YOUR REMNODE ACTIVE KEY 1 
 #----------------------------------------------
 
 remcli create key --file key1
@@ -85,7 +85,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #----------------------------------------------
-# CREATING REMNODE ACTIVE KEY 2
+# CREATING YOUR REMNODE ACTIVE KEY 2
 #----------------------------------------------
 
 remcli create key --file key2
@@ -106,7 +106,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #----------------------------------------------
-# CREATING REMNODE ACTIVE KEY 3 
+# CREATING YOUR REMNODE ACTIVE KEY 3 
 #----------------------------------------------
 
 remcli create key --file key3
@@ -127,7 +127,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #----------------------------------------------
-# CREATING REMNODE REQUEST KEY 
+# CREATING YOUR REMNODE REQUEST KEY 
 #----------------------------------------------
 
 remcli create key --file key4
@@ -145,7 +145,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #----------------------------------------------
-# CREATING REMNODE TRANSFER KEY  
+# CREATING YOUR REMNODE TRANSFER KEY  
 #----------------------------------------------
 
 remcli create key --file key5
@@ -160,7 +160,7 @@ echo " "
 pause 'Press [Enter] key to continue...'
 
 #----------------------------------------------
-# CREATING REMCHAIN ACCOUNTS
+# CREATING YOUR REMCHAIN ACCOUNTS
 #----------------------------------------------
 
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
@@ -172,7 +172,7 @@ sleep 2
 sudo ./countdown.sh -m 1
 
 #----------------------------------------------
-# CREATING MULTISIG PERMISSIONS
+# CREATING YOUR MULTISIG PERMISSIONS
 #----------------------------------------------
 
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
