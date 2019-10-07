@@ -11,13 +11,13 @@ requestpublickey=$(head -n 2 key4 | tail -1)
 transferpublickey=$(head -n 2 key5 | tail -1)
 
 #----------------------------------------------
-#REGISTERING AS NEW BLOCK PRODUCER 
+# REGISTERING AS NEW BLOCK PRODUCER 
 #----------------------------------------------
 
 remcli system regproducer $owneraccountname $requestpublickey $domain
 
 #----------------------------------------------
-#CREATING REMCHAIN ACCOUNT PERMISSIONS 
+# CREATING REMCHAIN ACCOUNT PERMISSIONS 
 #----------------------------------------------
 
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
