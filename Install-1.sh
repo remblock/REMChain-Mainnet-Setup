@@ -74,7 +74,7 @@ wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotoco
 wget https://testchain.remme.io/genesis.json
 
 #----------------------------------------------
-#CREATING CONFIG AND DATA DIRECTORIES
+#CREATING A CONFIG AND DATA DIRECTORIES
 #----------------------------------------------
 
 mkdir data && mkdir config
