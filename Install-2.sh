@@ -8,13 +8,32 @@ function pause(){
    read -p "$*"
 }
 
+#---------------------------------------
+#RUNNING REMNODE IN THE BACKGROUND 
+#---------------------------------------
+
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
+
+#---------------------------------------
+#RUNNING THE WALLET DAEMON 
+#---------------------------------------
+
 remvault &
 sleep 2
+
+#---------------------------------------
+#CREATING REMCLI WALLET
+#---------------------------------------
+
 remcli wallet create --file walletpass
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
+
+#---------------------------------------
+#ASK FOR USER DETAILS 
+#---------------------------------------
+
 echo " "
 echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
 read -e domain
@@ -32,12 +51,22 @@ echo "COPY AND PASTE YOUR TESTNET ACCOUNT NAME:"
 read -e owneraccountname
 echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
+
+#---------------------------------------
+#REMNODE WALLET PASSWORD 
+#---------------------------------------
+
 echo " "
 echo "TAKE NOTE OF YOUR WALLET PASSWORD:"
 cat ./walletpass
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+
+#---------------------------------------
+#CREATING REMNODE ACTIVE KEY 1 
+#---------------------------------------
+
 remcli create key --file key1
 cp key1 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
@@ -54,6 +83,11 @@ cat ./activekeys1
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+
+#---------------------------------------
+#CREATING REMNODE ACTIVE KEY 2
+#---------------------------------------
+
 remcli create key --file key2
 cp key2 activekeys2
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
@@ -70,6 +104,11 @@ cat ./activekeys2
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+
+#---------------------------------------
+#CREATING REMNODE ACTIVE KEY 3 
+#---------------------------------------
+
 remcli create key --file key3
 cp key3 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
@@ -86,6 +125,11 @@ cat ./activekeys3
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+
+#---------------------------------------
+#CREATING REMNODE REQUEST KEY 
+#---------------------------------------
+
 remcli create key --file key4
 cp key4 requestkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Public key: /s/Public key: //" key4
@@ -99,6 +143,11 @@ cat ./requestkeys
 echo " "
 pause 'Press [Enter] key to continue...'
 echo " "
+
+#---------------------------------------
+#CREATING REMNODE TRANSFER KEY  
+#---------------------------------------
+
 remcli create key --file key5
 cp key5 transferkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
@@ -109,6 +158,11 @@ echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
 cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
+
+#---------------------------------------
+#CREATING REMCHAIN ACCOUNTS
+#---------------------------------------
+
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
@@ -116,4 +170,9 @@ pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 sleep 2
 sudo ./countdown.sh -m 1
+
+#---------------------------------------
+#CREATING MULTISIG PERMISSION 
+#---------------------------------------
+
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
