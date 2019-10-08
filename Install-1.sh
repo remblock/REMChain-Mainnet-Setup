@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 #**********************************************#
@@ -54,6 +55,14 @@ echo "SET YOUR USERNAME:"
 read username
 adduser $username
 usermod -aG sudo $username
+
+#----------------------------------------------
+# INSTALLING SSH KEY PIRE FOR NEW USER 
+#----------------------------------------------
+
+sudo -u $username  ssh-keygen -t dsa 
+
+sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 
 #----------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
