@@ -59,7 +59,7 @@ usermod -aG sudo $username
 # INSTALLING SSH KEY PIRE FOR NEW USER 
 #----------------------------------------------
 
-sudo -u $username  ssh-keygen -t dsa 
+sudo -u $username  ssh-keygen -t rsa 
 
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 
