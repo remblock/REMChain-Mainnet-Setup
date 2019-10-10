@@ -31,6 +31,7 @@ sudo -S ufw allow ssh/tcp
 sudo -S ufw limit ssh/tcp
 sudo -S ufw allow $portnumber/tcp
 sudo -S ufw allow 8888/tcp
+sudo -S ufw allow 9877/tcp
 sudo -S ufw logging on
 sudo -S ufw enable
 
@@ -59,9 +60,9 @@ usermod -aG sudo $username
 # INSTALLING SSH KEY PIRE FOR NEW USER 
 #----------------------------------------------
 
-sudo -u $username  ssh-keygen -t rsa 
+#sudo -u $username  ssh-keygen -t rsa 
 
-sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
+#sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 
 #----------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
