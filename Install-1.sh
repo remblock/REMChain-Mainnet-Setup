@@ -24,7 +24,7 @@ passwd root
 echo " "
 #echo "CHOOSE A RANDOM 5 DIGIT PORT NUMBER (IF UNSURE USE 39844):"
 #read -n 5 portnumber
-sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
+sudo -S sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 
 #----------------------------------------------
 # INSTALLING UNCOMPLICATED FIREWALL
