@@ -8,7 +8,6 @@ function pause(){
    read -p "$*"
 }
 
-
 #----------------------------------------------
 # UPDATING AND UPGRADING PACKAGE DATABASE 
 #----------------------------------------------
