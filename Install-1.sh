@@ -63,7 +63,7 @@ sudo adduser $username
 sudo usermod -aG sudo $username
 
 #----------------------------------------------
-# INSTALLING SSH KEY PIRE FOR NEW USER 
+# INSTALLING SSH KEY PAIR FOR NEW USER 
 #----------------------------------------------
 
 su  $username -c ssh-keygen 
