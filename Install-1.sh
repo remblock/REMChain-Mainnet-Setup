@@ -72,8 +72,8 @@ sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/s
 
 echo " " 
 echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:" 
+echo " " 
 sudo cat /home/$username/.ssh/id_rsa 
-
 echo " " 
 pause 'Press [Enter] key to continue...' 
 echo " " 
