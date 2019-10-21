@@ -89,6 +89,7 @@ ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
 sudo ssh-copy-id $username@$ip_ssh
 echo " "
 echo "********************** Done ************************"
+echo " " 
 
 #----------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
