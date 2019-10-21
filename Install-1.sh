@@ -169,6 +169,7 @@ echo $walletpassword > producerwalletpass.txt
 echo "owneraccountname="$username >>$conf_path
 echo "walletpassword="$walletpassword >>$conf_path
 echo " "
+
 #----------------------------------------------
 # ASKING FOR USER DETAILS 
 #----------------------------------------------
