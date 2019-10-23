@@ -63,7 +63,7 @@ sudo adduser $username
 sudo usermod -aG sudo $username
 
 #----------------------------------------------
-# INSTALLING SSH KEY PAIR FOR NEW USER 
+# INSTALLING SSH KEY PIRE FOR NEW USER 
 #----------------------------------------------
 
 su  $username -c ssh-keygen 
@@ -72,8 +72,8 @@ sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/s
 
 echo " " 
 echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:" 
-echo " " 
 sudo cat /home/$username/.ssh/id_rsa 
+
 echo " " 
 pause 'Press [Enter] key to continue...' 
 echo " " 
@@ -86,10 +86,9 @@ echo " let's copy the key file "
 
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-sudo ssh-copy-id $username@$ip_ssh
+sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $username@$ip_ssh
 echo " "
 echo "********************** Done ************************"
-echo " " 
 
 #----------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
@@ -125,7 +124,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #----------------------------------------------
 
-remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1 | tee remnode_sync.log
+nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1 | tee remnode_sync.log &>/dev/null &
 
 t1=""
 t2=""
@@ -134,11 +133,13 @@ tail -n 3 -f  remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
 t2=$(echo $t1 | cut -d'T' -f1)
+#echo $LINE0 
 if [[ $to_date == $t2 ]]; then 
 
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 
 fi 
+echo "fetching blocks....."
 done
 
 #**********************************************#
@@ -166,8 +167,8 @@ sleep 2
 remcli wallet create --file walletpass
 walletpassword=$(cat walletpass)
 echo $walletpassword > producerwalletpass.txt
-echo "owneraccountname="$username >>$conf_path
-echo "walletpassword="$walletpassword >>$conf_path
+sudo echo "owneraccountname="$username >>$conf_path
+sudo echo "walletpassword="$walletpassword >>$conf_path
 echo " "
 
 #----------------------------------------------
