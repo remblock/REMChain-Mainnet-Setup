@@ -86,7 +86,11 @@ echo " let's copy the key file "
 
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $username@$ip_ssh
+echo " "
+echo "Enter" $ip_ssh" User Name "
+read -e ssh_host_user
+echo " "
+sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
 echo " "
 echo "********************** Done ************************"
 
@@ -141,10 +145,6 @@ ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
 echo "fetching blocks....."
 done
-
-#**********************************************#
-#                INSTALL-2.SH                  #
-#**********************************************#
 
 #----------------------------------------------
 # RUNNING REMNODE IN THE BACKGROUND 
