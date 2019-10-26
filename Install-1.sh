@@ -24,7 +24,7 @@ passwd root
 #-----------------------------------------------------------------------------------------------------
 
 echo " "
-echo "CHOOSE A RANDOM 5 DIGIT PORT NUMBER (IF UNSURE USE 39844):"
+echo "CHOOSE A RANDOM 5 DIGIT PORT NUMBER:"
 read -n 5 portnumber
 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 
@@ -93,17 +93,17 @@ read -e ssh_host_user
 echo " "
 sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
 echo " "
-echo "********************** DONE ************************"
+echo "[********************** DONE ************************]"
 }
 
 echo " "
-read -p "IS YOUR LOCAL HOST OPERATING ON LINUX (y/n): " yn
+read -p "DOES YOUR LOCAL HOST OPERATE ON LINUX [y/n]: " yn
   case $yn in
        y|Y ) ssh_copy
 	     break;;
        n|N ) echo" " 
        	     echo"KEY FILES CAN ONLY BE TRANSFERED IF LOCAL HOST IS OPERATING ON LINUX";;
-       * )   echo "PLEASE ANSWER USING (y/n) or (Y/N)";;
+       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
    esac
 
 #-----------------------------------------------------------------------------------------------------
