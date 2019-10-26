@@ -96,7 +96,6 @@ echo " "
 echo "[********************** DONE ************************]"
 }
 
-echo " "
 read -p "DOES YOUR LOCAL HOST OPERATE ON LINUX [y/n]: " yn
   case $yn in
        y|Y ) ssh_copy
