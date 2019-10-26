@@ -85,9 +85,9 @@ echo " "
 ssh_copy() {
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-echo " let's copy the key file "
+echo " LET'S COPY OVER YOUR KEY FILES"
 echo " "
-echo "Enter" $ip_ssh" User Name:"
+echo "PLEASE ENTER YOUR LOCAL HOST USERNAME FOR "$ip_ssh":"
 read -e ssh_host_user
 echo " "
 sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
@@ -96,12 +96,12 @@ echo "********************** Done ************************"
 }
 
 echo " "
-read -p "Your Local host OS linux (y/n)" yn
+read -p "IS YOUR LOCAL HOST RUNNING ON LINUX OS (y/n):" yn
   case $yn in
        y|Y ) ssh_copy
 	    break;;
-       n|N ) echo "!!!!!! SSH KEY NOT COPY !!!!!!!";;
-       * ) echo "Answer y / n";;
+       n|N ) echo "KEY FILES WERE NOT ABLE TO BE TRANSFERED, BECAUSE LOCAL HOST IS USING A DIFFERENT OS";;
+       * ) echo "PLEASE ANSWER USING (y/n) or (Y/N)";;
    esac
 
 #-----------------------------------------------------------------------------------------------------
@@ -149,9 +149,7 @@ t1=$(echo $LINE0 | cut -d'@' -f2 )
 t2=$(echo $t1 | cut -d'T' -f1)
 #echo $LINE0 
 if [[ $to_date == $t2 ]]; then 
-
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
-
 fi 
 echo "fetching blocks....."
 done
