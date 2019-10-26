@@ -86,7 +86,7 @@ echo " "
 ssh_copy() {
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-echo " LET'S COPY OVER YOUR KEY FILES"
+echo "OK LET'S START COPYING OVER YOUR KEY FILES"
 echo " "
 echo "PLEASE ENTER YOUR LOCAL HOST USERNAME FOR "$ip_ssh":"
 read -e ssh_host_user
@@ -101,8 +101,7 @@ read -p "DOES YOUR LOCAL HOST OPERATE ON LINUX [y/n]: " yn
   case $yn in
        y|Y ) ssh_copy
 	     break;;
-       n|N ) echo" " 
-       	     echo"KEY FILES CAN ONLY BE TRANSFERED IF LOCAL HOST IS OPERATING ON LINUX";;
+       n|N ) printf "\nKEY FILES CAN ONLY BE TRANSFERED IF LOCAL HOST IS OPERATING ON LINUX\n\n";;
        * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
    esac
 
