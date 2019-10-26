@@ -66,11 +66,12 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-su  $username -c ssh-keygen 
-
-sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
-
 echo " " 
+echo "GENERATING YOUR SSH KEYS:" 
+echo " " 
+su $username -c ssh-keygen
+sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
+echo " "
 echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:" 
 echo " " 
 sudo cat /home/$username/.ssh/id_rsa 
@@ -96,12 +97,13 @@ echo "********************** DONE ************************"
 }
 
 echo " "
-read -p "IS YOUR LOCAL HOST RUNNING ON LINUX OS (y/n):" yn
+read -p "IS YOUR LOCAL HOST OPERATING ON LINUX (y/n): " yn
   case $yn in
        y|Y ) ssh_copy
-	    break;;
-       n|N ) echo "KEY FILES WERE NOT ABLE TO BE TRANSFERED, BECAUSE LOCAL HOST IS USING A DIFFERENT OS";;
-       * ) echo "PLEASE ANSWER USING (y/n) or (Y/N)";;
+	     break;;
+       n|N ) echo" " 
+       	     echo"KEY FILES CAN ONLY BE TRANSFERED IF LOCAL HOST IS OPERATING ON LINUX";;
+       * )   echo "PLEASE ANSWER USING (y/n) or (Y/N)";;
    esac
 
 #-----------------------------------------------------------------------------------------------------
