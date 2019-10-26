@@ -92,7 +92,7 @@ read -e ssh_host_user
 echo " "
 sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
 echo " "
-echo "********************** Done ************************"
+echo "********************** DONE ************************"
 }
 
 echo " "
