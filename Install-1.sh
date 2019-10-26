@@ -63,7 +63,7 @@ sudo adduser $username
 sudo usermod -aG sudo $username
 
 #----------------------------------------------
-# INSTALLING SSH KEY PIRE FOR NEW USER 
+# CREATING SSH KEYS FOR SERVER
 #----------------------------------------------
 
 su  $username -c ssh-keygen 
@@ -79,7 +79,7 @@ pause 'Press [Enter] key to continue...'
 echo " " 
 
 #----------------------------------------------
-#COPYING SSH KEY TO LOCAL MACHINE  
+# COPYING SSH KEY OVER TO THE LOCAL HOST  
 #----------------------------------------------
 
 ssh_copy() {
@@ -182,7 +182,7 @@ sudo echo "walletpassword="$walletpassword >>$conf_path
 echo " "
 
 #----------------------------------------------
-# ASKING FOR USER DETAILS 
+# ASKING USER FOR REM ACCOUNT DETAILS 
 #----------------------------------------------
 
 echo " "
