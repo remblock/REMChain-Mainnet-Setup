@@ -99,7 +99,6 @@ sudo cat ~/.ssh/id_rsa.pub | sshpass -p $ssh_host_password ssh $ssh_host_user@$i
 echo " "
 echo "[********************** DONE ************************]"
 }
-
 read -p "DOES YOUR LOCAL HOST OPERATE ON LINUX [y/n]: " yn
   case $yn in
        y|Y ) ssh_copy
