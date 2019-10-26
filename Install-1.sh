@@ -99,7 +99,7 @@ sudo cat ~/.ssh/id_rsa.pub | sshpass -p $ssh_host_password ssh $ssh_host_user@$i
 echo " "
 echo "[********************** DONE ************************]"
 }
-read -p "DO YOU WANT TO TRANSFER YOUR KEYS OVER TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn
+read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn
   case $yn in
        y|Y ) ssh_copy
 	     break;;
