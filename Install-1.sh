@@ -79,20 +79,30 @@ pause 'Press [Enter] key to continue...'
 echo " " 
 
 #----------------------------------------------
-#COPY SSH KEY TO LOCAL MACHINE  
+#COPYING SSH KEY TO LOCAL MACHINE  
 #----------------------------------------------
 
-echo " let's copy the key file "
-
+ssh_copy() {
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
+echo " let's copy the key file "
 echo " "
-echo "Enter" $ip_ssh" User Name "
+echo "Enter" $ip_ssh" User Name:"
 read -e ssh_host_user
 echo " "
 sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
 echo " "
 echo "********************** Done ************************"
+}
+
+echo " "
+read -p "Your Local host OS linux (y/n)" yn
+  case $yn in
+       y|Y ) ssh_copy
+	    break;;
+       n|N ) echo "!!!!!! SSH KEY NOT COPY !!!!!!!";;
+       * ) echo "Answer y / n";;
+   esac
 
 #----------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
