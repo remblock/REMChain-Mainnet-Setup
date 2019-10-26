@@ -84,14 +84,18 @@ echo " "
 #-----------------------------------------------------------------------------------------------------
 
 ssh_copy() {
+sudo apt-get install sshpass
 echo $SSH_CLIENT | awk '{ print $1}' 
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
 echo "OK LET'S START COPYING OVER YOUR KEY FILES"
 echo " "
-echo "PLEASE ENTER YOUR LOCAL HOST USERNAME FOR "$ip_ssh":"
-read -e ssh_host_user
+read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
 echo " "
-sudo ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh
+read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
+echo " "
+read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
+echo " "
+sudo sshpass -p $ssh_host_password ssh-copy-id -i /home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
 echo " "
 echo "[********************** DONE ************************]"
 }
