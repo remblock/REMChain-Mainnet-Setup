@@ -95,8 +95,8 @@ read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
 echo " "
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 echo " "
-sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/ssh"
-sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
+sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
+sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
 echo " "
 echo "[********************** DONE ************************]"
 }
