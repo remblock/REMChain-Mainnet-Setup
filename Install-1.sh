@@ -183,21 +183,16 @@ echo $walletpass > producerwalletpass.txt
 #-----------------------------------------------------------------------------------------------------
 
 echo " "
-echo "ENTER YOUR DOMAIN ADDRESS:"
-read -e domain
+read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain > domain.txt
 echo " "
-echo "ENTER YOUR OWNER PUBLIC KEY:"
-read -e ownerpublickey
+read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
 echo $ownerpublickey > ownerpublickey.txt
 echo " "
-echo "ENTER YOUR OWNER PRIVATE KEY:"
-read -e ownerprivatekey
+read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
 echo " "
-echo "ENTER YOUR OWNER ACCOUNT NAME:"
-read -e owneraccountname
+read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 echo $owneraccountname > owneraccountname.txt
-owneraccountname=$(cat owneraccountname.txt)
 echo " "
 remcli wallet import --private-key=$ownerprivatekey
 
@@ -214,8 +209,37 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #-----------------------------------------------------------------------------------------------------
+# IMPORTING EXISTING KEY PERMISSIONS
+#-----------------------------------------------------------------------------------------------------
+
+oldkeypermissions() {
+
+read -p "ENTER YOUR REQUEST PUBLIC KEY: " requestpublickey
+echo " "
+read -p "ENTER YOUR REQUEST PRIVATE KEY: " requestprivatekey
+echo " "
+remcli wallet import --private-key=$requestprivatekey
+echo " "
+read -p "ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
+echo " "
+remcli wallet import --private-key=$transferprivatekey
+echo " "
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
+echo " "
+remcli system regproducer $owneraccountname $requestpublickey $domain
+remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+echo " "
+remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
+echo " "
+rm walletpass Install-1.sh Install-2.sh Install-3.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt
+printf "\n[********************** COMPLETED ************************]\n\n";;
+}
+
+#-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE ACTIVE KEY 1
 #-----------------------------------------------------------------------------------------------------
+
+newkeypermissions() {
 
 remcli create key --file key1
 cp key1 activekeys1
@@ -334,3 +358,19 @@ sleep 120
 #-----------------------------------------------------------------------------------------------------
 
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
+echo " "
+printf "\n[********************** COMPLETED ************************]\n\n";;
+}
+
+#-----------------------------------------------------------------------------------------------------
+# CHECKING FOR EXISTING KEY PERMISSIONS
+#-----------------------------------------------------------------------------------------------------
+
+read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn
+  case $yn in
+       y|Y ) oldkeypermissions
+	     break;;
+       n|N ) newkeypermissions
+       	     break;;
+       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+   esac
