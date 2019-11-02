@@ -344,10 +344,18 @@ echo " "
 # CREATING YOUR REMCHAIN ACCOUNTS
 #-----------------------------------------------------------------------------------------------------
 
+echo "CREATING ACTIVE ACCOUNT NAME 1:"
+echo " "
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
+echo " "
+echo "CREATING ACTIVE ACCOUNT NAME 2:"
+echo " "
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
+echo " "
+echo "CREATING ACTIVE ACCOUNT NAME 3:"
+echo " "
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 echo " "
 echo "Please wait for 2 minutes... "
