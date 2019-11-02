@@ -326,6 +326,7 @@ pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 echo " "
 echo "Please wait for 2 minutes... "
+echo " "
 sleep 120
 
 #-----------------------------------------------------------------------------------------------------
