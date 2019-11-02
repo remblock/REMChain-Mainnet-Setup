@@ -313,6 +313,7 @@ echo " "
 cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
+echo " "
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMCHAIN ACCOUNTS
