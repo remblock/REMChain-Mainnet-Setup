@@ -13,16 +13,14 @@ function pause(){
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt update && sudo -S apt upgrade
-echo " "
-echo "SET YOUR NEW ROOT PASSWORD:"
+printf "\nSET YOUR NEW ROOT PASSWORD:"
 passwd root
 
 #-----------------------------------------------------------------------------------------------------
 # CHANGING DEFAULT SSH PORT NUMBER
 #-----------------------------------------------------------------------------------------------------
 
-echo " "
-echo "CHOOSE A RANDOM 5 DIGIT PORT NUMBER:"
+printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:"
 read -n 5 portnumber
 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 
@@ -52,9 +50,7 @@ sudo -S service sshd restart
 # CREATING NEW USER ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
-echo " "
-echo " "
-echo "CREATING YOUR NEW USER ACCOUNT"
+printf "\n\nCREATING YOUR NEW USER ACCOUNT"
 echo "SET YOUR USERNAME:"
 read username
 sudo adduser $username
@@ -64,19 +60,15 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-echo " "
-echo "GENERATING YOUR SSH KEYS:"
-echo " "
+printf "\nGENERATING YOUR SSH KEYS:\n\n"
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
-echo " "
-echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:"
-echo " "
+printf "\nTAKE NOTE OF YOUR SSH PRIVATE KEY:\n\n"
 sudo cat /home/$username/.ssh/id_rsa
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # COPYING SSH KEY OVER TO THE LOCAL HOST  
@@ -87,17 +79,16 @@ sudo apt-get install sshpass -y
 echo $SSH_CLIENT | awk '{ print $1}'
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
 echo "OK LET'S START COPYING OVER YOUR KEY FILES"
-echo " "
+printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
-echo " "
+printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
-echo " "
+printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
-echo " "
+printf "\n"
 sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
-echo " "
-echo "[********************** DONE ************************]"
+printf "\n[********************** DONE ************************]\n\n"
 }
 read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn
   case $yn in
@@ -183,31 +174,29 @@ echo $walletpass > producerwalletpass.txt
 # ASKING USER FOR REM ACCOUNT DETAILS
 #-----------------------------------------------------------------------------------------------------
 
-echo " "
+printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain > domain.txt
-echo " "
+printf "\n"
 read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
 echo $ownerpublickey > ownerpublickey.txt
-echo " "
+printf "\n"
 read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
-echo " "
+printf "\n"
 read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 echo $owneraccountname > owneraccountname.txt
-echo " "
+printf "\n"
 remcli wallet import --private-key=$ownerprivatekey
 
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
 
-echo " "
-echo "TAKE NOTE OF YOUR WALLET PASSWORD:"
-echo " "
+printf "\nTAKE NOTE OF YOUR WALLET PASSWORD:\n\n"
 cat ./walletpass
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # IMPORTING EXISTING KEY PERMISSIONS
@@ -216,22 +205,22 @@ echo " "
 oldkeypermissions() {
 
 read -p "ENTER YOUR REQUEST PUBLIC KEY: " requestpublickey
-echo " "
+printf "\n"
 read -p "ENTER YOUR REQUEST PRIVATE KEY: " requestprivatekey
-echo " "
+printf "\n"
 remcli wallet import --private-key=$requestprivatekey
-echo " "
+printf "\n"
 read -p "ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
-echo " "
+printf "\n"
 remcli wallet import --private-key=$transferprivatekey
-echo " "
+printf "\n"
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
-echo " "
+printf "\n"
 remcli system regproducer $owneraccountname $requestpublickey $domain
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
-echo " "
+printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-echo " "
+printf "\n"
 rm walletpass Install-1.sh Install-2.sh Install-3.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt
 printf "\n[********************** COMPLETED ************************]\n\n"
 }
@@ -263,14 +252,12 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Pub
 activepublickey1=$(head -n 2 key1 | tail -1)
 activeprivatekey1=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$activeprivatekey1
-echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 1:"
-echo " "
+printf "\nTAKE NOTE OF YOUR ACTIVE KEY 1:\n\n"
 echo "Account Name:" $activeproducername1
 cat ./activekeys1
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE ACTIVE KEY 2
@@ -282,14 +269,12 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Pub
 activepublickey2=$(head -n 2 key2 | tail -1)
 activeprivatekey2=$(head -n 1 key2 | tail -1)
 remcli wallet import --private-key=$activeprivatekey2
-echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 2:"
-echo " "
+printf "\nTAKE NOTE OF YOUR ACTIVE KEY 2:\n\n"
 echo "Account Name:" $activeproducername2
 cat ./activekeys2
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE ACTIVE KEY 3
@@ -301,14 +286,12 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Pub
 activepublickey3=$(head -n 2 key3 | tail -1)
 activeprivatekey3=$(head -n 1 key3 | tail -1)
 remcli wallet import --private-key=$activeprivatekey3
-echo " "
-echo "TAKE NOTE OF YOUR ACTIVE KEY 3:"
-echo " "
+printf "\nTAKE NOTE OF YOUR ACTIVE KEY 3:\n\n"
 echo "Account Name:" $activeproducername3
 cat ./activekeys3
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE REQUEST KEY
@@ -321,13 +304,11 @@ requestpublickey=$(head -n 2 key4 | tail -1)
 requestprivatekey=$(head -n 1 key4 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
-echo " "
-echo "TAKE NOTE OF YOUR REQUEST KEYS:"
-echo " "
+printf "\nTAKE NOTE OF YOUR REQUEST KEYS:\n\n"
 cat ./requestkeys
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE TRANSFER KEY
@@ -338,34 +319,24 @@ cp key5 transferkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
 transferprivatekey=$(head -n 1 key5 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
-echo " "
-echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
-echo " "
+printf "\nTAKE NOTE OF YOUR TRANSFER KEYS:\n\n"
 cat ./transferkeys
-echo " "
+printf "\n"
 pause 'Press [Enter] key to continue...'
-echo " "
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMCHAIN ACCOUNTS
 #-----------------------------------------------------------------------------------------------------
 
-echo "[********************** CREATING ACTIVE ACCOUNT 1 ************************]"
-echo " "
+printf "\n[********************** CREATING ACTIVE ACCOUNT 1 ************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
-echo " "
-echo "[********************** CREATING ACTIVE ACCOUNT 2 ************************]"
-echo " "
+printf "\n[********************** CREATING ACTIVE ACCOUNT 2 ************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
-echo " "
-echo "[********************** CREATING ACTIVE ACCOUNT 3 ************************]"
-echo " "
+printf "\n[********************** CREATING ACTIVE ACCOUNT 3 ************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-echo " "
-echo "Please wait for 2 minutes... "
-echo " "
+printf "\nPlease wait for 2 minutes...\n\n"
 sleep 120
 
 #-----------------------------------------------------------------------------------------------------
@@ -373,7 +344,6 @@ sleep 120
 #-----------------------------------------------------------------------------------------------------
 
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-echo " "
 printf "\n[********************** COMPLETED ************************]\n\n"
 }
 
