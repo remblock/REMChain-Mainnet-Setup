@@ -367,8 +367,8 @@ printf "\n[********************** COMPLETED ************************]\n\n";;
 # CHECKING FOR EXISTING KEY PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn
-  case $yn in
+read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
+  case $yn2 in
        y|Y ) oldkeypermissions
 	     break;;
        n|N ) newkeypermissions
