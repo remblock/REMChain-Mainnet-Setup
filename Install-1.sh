@@ -96,7 +96,7 @@ read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]
 	     break;;
        n|N ) printf "\n[********************** DONE ************************]\n\n";;
        * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
-   esac
+  esac
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
@@ -358,4 +358,4 @@ read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
        n|N ) newkeypermissions
        	     break;;
        * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
-   esac
+  esac
