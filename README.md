@@ -29,12 +29,6 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.s
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
 
-![image](https://i.imgur.com/omiCyUr.png)
-
-> **The dates shown on each block must be in sync with one another before proceeding onto the next step, it usually takes a couple of hours for the node to be in sync. Once synchronised you can then exit back to the command line by pressing control + c.**
-
-***
-
 __Step 3:__
 
 ```
