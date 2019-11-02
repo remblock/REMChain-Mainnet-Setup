@@ -13,14 +13,14 @@ function pause(){
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt update && sudo -S apt upgrade
-printf "\nSET YOUR NEW ROOT PASSWORD:"
+printf "\nSET YOUR NEW ROOT PASSWORD:\n"
 passwd root
 
 #-----------------------------------------------------------------------------------------------------
 # CHANGING DEFAULT SSH PORT NUMBER
 #-----------------------------------------------------------------------------------------------------
 
-printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:"
+printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
 read -n 5 portnumber
 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 
@@ -50,8 +50,8 @@ sudo -S service sshd restart
 # CREATING NEW USER ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n\nCREATING YOUR NEW USER ACCOUNT"
-echo "SET YOUR USERNAME:"
+printf "\n\nCREATING YOUR NEW USER ACCOUNT\n"
+printf "SET YOUR USERNAME:\n"
 read username
 sudo adduser $username
 sudo usermod -aG sudo $username
