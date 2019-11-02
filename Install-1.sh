@@ -118,7 +118,7 @@ sudo snap install canonical-livepatch
 # INSTALLING REM PROTOCOL BINARIES
 #-----------------------------------------------------------------------------------------------------
 
-wget https://github.com/Remmeauth/remprotocol/releases/download/0.1.0/remprotocol_0.1.0-ubuntu-18.04_amd64.deb && sudo apt install ./remprotocol_0.1.0-ubuntu-18.04_amd64.deb
+wget https://github.com/Remmeauth/remprotocol/releases/download/0.2.1/remprotocol_0.2.1-1_amd64.deb && sudo apt install ./remprotocol_0.2.1-1_amd64.deb
 
 #-----------------------------------------------------------------------------------------------------
 # BOOTING REMNODE AND WALLET
@@ -136,7 +136,7 @@ mkdir data && mkdir config
 # CONFIGURATION FILE (CONFIG/CONFIG.INI)
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\np2p-peer-address = 167.71.88.152:9877\n\nverbose-http-errors = true" > ./config/config.ini
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.ukn\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480" > ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # THE INITIAL RUN OF THE REMNODE
@@ -188,22 +188,22 @@ echo " "
 #-----------------------------------------------------------------------------------------------------
 
 echo " "
-echo "WHATS YOUR PRODUCER DOMAIN ADDRESS?"
+echo "ENTER YOUR DOMAIN ADDRESS:"
 read -e domain
 echo $domain > domain.txt
 echo " "
-echo "COPY AND PASTE YOUR TELEGRAM PUBLIC KEY:"
-read -e ownerpublickey
-echo $ownerpublickey > ownerpublickey.txt
-echo " "
-echo "COPY AND PASTE YOUR TELEGRAM PRIVATE KEY:"
-read -e ownerprivatekey
-remcli wallet import --private-key=$ownerprivatekey
-echo " "
-echo "COPY AND PASTE YOUR TESTNET ACCOUNT NAME:"
+echo "ENTER YOUR OWNER ACCOUNT NAME:"
 read -e owneraccountname
 echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
+echo " "
+echo "ENTER YOUR OWNER ACCOUNT PUBLIC KEY:"
+read -e ownerpublickey
+echo $ownerpublickey > ownerpublickey.txt
+echo " "
+echo "ENTER YOUR OWNER ACCOUNT PRIVATE KEY:"
+read -e ownerprivatekey
+remcli wallet import --private-key=$ownerprivatekey
 
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD 
