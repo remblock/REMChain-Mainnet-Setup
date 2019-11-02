@@ -237,19 +237,31 @@ printf "\n[********************** COMPLETED ************************]\n\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE ACTIVE KEY 1
+# GENERATING RANDOM ACTIVE ACCOUNT NAMES
 #-----------------------------------------------------------------------------------------------------
 
 newkeypermissions() {
+
+randomname1=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
+randomname2=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
+randomname3=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
+echo $randomname1 >> activeproducername.txt
+echo $randomname2 >> activeproducername.txt
+echo $randomname3 >> activeproducername.txt
+sort activeproducername.txt
+activeproducername1=$(head -n 1 activeproducername.txt | tail -1)
+activeproducername2=$(head -n 2 activeproducername.txt | tail -1)
+activeproducername3=$(head -n 3 activeproducername.txt | tail -1)
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMNODE ACTIVE KEY 1
+#-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key1
 cp key1 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
 activepublickey1=$(head -n 2 key1 | tail -1)
 activeprivatekey1=$(head -n 1 key1 | tail -1)
-activeproducername1=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
-echo $activeproducername1 > activeproducername1.txt
-activeproducername1=$(cat activeproducername1.txt)
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 1:"
@@ -269,9 +281,6 @@ cp key2 activekeys2
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 activepublickey2=$(head -n 2 key2 | tail -1)
 activeprivatekey2=$(head -n 1 key2 | tail -1)
-activeproducername2=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 | grep -o . | sort |tr -d "\n")
-echo $activeproducername2 > activeproducername2.txt
-activeproducername2=$(cat activeproducername2.txt)
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 2:"
@@ -291,9 +300,6 @@ cp key3 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 activepublickey3=$(head -n 2 key3 | tail -1)
 activeprivatekey3=$(head -n 1 key3 | tail -1)
-activeproducername3=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
-echo $activeproducername3 > activeproducername3.txt
-activeproducername3=$(cat activeproducername3.txt)
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 3:"
