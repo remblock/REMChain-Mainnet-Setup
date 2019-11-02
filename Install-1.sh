@@ -187,17 +187,17 @@ echo "ENTER YOUR DOMAIN ADDRESS:"
 read -e domain
 echo $domain > domain.txt
 echo " "
+echo "ENTER YOUR OWNER PUBLIC KEY:"
+read -e ownerpublickey
+echo $ownerpublickey > ownerpublickey.txt
+echo " "
+echo "ENTER YOUR OWNER PRIVATE KEY:"
+read -e ownerprivatekey
+echo " "
 echo "ENTER YOUR OWNER ACCOUNT NAME:"
 read -e owneraccountname
 echo $owneraccountname > owneraccountname.txt
 owneraccountname=$(cat owneraccountname.txt)
-echo " "
-echo "ENTER YOUR OWNER ACCOUNT PUBLIC KEY:"
-read -e ownerpublickey
-echo $ownerpublickey > ownerpublickey.txt
-echo " "
-echo "ENTER YOUR OWNER ACCOUNT PRIVATE KEY:"
-read -e ownerprivatekey
 echo " "
 remcli wallet import --private-key=$ownerprivatekey
 
@@ -324,8 +324,9 @@ pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-sleep 2
-sudo ./countdown.sh -m 1
+echo " "
+echo "Please wait for 2 minutes... "
+sleep 120
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
