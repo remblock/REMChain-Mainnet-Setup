@@ -83,7 +83,7 @@ echo " "
 #-----------------------------------------------------------------------------------------------------
 
 ssh_copy() {
-sudo apt-get install sshpass
+sudo apt-get install sshpass -y
 echo $SSH_CLIENT | awk '{ print $1}'
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
 echo "OK LET'S START COPYING OVER YOUR KEY FILES"
