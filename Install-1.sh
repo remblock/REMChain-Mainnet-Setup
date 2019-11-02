@@ -233,7 +233,7 @@ echo " "
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 echo " "
 rm walletpass Install-1.sh Install-2.sh Install-3.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt
-printf "\n[********************** COMPLETED ************************]\n\n";;
+printf "\n[********************** COMPLETED ************************]\n\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
@@ -360,7 +360,7 @@ sleep 120
 
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 echo " "
-printf "\n[********************** COMPLETED ************************]\n\n";;
+printf "\n[********************** COMPLETED ************************]\n\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
