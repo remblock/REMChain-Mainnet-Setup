@@ -29,6 +29,8 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.s
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
 
+***
+
 __Step 3:__
 
 ```
