@@ -69,6 +69,7 @@ echo "GENERATING YOUR SSH KEYS:"
 echo " "
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
+sudo systemctl restart ssh
 echo " "
 echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:"
 echo " "
