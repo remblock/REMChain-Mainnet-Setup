@@ -198,6 +198,7 @@ echo $ownerpublickey > ownerpublickey.txt
 echo " "
 echo "ENTER YOUR OWNER ACCOUNT PRIVATE KEY:"
 read -e ownerprivatekey
+echo " "
 remcli wallet import --private-key=$ownerprivatekey
 
 #-----------------------------------------------------------------------------------------------------
@@ -206,6 +207,7 @@ remcli wallet import --private-key=$ownerprivatekey
 
 echo " "
 echo "TAKE NOTE OF YOUR WALLET PASSWORD:"
+echo " "
 cat ./walletpass
 echo " "
 pause 'Press [Enter] key to continue...'
@@ -226,6 +228,7 @@ activeproducername1=$(cat activeproducername1.txt)
 remcli wallet import --private-key=$activeprivatekey1
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 1:"
+echo " "
 echo "Account Name:" $activeproducername1
 cat ./activekeys1
 echo " "
@@ -247,6 +250,7 @@ activeproducername2=$(cat activeproducername2.txt)
 remcli wallet import --private-key=$activeprivatekey2
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 2:"
+echo " "
 echo "Account Name:" $activeproducername2
 cat ./activekeys2
 echo " "
@@ -268,6 +272,7 @@ activeproducername3=$(cat activeproducername3.txt)
 remcli wallet import --private-key=$activeprivatekey3
 echo " "
 echo "TAKE NOTE OF YOUR ACTIVE KEY 3:"
+echo " "
 echo "Account Name:" $activeproducername3
 cat ./activekeys3
 echo " "
@@ -287,6 +292,7 @@ remcli wallet import --private-key=$requestprivatekey
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.ukn\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey” > ./config/config.ini
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
+echo " "
 cat ./requestkeys
 echo " "
 pause 'Press [Enter] key to continue...'
@@ -303,6 +309,7 @@ transferprivatekey=$(head -n 1 key5 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
 echo " "
 echo "TAKE NOTE OF YOUR TRANSFER KEYS:"
+echo " "
 cat ./transferkeys
 echo " "
 pause 'Press [Enter] key to continue...'
