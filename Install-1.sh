@@ -64,18 +64,18 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-echo " " 
-echo "GENERATING YOUR SSH KEYS:" 
-echo " " 
+echo " "
+echo "GENERATING YOUR SSH KEYS:"
+echo " "
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 echo " "
-echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:" 
-echo " " 
-sudo cat /home/$username/.ssh/id_rsa 
-echo " " 
-pause 'Press [Enter] key to continue...' 
-echo " " 
+echo "TAKE NOTE OF YOUR SSH PRIVATE KEY:"
+echo " "
+sudo cat /home/$username/.ssh/id_rsa
+echo " "
+pause 'Press [Enter] key to continue...'
+echo " "
 
 #-----------------------------------------------------------------------------------------------------
 # COPYING SSH KEY OVER TO THE LOCAL HOST  
@@ -83,7 +83,7 @@ echo " "
 
 ssh_copy() {
 sudo apt-get install sshpass
-echo $SSH_CLIENT | awk '{ print $1}' 
+echo $SSH_CLIENT | awk '{ print $1}'
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
 echo "OK LET'S START COPYING OVER YOUR KEY FILES"
 echo " "
@@ -145,26 +145,26 @@ nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --ge
 t1=""
 t2=""
 to_date=$(date '+%Y-%m-%d')
-tail -n 3 -f  remnode_sync.log |  while read LINE0 
+tail -n 3 -f  remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
 t2=$(echo $t1 | cut -d'T' -f1)
 #echo $LINE0 
-if [[ $to_date == $t2 ]]; then 
+if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
 echo "fetching blocks....."
 done
 
 #-----------------------------------------------------------------------------------------------------
-# RUNNING REMNODE IN THE BACKGROUND 
+# RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 
 #-----------------------------------------------------------------------------------------------------
-# RUNNING THE WALLET DAEMON 
+# RUNNING THE WALLET DAEMON
 #-----------------------------------------------------------------------------------------------------
 
 remvault &
@@ -179,7 +179,7 @@ walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass.txt
 
 #-----------------------------------------------------------------------------------------------------
-# ASKING USER FOR REM ACCOUNT DETAILS 
+# ASKING USER FOR REM ACCOUNT DETAILS
 #-----------------------------------------------------------------------------------------------------
 
 echo " "
@@ -202,7 +202,7 @@ echo " "
 remcli wallet import --private-key=$ownerprivatekey
 
 #-----------------------------------------------------------------------------------------------------
-# YOUR REMNODE WALLET PASSWORD 
+# YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
 
 echo " "
@@ -214,7 +214,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE ACTIVE KEY 1 
+# CREATING YOUR REMNODE ACTIVE KEY 1
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key1
@@ -258,7 +258,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE ACTIVE KEY 3 
+# CREATING YOUR REMNODE ACTIVE KEY 3
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key3
@@ -280,7 +280,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE REQUEST KEY 
+# CREATING YOUR REMNODE REQUEST KEY
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key4
@@ -289,7 +289,7 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Pub
 requestpublickey=$(head -n 2 key4 | tail -1)
 requestprivatekey=$(head -n 1 key4 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
-echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.ukn\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey” > ./config/config.ini
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.ukn\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
 echo " "
 echo "TAKE NOTE OF YOUR REQUEST KEYS:"
 echo " "
@@ -299,7 +299,7 @@ pause 'Press [Enter] key to continue...'
 echo " "
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE TRANSFER KEY  
+# CREATING YOUR REMNODE TRANSFER KEY
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key5
