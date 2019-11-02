@@ -25,3 +25,5 @@ remcli set account permission $owneraccountname vote $requestpublickey active -p
 remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@active
 remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@active
 remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@active
+
+printf "\n[********************** COMPLETED ************************]\n\n"
