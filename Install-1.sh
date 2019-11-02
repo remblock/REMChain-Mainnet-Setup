@@ -4,8 +4,6 @@
 #                                           INSTALL-1.SH                                             #
 #****************************************************************************************************#
 
-conf_path="/root/remblock/autobot/config"
-
 function pause(){
    read -p "$*"
 }
@@ -177,11 +175,8 @@ sleep 2
 #-----------------------------------------------------------------------------------------------------
 
 remcli wallet create --file walletpass
-walletpassword=$(cat walletpass)
-echo $walletpassword > producerwalletpass.txt
-sudo echo "owneraccountname="$username >>$conf_path
-sudo echo "walletpassword="$walletpassword >>$conf_path
-echo " "
+walletpass=$(cat walletpass)
+echo $walletpass > producerwalletpass.txt
 
 #-----------------------------------------------------------------------------------------------------
 # ASKING USER FOR REM ACCOUNT DETAILS 
