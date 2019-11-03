@@ -50,7 +50,7 @@ sudo -S service sshd restart
 # CREATING NEW USER ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n\nCREATING YOUR NEW USER ACCOUNT\n"
+printf "\n[********************** CREATING YOUR NEW USER ACCOUNT ************************]\n\n"
 printf "SET YOUR USERNAME:\n"
 read username
 sudo adduser $username
@@ -60,7 +60,7 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-printf "\nGENERATING YOUR SSH KEYS:\n\n"
+printf "\n[********************** GENERATING YOUR SSH KEYS ************************]\n\n"
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
@@ -78,7 +78,7 @@ ssh_copy() {
 sudo apt-get install sshpass -y
 echo $SSH_CLIENT | awk '{ print $1}'
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-echo "OK LET'S START COPYING OVER YOUR KEY FILES"
+echo "OK LET'S START COPYING OVER YOUR KEY FILES..."
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
 printf "\n"
