@@ -229,7 +229,7 @@ remcli wallet import --private-key=$ownerprivatekey
 }
 
 printf "\n"
-read -p "IS THIS A NEW REMNODE ACCOUNT? [y/n]: " yn2
+read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn2
   case $yn2 in
        y|Y ) newaccount
 	     break;;
