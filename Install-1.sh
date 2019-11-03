@@ -197,7 +197,7 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Pub
 ownerpublickey=$(head -n 2 key1 | tail -1)
 ownerprivatekey=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$ownerprivatekey
-printf "\nTAKE NOTE OF YOUR OWNER KEYS:\n\n"
+printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS ************************]\n\n"
 echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
@@ -241,7 +241,7 @@ read -p "IS THIS A NEW REMNODE ACCOUNT? [y/n]: " yn2
 # YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
 
-printf "\nTAKE NOTE OF YOUR WALLET PASSWORD:\n\n"
+printf "\n[********************** TAKE NOTE OF YOUR WALLET PASSWORD ************************]\n\n"
 cat ./walletpass
 printf "\n"
 pause 'Press [Enter] key to continue...'
