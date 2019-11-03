@@ -188,7 +188,7 @@ read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 printf "\n"
 read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 printf "\n"
-remcli wallet unlock --password=$walletpass
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
 remcli create key --file key1
@@ -225,7 +225,7 @@ printf "\n"
 read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 echo $owneraccountname >> key1
 printf "\n"
-remcli wallet unlock --password=$walletpass
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$ownerprivatekey
 
 }
