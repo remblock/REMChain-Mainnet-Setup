@@ -64,7 +64,7 @@ printf "\n[********************** GENERATING YOUR NEW SSH KEYS *****************
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
-printf "\nTAKE NOTE OF YOUR SSH PRIVATE KEY:\n\n"
+printf "\n[********************** TAKE NOTE OF YOUR SSH PRIVATE KEY ************************]\n\n"
 sudo cat /home/$username/.ssh/id_rsa
 printf "\n"
 pause 'Press [Enter] key to continue...'
@@ -226,7 +226,7 @@ printf "\n"
 remcli wallet import --private-key=$ownerprivatekey
 
 }
-
+printf "\n"
 read -p "IS THIS A NEW REMNODE ACCOUNT? [y/n]: " yn2
   case $yn2 in
        y|Y ) newaccount
