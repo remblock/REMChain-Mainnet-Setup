@@ -152,7 +152,7 @@ done
 # RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 
 #-----------------------------------------------------------------------------------------------------
@@ -206,8 +206,8 @@ cat ./ownerkeys
 printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING YOUR NEW OWNER ACCOUNT ************************]\n\n"
-remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 180 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
-remcli transfer $telegramaccountname $owneraccountname -x 180 "10000 REM" -p $telegramaccountname@owner
+remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
+remcli transfer $telegramaccountname $owneraccountname -x 120 "10000 REM" -p $telegramaccountname@owner
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
@@ -386,13 +386,13 @@ pause 'Press [Enter] key to continue...'
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n[********************** CREATING ACTIVE ACCOUNT 1 ************************]\n\n"
-remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 180 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
+remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING ACTIVE ACCOUNT 2 ************************]\n\n"
-remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 180 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
+remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING ACTIVE ACCOUNT 3 ************************]\n\n"
-remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 180 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
+remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 printf "\nPlease wait for 2 minutes...\n\n"
 sleep 120
 
