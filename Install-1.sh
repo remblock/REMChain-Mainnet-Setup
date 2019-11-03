@@ -204,6 +204,7 @@ printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING NEW OWNER ACCOUNT ************************]\n\n"
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
+remcli transfer $telegramaccountname $owneraccountname "10000 REM" -p $telegramaccountname@owner
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
