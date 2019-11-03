@@ -293,7 +293,7 @@ randomname3=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  gre
 echo $randomname1 >> activeproducername.txt
 echo $randomname2 >> activeproducername.txt
 echo $randomname3 >> activeproducername.txt
-sort activeproducername.txt
+sort -d activeproducername.txt
 owneraccountname=$(head -n 3 key1 | tail -1)
 activeproducername1=$(head -n 1 activeproducername.txt | tail -1)
 activeproducername2=$(head -n 2 activeproducername.txt | tail -1)
