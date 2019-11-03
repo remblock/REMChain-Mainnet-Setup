@@ -152,7 +152,6 @@ done
 # RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 1
 
@@ -206,7 +205,7 @@ printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING YOUR NEW OWNER ACCOUNT ************************]\n\n"
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
-remcli transfer $telegramaccountname $owneraccountname "10000 REM" -p $telegramaccountname@owner
+remcli transfer -x 120 $telegramaccountname $owneraccountname "10000 REM" -p $telegramaccountname@owner
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
