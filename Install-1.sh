@@ -51,7 +51,7 @@ sudo -S service sshd restart
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n[********************** CREATING YOUR NEW USER ACCOUNT ************************]\n\n"
-printf "SET YOUR USERNAME:\n"
+printf "SET YOUR SERVER USERNAME:\n"
 read username
 sudo adduser $username
 sudo usermod -aG sudo $username
