@@ -191,8 +191,8 @@ printf "\n"
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
 remcli create key --file key1
-echo $owneraccountname >> key1
 cp key1 ownerkeys
+echo $owneraccountname >> key1
 sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
 ownerpublickey=$(head -n 2 key1 | tail -1)
 ownerprivatekey=$(head -n 1 key1 | tail -1)
