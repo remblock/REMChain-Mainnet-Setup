@@ -166,6 +166,7 @@ sleep 2
 # CREATING THE REMCLI WALLET
 #-----------------------------------------------------------------------------------------------------
 
+remnode --unlock-timeout=31536000
 remcli wallet create --file walletpass
 walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass.txt
@@ -188,7 +189,6 @@ read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 printf "\n"
 read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 printf "\n"
-remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
 remcli create key --file key1
@@ -306,7 +306,6 @@ cp key2 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 activepublickey1=$(head -n 2 key2 | tail -1)
 activeprivatekey1=$(head -n 1 key2 | tail -1)
-remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$activeprivatekey1
 printf "\n[********************** TAKE NOTE OF YOUR ACTIVE KEY 1 ************************]\n\n"
 echo "Account Name:" $activeproducername1
