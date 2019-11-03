@@ -133,7 +133,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 #-----------------------------------------------------------------------------------------------------
 
 nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1 | tee remnode_sync.log &>/dev/null &
-
+sleep 2
 t1=""
 t2=""
 to_date=$(date '+%Y-%m-%d')
