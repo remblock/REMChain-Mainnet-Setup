@@ -13,6 +13,7 @@ function pause(){
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt update && sudo -S apt upgrade
+sudo apt-get install pv
 printf "\nSET YOUR NEW ROOT PASSWORD:\n"
 passwd root
 
