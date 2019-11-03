@@ -226,6 +226,7 @@ printf "\n"
 remcli wallet import --private-key=$ownerprivatekey
 
 }
+
 printf "\n"
 read -p "IS THIS A NEW REMNODE ACCOUNT? [y/n]: " yn2
   case $yn2 in
