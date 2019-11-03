@@ -204,7 +204,7 @@ printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n[********************** CREATING OWNER ACCOUNT ************************]\n\n"
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
-remcli wallet remove_key $telegrampublickey --password=$producerwalletpass
+remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
 
@@ -268,7 +268,7 @@ printf "\n"
 remcli system regproducer $owneraccountname $requestpublickey $domain
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
 printf "\n"
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
+remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
 rm walletpass Install-1.sh Install-2.sh Install-3.sh producerwalletpass.txt
 printf "\n[********************** COMPLETED ************************]\n\n"
