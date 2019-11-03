@@ -161,12 +161,14 @@ sleep 1
 
 remvault &
 sleep 2
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING THE REMCLI WALLET
 #-----------------------------------------------------------------------------------------------------
 
-remnode --unlock-timeout=31536000
 remcli wallet create --file walletpass
 walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass.txt
