@@ -137,7 +137,7 @@ nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --ge
 t1=""
 t2=""
 to_date=$(date '+%Y-%m-%d')
-tail -n 3 -f  remnode_sync.log |  while read LINE0
+tail -n 3 -f remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
 t2=$(echo $t1 | cut -d'T' -f1)
