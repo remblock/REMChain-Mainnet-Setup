@@ -90,8 +90,8 @@ sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port 
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
 printf "\n[********************** DONE ************************]\n\n"
 }
-read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn
-  case $yn in
+read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+  case $yn1 in
        y|Y ) ssh_copy
 	     break;;
        n|N ) printf "\n[********************** DONE ************************]\n\n";;
@@ -171,23 +171,71 @@ walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass.txt
 
 #-----------------------------------------------------------------------------------------------------
-# ASKING USER FOR REM ACCOUNT DETAILS
+# CHECKING FOR USERS REMNODE ACCOUNT
 #-----------------------------------------------------------------------------------------------------
+
+newaccount() {
 
 printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
-echo $domain > domain.txt
+echo $domain >> key1
+printf "\n"
+read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+printf "\n"
+read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+printf "\n"
+read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+printf "\n"
+read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+printf "\n"
+remcli wallet import --private-key=$telegramprivatekey
+printf "\n"
+remcli create key --file key1
+echo $owneraccountname >> key1
+cp key1 ownerkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
+ownerpublickey=$(head -n 2 key1 | tail -1)
+ownerprivatekey=$(head -n 1 key1 | tail -1)
+remcli wallet import --private-key=$ownerprivatekey
+printf "\nTAKE NOTE OF YOUR OWNER KEYS:\n\n"
+echo "Account Name:" $owneraccountname
+cat ./ownerkeys
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n[********************** CREATING OWNER ACCOUNT ************************]\n\n"
+remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
+remcli wallet remove_key $telegrampublickey --password=$producerwalletpass
+
+}
+
+existingaccount() {
+
+printf "\n"
+read -p "ENTER YOUR DOMAIN ADDRESS: " domain
+echo $domain >> key1
 printf "\n"
 read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
-echo $ownerpublickey > ownerpublickey.txt
+echo $ownerpublickey >> key1
 printf "\n"
 read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
+echo $ownerprivatekey >> key1
 printf "\n"
 read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
-echo $owneraccountname > owneraccountname.txt
+echo $owneraccountname >> key1
 printf "\n"
 remcli wallet import --private-key=$ownerprivatekey
 
+}
+
+read -p "IS THIS A NEW REMNODE ACCOUNT? [y/n]: " yn2
+  case $yn2 in
+       y|Y ) newaccount
+	     break;;
+       n|N ) existingaccount
+       	     break;;
+       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+  esac
+  
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
@@ -221,8 +269,9 @@ remcli system voteproducer prods $owneraccountname $owneraccountname -p $ownerac
 printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 printf "\n"
-rm walletpass Install-1.sh Install-2.sh Install-3.sh domain.txt ownerpublickey.txt owneraccountname.txt producerwalletpass.txt
+rm walletpass Install-1.sh Install-2.sh Install-3.sh producerwalletpass.txt
 printf "\n[********************** COMPLETED ************************]\n\n"
+
 }
 
 #-----------------------------------------------------------------------------------------------------
@@ -246,11 +295,11 @@ activeproducername3=$(head -n 3 activeproducername.txt | tail -1)
 # CREATING YOUR REMNODE ACTIVE KEY 1
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key1
-cp key1 activekeys1
-sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Public key: /s/Public key: //" key1
-activepublickey1=$(head -n 2 key1 | tail -1)
-activeprivatekey1=$(head -n 1 key1 | tail -1)
+remcli create key --file key2
+cp key2 activekeys1
+sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
+activepublickey1=$(head -n 2 key2 | tail -1)
+activeprivatekey1=$(head -n 1 key2 | tail -1)
 remcli wallet import --private-key=$activeprivatekey1
 printf "\nTAKE NOTE OF YOUR ACTIVE KEY 1:\n\n"
 echo "Account Name:" $activeproducername1
@@ -263,11 +312,11 @@ printf "\n"
 # CREATING YOUR REMNODE ACTIVE KEY 2
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key2
-cp key2 activekeys2
-sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
-activepublickey2=$(head -n 2 key2 | tail -1)
-activeprivatekey2=$(head -n 1 key2 | tail -1)
+remcli create key --file key3
+cp key3 activekeys2
+sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
+activepublickey2=$(head -n 2 key3 | tail -1)
+activeprivatekey2=$(head -n 1 key3 | tail -1)
 remcli wallet import --private-key=$activeprivatekey2
 printf "\nTAKE NOTE OF YOUR ACTIVE KEY 2:\n\n"
 echo "Account Name:" $activeproducername2
@@ -280,11 +329,11 @@ printf "\n"
 # CREATING YOUR REMNODE ACTIVE KEY 3
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key3
-cp key3 activekeys3
-sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
-activepublickey3=$(head -n 2 key3 | tail -1)
-activeprivatekey3=$(head -n 1 key3 | tail -1)
+remcli create key --file key4
+cp key4 activekeys3
+sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Public key: /s/Public key: //" key4
+activepublickey3=$(head -n 2 key4 | tail -1)
+activeprivatekey3=$(head -n 1 key4 | tail -1)
 remcli wallet import --private-key=$activeprivatekey3
 printf "\nTAKE NOTE OF YOUR ACTIVE KEY 3:\n\n"
 echo "Account Name:" $activeproducername3
@@ -297,11 +346,11 @@ printf "\n"
 # CREATING YOUR REMNODE REQUEST KEY
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key4
-cp key4 requestkeys
-sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Public key: /s/Public key: //" key4
-requestpublickey=$(head -n 2 key4 | tail -1)
-requestprivatekey=$(head -n 1 key4 | tail -1)
+remcli create key --file key5
+cp key5 requestkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
+requestpublickey=$(head -n 2 key5 | tail -1)
+requestprivatekey=$(head -n 1 key5 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
 printf "\nTAKE NOTE OF YOUR REQUEST KEYS:\n\n"
@@ -314,10 +363,10 @@ printf "\n"
 # CREATING YOUR REMNODE TRANSFER KEY
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key5
-cp key5 transferkeys
-sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
-transferprivatekey=$(head -n 1 key5 | tail -1)
+remcli create key --file key6
+cp key6 transferkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key6 && sudo -S sed -i "/^Public key: /s/Public key: //" key6
+transferprivatekey=$(head -n 1 key6 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
 printf "\nTAKE NOTE OF YOUR TRANSFER KEYS:\n\n"
 cat ./transferkeys
@@ -343,16 +392,18 @@ sleep 120
 # CREATING YOUR MULTISIG PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
+printf "\n[********************** CREATING ACTIVE MULTISIG ************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 printf "\n[********************** COMPLETED ************************]\n\n"
+
 }
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
-  case $yn2 in
+read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
+  case $yn3 in
        y|Y ) oldkeypermissions
 	     break;;
        n|N ) newkeypermissions
