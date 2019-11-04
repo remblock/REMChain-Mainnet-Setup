@@ -293,17 +293,10 @@ printf "\n[********************** COMPLETED ************************]\n\n"
 
 newkeypermissions() {
 
-randomname1=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
-randomname2=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
-randomname3=$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 12 | head -n 1 |  grep -o . | sort |tr -d "\n")
-echo $randomname1 >> activeproducername.txt
-echo $randomname2 >> activeproducername.txt
-echo $randomname3 >> activeproducername.txt
-sort -d activeproducername.txt
 owneraccountname=$(head -n 3 key1 | tail -1)
-activeproducername1=$(head -n 1 activeproducername.txt | tail -1)
-activeproducername2=$(head -n 2 activeproducername.txt | tail -1)
-activeproducername3=$(head -n 3 activeproducername.txt | tail -1)
+activeproducername1=a$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
+activeproducername2=b$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
+activeproducername3=c$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE ACTIVE KEY 1
