@@ -132,7 +132,11 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1 | tee remnode_sync.log &>/dev/null &
+nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1
+sleep 2
+ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
+sleep 2
+nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 & | tee remnode_sync.log &>/dev/null &
 sleep 2
 t1=""
 t2=""
@@ -140,12 +144,13 @@ to_date=$(date '+%Y-%m-%d%H:%M:%S')
 tail -n 3 -f remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
-t2=$(echo $t1 | cut -d'T' -f1)
+t2=$(echo $t1 | cut -d'info  ' -d'T' -f1)
+info  
 #echo $LINE0 
 if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
-echo "fetching blocks for $t1 ....."
+echo "fetching blocks for $t2 ....."
 done
 
 #-----------------------------------------------------------------------------------------------------
