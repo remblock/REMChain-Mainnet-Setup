@@ -136,7 +136,7 @@ nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --ge
 sleep 2
 t1=""
 t2=""
-to_date=$(date '+%Y-%m-%d')
+to_date=$(date '+%Y-%m-%d%H:%M:%S')
 tail -n 3 -f remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
@@ -145,7 +145,7 @@ t2=$(echo $t1 | cut -d'T' -f1)
 if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
-echo "fetching blocks for $t2 ....."
+echo "fetching blocks for $t1 ....."
 done
 
 #-----------------------------------------------------------------------------------------------------
