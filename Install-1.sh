@@ -50,7 +50,7 @@ sudo -S service sshd restart
 # CREATING NEW USER ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[********************* CREATING YOUR NEW USER ACCOUNT ***********************]\n\n"
+printf "\n[******************** CREATING YOUR NEW USER ACCOUNT **********************]\n\n"
 printf "SET YOUR NEW SERVER USERNAME:\n"
 read username
 sudo adduser $username
@@ -64,7 +64,7 @@ printf "\n[******************* GENERATING YOUR NEW SSH KEYS ********************
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
-printf "\n[********************** TAKE NOTE OF YOUR SSH PRIVATE KEY ************************]\n\n"
+printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
 sudo cat /home/$username/.ssh/id_rsa
 printf "\n"
 pause 'Press [Enter] key to continue...'
