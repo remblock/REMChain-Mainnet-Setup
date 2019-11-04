@@ -60,7 +60,7 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[******************** GENERATING YOUR NEW SSH KEYS **********************]\n\n"
+printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
