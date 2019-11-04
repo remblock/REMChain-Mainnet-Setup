@@ -145,7 +145,7 @@ t2=$(echo $t1 | cut -d'T' -f1)
 if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
-echo "fetching blocks....."
+echo "fetching blocks for $t2 ....."
 done
 
 #-----------------------------------------------------------------------------------------------------
