@@ -132,7 +132,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json  2>&1
+nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json 2>&1
 sleep 2
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 sleep 2
