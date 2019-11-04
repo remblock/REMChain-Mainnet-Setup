@@ -60,7 +60,7 @@ sudo usermod -aG sudo $username
 # CREATING SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[******************* GENERATING YOUR NEW SSH KEYS *********************]\n\n"
+printf "\n[******************** GENERATING YOUR NEW SSH KEYS **********************]\n\n"
 su $username -c ssh-keygen
 sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
 sudo systemctl restart ssh
@@ -200,12 +200,12 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Pub
 ownerpublickey=$(head -n 2 key1 | tail -1)
 ownerprivatekey=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$ownerprivatekey
-printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS ************************]\n\n"
+printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS ***********************]\n\n"
 echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
 pause 'Press [Enter] key to continue...'
-printf "\n[********************* CREATING YOUR NEW OWNER ACCOUNT ***********************]\n\n"
+printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
 printf "\n"
 pause 'Press [Enter] key to continue...'
@@ -315,7 +315,7 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Pub
 activepublickey1=$(head -n 2 key2 | tail -1)
 activeprivatekey1=$(head -n 1 key2 | tail -1)
 remcli wallet import --private-key=$activeprivatekey1
-printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 1 ***********************]\n\n"
+printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 1 **********************]\n\n"
 echo "Account Name:" $activeproducername1
 cat ./activekeys1
 printf "\n"
@@ -332,7 +332,7 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Pub
 activepublickey2=$(head -n 2 key3 | tail -1)
 activeprivatekey2=$(head -n 1 key3 | tail -1)
 remcli wallet import --private-key=$activeprivatekey2
-printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 2 ***********************]\n\n"
+printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 2 **********************]\n\n"
 echo "Account Name:" $activeproducername2
 cat ./activekeys2
 printf "\n"
@@ -349,7 +349,7 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Pub
 activepublickey3=$(head -n 2 key4 | tail -1)
 activeprivatekey3=$(head -n 1 key4 | tail -1)
 remcli wallet import --private-key=$activeprivatekey3
-printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 3 ***********************]\n\n"
+printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 3 **********************]\n\n"
 echo "Account Name:" $activeproducername3
 cat ./activekeys3
 printf "\n"
@@ -367,7 +367,7 @@ requestpublickey=$(head -n 2 key5 | tail -1)
 requestprivatekey=$(head -n 1 key5 | tail -1)
 remcli wallet import --private-key=$requestprivatekey
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = 3.227.137.101:9877\n\n# https://remblock.pro\n\np2p-peer-address = 95.179.237.207:9877\n\np2p-peer-address = 45.77.59.14:9877\n\np2p-peer-address = 45.77.227.198:9877\n\np2p-peer-address = 45.77.56.243:9877\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = 45.76.132.248:9877\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey" > ./config/config.ini
-printf "\n[********************* TAKE NOTE OF YOUR REQUEST KEYS ***********************]\n\n"
+printf "\n[********************* TAKE NOTE OF YOUR REQUEST KEYS **********************]\n\n"
 cat ./requestkeys
 printf "\n"
 pause 'Press [Enter] key to continue...'
@@ -391,13 +391,13 @@ pause 'Press [Enter] key to continue...'
 # CREATING YOUR REMCHAIN ACCOUNTS
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[********************** CREATING ACTIVE ACCOUNT 1 ************************]\n\n"
+printf "\n[*********************** CREATING ACTIVE ACCOUNT 1 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
-printf "\n[********************** CREATING ACTIVE ACCOUNT 2 ************************]\n\n"
+printf "\n[*********************** CREATING ACTIVE ACCOUNT 2 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 pause 'Press [Enter] key to continue...'
-printf "\n[********************** CREATING ACTIVE ACCOUNT 3 ************************]\n\n"
+printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 printf "\nPlease wait for 2 minutes...\n\n"
 sleep 120
