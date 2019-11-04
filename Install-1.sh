@@ -140,13 +140,12 @@ to_date=$(date '+%Y-%m-%d%H:%M:%S')
 tail -n 3 -f remnode_sync.log |  while read LINE0
 do 
 t1=$(echo $LINE0 | cut -d'@' -f2 )
-t2=$(echo $t1 | cut -d'info  ' -d'T' -f1)
-info  
+t2=$(echo $t1 | cut -d'T' -f1)  
 #echo $LINE0 
 if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 fi 
-echo "fetching blocks $t2 ....."
+echo "fetching blocks ....."
 done
 
 #-----------------------------------------------------------------------------------------------------
