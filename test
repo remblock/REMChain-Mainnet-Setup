@@ -90,13 +90,21 @@ sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port 
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
 printf "\n[********************** DONE ************************]\n\n"
 }
-read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
-  case $yn1 in
-       y|Y ) ssh_copy
-	     break;;
-       n|N ) printf "\n[********************** DONE ************************]\n\n";;
-       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
-  esac
+
+while [ : ]
+do
+	read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+
+  	case $yn1 in
+       		y|Y|yes|YES) ssh_copy
+	     		     break;;
+
+       		n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n";;
+			     break;; #### ADDED THIS LINE ####
+
+       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+  	esac
+done
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
@@ -240,14 +248,21 @@ remcli wallet import --private-key=$ownerprivatekey
 }
 
 printf "\n"
-read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn2
-  case $yn2 in
-       y|Y ) newaccount
-	     break;;
-       n|N ) existingaccount
-       	     break;;
-       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
-  esac
+
+while [ : ]
+do
+	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn2
+
+  	case $yn2 in
+       		y|Y|yes|YES) newaccount
+	     		     break;;
+
+       		n|N|no|NO)   existingaccount
+       	     		     break;;
+
+       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+  	esac
+done
   
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
@@ -255,7 +270,8 @@ read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn2
 
 printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD *********************]\n\n"
 cat ./walletpass
-printf "\n"
+printf "\n\n"
+echo "" #### ADDED THIS LINE ####
 pause 'Press [Enter] key to continue...'
 printf "\n"
 
@@ -394,7 +410,21 @@ pause 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 printf "\nPlease wait for 2 minutes...\n\n"
-sleep 120
+#sleep 120
+#### ADDED THIS LOOP ####
+DELAY=120
+ELAPSED=0
+
+while [ ${DELAY} -ge ${ELAPSED} ]
+do
+	printf ">"
+	#echo -en ">"
+	sleep 1 #### 1 sec ####
+
+	((ELAPSED++))
+done
+
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
@@ -410,11 +440,18 @@ printf "\n[********************** COMPLETED ************************]\n\n"
 # CHECKING FOR EXISTING KEY PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
-  case $yn3 in
-       y|Y ) oldkeypermissions
-	     break;;
-       n|N ) newkeypermissions
-       	     break;;
-       * )   echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
-  esac
+while [ : ]
+do
+	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
+
+  	case $yn3 in
+       		y|Y|yes|YES) oldkeypermissions
+	     		     break;;
+
+       		n|N|no|NO)   newkeypermissions
+       	     		     break;;
+
+       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+  	esac
+done
+
