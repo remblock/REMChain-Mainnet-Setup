@@ -99,7 +99,7 @@ do
        		y|Y|yes|YES) ssh_copy
 	     		     break;;
 
-       		n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n";;
+       		n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
 			     break;; #### ADDED THIS LINE ####
 
        		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
@@ -454,4 +454,3 @@ do
        		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
   	esac
 done
-
