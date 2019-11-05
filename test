@@ -20,9 +20,24 @@ passwd root
 # CHANGING DEFAULT SSH PORT NUMBER
 #-----------------------------------------------------------------------------------------------------
 
-printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
-read -n 5 portnumber
-sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
+while [ : ]
+do
+	printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
+	read -n 5 portnumber
+
+        # Check if exactly 5 char long
+        if [[ ${#portnumber} -ne 5 ]]
+        then
+                printf "\nport number should be exactly 5 digits\n\n"
+                continue
+	elif [[ -z "${portnumber//[0-9]}" ]]
+	then
+		printf "\nport number should contain numbers only.\n\n"
+		continue
+	else
+		sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
+	fi
+done
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING UNCOMPLICATED FIREWALL
@@ -102,7 +117,7 @@ do
        		n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
 			     break;; #### ADDED THIS LINE ####
 
-       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
 
@@ -140,7 +155,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json 2>&1 | tee remnode_sync.log &>/dev/null &
+nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
 sleep 2
 #t1=""
 #t2=""
@@ -169,7 +184,6 @@ sleep 2
 
 remvault &
 sleep 2
-tail -n 1 remnode.log
 printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n"
@@ -198,7 +212,26 @@ read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
 printf "\n"
 read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 printf "\n"
-read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+
+while [ : ]
+do
+        read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+
+        # Check if exactly 12 char long
+        if [[ ${#owneraccountname} -ne 12 ]]
+        then
+                printf "Owner account name should be exactly 12 characters\n\n"
+                continue
+	elif [[ "${owneraccountname//[a-z0-5]}" ]]
+	then
+		printf "Owner account name can have [a-z] and [1-5] characters only\n\n"
+		continue
+	else
+		#printf "Looks good\n\n"
+		break
+        fi
+done
+
 printf "\n"
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
@@ -260,7 +293,7 @@ do
        		n|N|no|NO)   existingaccount
        	     		     break;;
 
-       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
   
@@ -409,17 +442,17 @@ remcli system newaccount $owneraccountname $activeproducername2 $activepublickey
 pause 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-printf "\nPlease wait for 2 minutes...\n\n"
+printf "\nPlease wait for 2 minutes 40 seconds...\n\n"
 #sleep 120
 #### ADDED THIS LOOP ####
-DELAY=120
+DELAY=77
 ELAPSED=0
 
 while [ ${DELAY} -ge ${ELAPSED} ]
 do
 	printf ">"
 	#echo -en ">"
-	sleep 1 #### 1 sec ####
+	sleep 3 #### 2 sec ####
 
 	((ELAPSED++))
 done
@@ -451,6 +484,7 @@ do
        		n|N|no|NO)   newkeypermissions
        	     		     break;;
 
-       		*)   	     echo "PLEASE ANSWER USING [y/n] or [Y/N]";;
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
+
