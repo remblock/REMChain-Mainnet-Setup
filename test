@@ -22,17 +22,19 @@ passwd root
 
 while [ : ] 
 do
-         printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
-         read -n 5 portnumber
+         #printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER: "
+         #read -n 5 portnumber
+
+	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
  
          # Check if exactly 5 char long
          if [[ ${#portnumber} -ne 5 ]]
          then
-                 printf "\nPort number should be exactly 5 digits.\n\n"
+                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n"
                  continue
          elif [[ ! -z "${portnumber//[0-9]}" ]]
          then
-                 printf "\nPort number should contain numbers only.\n\n"
+                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n"
                  continue
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
@@ -73,11 +75,15 @@ do
 	printf "SET YOUR NEW SERVER USERNAME:\n"
 	read username
 
+	USERNAME=$(echo $username | tr '[a-z]' '[A-Z]')
+
 	if [[ "$username" = "${username%[[:space:]]*}" ]]
 	then
 		break
 	else
-		echo "Error: $username shouldn't contain any spaces."
+		echo ""
+		echo "ERROR: $USERNAME SHOULDN'T CONTAIN ANY SPACES."
+		echo ""
 		continue
 	fi
 done
@@ -182,25 +188,13 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 
 remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
 sleep 2
-#t1=""
-#t2=""
-#to_date=$(date '+%Y-%m-%dT%H:%M:%S')
-#tail -n 3 -f remnode_sync.log |  while read LINE0
-#do 
-#t1=$(echo $LINE0 | cut -d'@' -f2 )
-#t2=$(echo $t1 | cut -b 7-29 -f1)  
-#echo $LINE0 
-#if [[ $to_date == $t2 ]]; then
 ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
-#fi 
-#echo "fetching blocks from $t2 | $to_date ...."
-#done
 
 #-----------------------------------------------------------------------------------------------------
 # RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 2
 
 #-----------------------------------------------------------------------------------------------------
@@ -245,27 +239,27 @@ do
 
 	# Capital letter(s) used?
 	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
-		printf "Error: $owneraccountname shouldn't contain caps.\n\n"
+		printf "ERROR: ACCOUNT NAME SHOULDN'T CONTAIN CAPS.\n"
                 continue
 
 	# Should not contain any spaces
 	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
-		printf "Error: $owneraccountname shouldn't contain any spaces.\n\n"
+		printf "ERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SPACES.\n"
                 continue
 
 	# Can contain [a-z] and [1-5] chars only
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
-                printf "Error: $owneraccountname can have [a-z] and [1-5] characters only.\n\n"
+                printf "ERROR: ACCOUNT NAME CAN HAVE [a-z] AND [1-5] CHARACTERS ONLY.\n"
                 continue
 
         # Is exactly 12 char long?
         elif [[ ${#owneraccountname} -ne 12 ]]; then
-                printf "Error: $owneraccountname should be exactly 12 characters.\n\n"
+                printf "ERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n"
                 continue
 
-	# Contains any special chars? (This is redundant)
+	# Contains any special chars? (This is redundant and wouldn't get checked)
 	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
-		printf "Error: $owneraccountname shouldn't contain any symbols.\n\n"
+		printf "ERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n"
 		continue
 
 	else
@@ -545,3 +539,4 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
+
