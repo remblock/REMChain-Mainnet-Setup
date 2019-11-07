@@ -28,11 +28,11 @@ do
          # Check if exactly 5 char long
          if [[ ${#portnumber} -ne 5 ]]
          then
-                 printf "\nPort number should be exactly 5 digits\n\n"
+                 printf "\nPort number should be exactly 5 digits.\n\n"
                  continue
          elif [[ ! -z "${portnumber//[0-9]}" ]]
          then
-                 printf "\nport number should contain numbers only.\n\n"
+                 printf "\nPort number should contain numbers only.\n\n"
                  continue
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
@@ -77,7 +77,7 @@ do
 	then
 		break
 	else
-		echo "Username shouldn't contain any spaces."
+		echo "Error: $username shouldn't contain any spaces."
 		continue
 	fi
 done
@@ -125,7 +125,7 @@ do
         read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
  
         case $yn1 in
-                y|Y|yes|YES) read -p "IS YOUR LOCAL HOST OPERATING LINUX OR MACOS? [y/n]: " linmac 
+                y|Y|yes|YES) read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac 
 
 			     if [[ "$linmac" == "y" ]]
 			     then
@@ -133,6 +133,7 @@ do
                              	break
 			     else
 				echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
+				echo ""
 				read -p "Press [Enter] key to continue..."
 				break
 			     fi
@@ -179,7 +180,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
+remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
 sleep 2
 #t1=""
 #t2=""
@@ -199,7 +200,7 @@ ps -ef | grep remnode | grep -v grep | awk '{print $2}' | xargs kill
 # RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 sleep 2
 
 #-----------------------------------------------------------------------------------------------------
@@ -244,31 +245,30 @@ do
 
 	# Capital letter(s) used?
 	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
-		printf "Owner account name shouldn't contain caps.\n\n"
+		printf "Error: $owneraccountname shouldn't contain caps.\n\n"
                 continue
 
 	# Should not contain any spaces
 	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
-		printf "Owner account name shouldn't contain any spaces.\n\n"
+		printf "Error: $owneraccountname shouldn't contain any spaces.\n\n"
                 continue
 
 	# Can contain [a-z] and [1-5] chars only
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
-                printf "Owner account name can have [a-z] and [1-5] characters only\n\n"
+                printf "Error: $owneraccountname can have [a-z] and [1-5] characters only.\n\n"
                 continue
 
         # Is exactly 12 char long?
         elif [[ ${#owneraccountname} -ne 12 ]]; then
-                printf "Owner account name should be exactly 12 characters\n\n"
+                printf "Error: $owneraccountname should be exactly 12 characters.\n\n"
                 continue
 
 	# Contains any special chars? (This is redundant)
 	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
-		printf "Onwer account name shouldn't contain any symbols.\n\n"
+		printf "Error: $owneraccountname shouldn't contain any symbols.\n\n"
 		continue
 
 	else
-		printf "Looks good\n\n"
                 break
         fi  
 done
@@ -344,7 +344,7 @@ done
 
 printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD *********************]\n\n"
 cat ./walletpass
-printf "\n\n"
+printf "\n"
 echo "" #### ADDED THIS LINE ####
 pause 'Press [Enter] key to continue...'
 printf "\n"
