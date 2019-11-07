@@ -20,24 +20,25 @@ passwd root
 # CHANGING DEFAULT SSH PORT NUMBER
 #-----------------------------------------------------------------------------------------------------
 
-#while [ : ]
-#do
-#	printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
-#	read -n 5 portnumber
-
-        # Check if exactly 5 char long
-#        if [[ ${#portnumber} -ne 5 ]]
-#        then
-#                printf "\nport number should be exactly 5 digits\n\n"
-#                continue
-#	elif [[ -z "${portnumber//[0-9]}" ]]
-#	then
-#		printf "\nport number should contain numbers only.\n\n"
-#		continue
-#	else
-#		sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
-#	fi
-#done
+while [ : ] 
+do
+         printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER:\n"
+         read -n 5 portnumber
+ 
+         # Check if exactly 5 char long
+         if [[ ${#portnumber} -ne 5 ]]
+         then
+                 printf "\nPort number should be exactly 5 digits\n\n"
+                 continue
+         elif [[ ! -z "${portnumber//[0-9]}" ]]
+         then
+                 printf "\nport number should contain numbers only.\n\n"
+                 continue
+         else
+                 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
+                 break
+         fi  
+done
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING UNCOMPLICATED FIREWALL
@@ -66,8 +67,21 @@ sudo -S service sshd restart
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n[******************** CREATING YOUR NEW USER ACCOUNT **********************]\n\n"
-printf "SET YOUR NEW SERVER USERNAME:\n"
-read username
+
+while [ : ]
+do
+	printf "SET YOUR NEW SERVER USERNAME:\n"
+	read username
+
+	if [[ "$username" = "${username%[[:space:]]*}" ]]
+	then
+		break
+	else
+		echo "Username shouldn't contain any spaces."
+		continue
+	fi
+done
+
 sudo adduser $username
 sudo usermod -aG sudo $username
 
@@ -108,17 +122,27 @@ printf "\n[********************** DONE ************************]\n\n"
 
 while [ : ]
 do
-	read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+ 
+        case $yn1 in
+                y|Y|yes|YES) read -p "IS YOUR LOCAL HOST OPERATING LINUX OR MACOS? [y/n]: " linmac 
 
-  	case $yn1 in
-       		y|Y|yes|YES) ssh_copy
-	     		     break;;
+			     if [[ "$linmac" == "y" ]]
+			     then
+				ssh_copy
+                             	break
+			     else
+				echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
+				read -p "Press [Enter] key to continue..."
+				break
+			     fi
+			     ;;
 
-       		n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
-			     break;; #### ADDED THIS LINE ####
+                n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
+                             break;; #### ADDED THIS LINE ####
 
-       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
-  	esac
+                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+        esac
 done
 
 #-----------------------------------------------------------------------------------------------------
@@ -184,6 +208,7 @@ sleep 2
 
 remvault &
 sleep 2
+tail -n 1 remnode.log
 printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n"
@@ -213,23 +238,39 @@ printf "\n"
 read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 printf "\n"
 
-while [ : ]
+while [ : ] 
 do
         read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
-        # Check if exactly 12 char long
-        if [[ ${#owneraccountname} -ne 12 ]]
-        then
+	# Capital letter(s) used?
+	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
+		printf "Owner account name shouldn't contain caps.\n\n"
+                continue
+
+	# Should not contain any spaces
+	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
+		printf "Owner account name shouldn't contain any spaces.\n\n"
+                continue
+
+	# Can contain [a-z] and [1-5] chars only
+        elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
+                printf "Owner account name can have [a-z] and [1-5] characters only\n\n"
+                continue
+
+        # Is exactly 12 char long?
+        elif [[ ${#owneraccountname} -ne 12 ]]; then
                 printf "Owner account name should be exactly 12 characters\n\n"
                 continue
-	elif [[ "${owneraccountname//[a-z0-5]}" ]]
-	then
-		printf "Owner account name can have [a-z] and [1-5] characters only\n\n"
+
+	# Contains any special chars? (This is redundant)
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "Onwer account name shouldn't contain any symbols.\n\n"
 		continue
+
 	else
-		#printf "Looks good\n\n"
-		break
-        fi
+		printf "Looks good\n\n"
+                break
+        fi  
 done
 
 printf "\n"
@@ -442,22 +483,39 @@ remcli system newaccount $owneraccountname $activeproducername2 $activepublickey
 pause 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
-printf "\nPlease wait for 2 minutes 40 seconds...\n\n"
-#sleep 120
-#### ADDED THIS LOOP ####
-DELAY=77
+
+######## COUNTDOWN TIMER LOOP ##########
+DELAY=160 ### In secs, change as needed
 ELAPSED=0
+REMAINING=0
+CTR=0
+STEP=3
 
-while [ ${DELAY} -ge ${ELAPSED} ]
+while [[ "${DELAY}" -ge "${ELAPSED}" ]]
 do
-	printf ">"
-	#echo -en ">"
-	sleep 3 #### 2 sec ####
+	CTR=$(($CTR+1))
+	REMAINING=$(($DELAY - $ELAPSED))
+	MINS=$(($REMAINING/60))
+	SECS=$(($REMAINING - ($MINS*60)))
+	STEPSECS=$(($SECS - $STEP))
 
-	((ELAPSED++))
+	if [[ ! $STEPSECS -ge 0 ]]
+	then
+		STEPSECS=0
+	fi
+
+	echo -ne " | Please wait for $MINS minutes $STEPSECS seconds ...\033[0K\r"
+
+	for ((I=1;I<=$CTR;I++))
+	do
+		echo -ne ">"
+	done
+        sleep $STEP 
+
+	ELAPSED=$(($ELAPSED + $STEP))
 done
 
-printf "\n"
+printf "\nDone"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
@@ -487,4 +545,3 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
-
