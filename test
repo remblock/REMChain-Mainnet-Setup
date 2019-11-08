@@ -200,9 +200,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 #echo "fetching blocks from $t2 | $to_date ...."
 #done
 
-remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
-sleep 5
-pkill remnode
+remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json 1 > remnode.log 2>&1 && sleep 10 && pkill remnode
 remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 date1=$(remcli get info | grep head_block_time | cut -d'"' -f4)
 date2=$(tail -n1 remnode.log | awk '{print $2}')
