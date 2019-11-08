@@ -26,16 +26,16 @@ do
          #printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER: "
          #read -n 5 portnumber
 
-	 read -p "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
+	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
  
          # Check if exactly 5 char long
          if [[ ${#portnumber} -ne 5 ]]
          then
-                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n"
+                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n\n"
                  continue
          elif [[ ! -z "${portnumber//[0-9]}" ]]
          then
-                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n"
+                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n\n"
                  continue
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
