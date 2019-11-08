@@ -73,8 +73,7 @@ printf "\n[******************** CREATING YOUR NEW USER ACCOUNT *****************
 
 while [ : ]
 do
-	printf "SET YOUR NEW SERVER USERNAME:\n"
-	read username
+	read -p "SET YOUR NEW SERVER USERNAME: “ username
 
 	USERNAME=$(echo $username | tr '[a-z]' '[A-Z]')
 
@@ -82,9 +81,7 @@ do
 	then
 		break
 	else
-		echo ""
-		echo "ERROR: $USERNAME SHOULDN'T CONTAIN ANY SPACES."
-		echo ""
+		printf "\nERROR: USERNAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
 		continue
 	fi
 done
