@@ -73,7 +73,7 @@ printf "\n[******************** CREATING YOUR NEW USER ACCOUNT *****************
 
 while [ : ]
 do
-	read -p "SET YOUR NEW SERVER USERNAME: “ username
+	read -p "SET YOUR NEW SERVER USERNAME: " username
 
 	USERNAME=$(echo $username | tr '[a-z]' '[A-Z]')
 
