@@ -26,7 +26,7 @@ do
          #printf "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER: "
          #read -n 5 portnumber
 
-	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
+	 read -p "\nCHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
  
          # Check if exactly 5 char long
          if [[ ${#portnumber} -ne 5 ]]
