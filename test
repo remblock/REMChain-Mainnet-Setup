@@ -31,11 +31,11 @@ do
          # Check if exactly 5 char long
          if [[ ${#portnumber} -ne 5 ]]
          then
-                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n"
+                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n\n"
                  continue
          elif [[ ! -z "${portnumber//[0-9]}" ]]
          then
-                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n"
+                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n\n"
                  continue
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
@@ -73,8 +73,7 @@ printf "\n[******************** CREATING YOUR NEW USER ACCOUNT *****************
 
 while [ : ]
 do
-	printf "SET YOUR NEW SERVER USERNAME:\n"
-	read username
+	read -p "SET YOUR NEW SERVER USERNAME: " username
 
 	USERNAME=$(echo $username | tr '[a-z]' '[A-Z]')
 
@@ -82,9 +81,7 @@ do
 	then
 		break
 	else
-		echo ""
-		echo "ERROR: $USERNAME SHOULDN'T CONTAIN ANY SPACES."
-		echo ""
+		printf "\nERROR: USERNAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
 		continue
 	fi
 done
@@ -203,10 +200,10 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 #echo "fetching blocks from $t2 | $to_date ...."
 #done
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
-sleep 2
+remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json
+sleep 10
 pkill remnode
-nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 date1=$(remcli get info | grep head_block_time | cut -d'"' -f4)
 date2=$(tail -n1 remnode.log | awk '{print $2}')
 
@@ -231,8 +228,6 @@ done
 # RUNNING REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
-sleep 2
 
 #-----------------------------------------------------------------------------------------------------
 # RUNNING THE WALLET DAEMON
@@ -240,7 +235,6 @@ sleep 2
 
 remvault &
 sleep 2
-tail -n 1 remnode.log
 printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n"
@@ -576,4 +570,3 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
-
