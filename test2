@@ -537,6 +537,28 @@ remcli set account permission $owneraccountname active '{"threshold":2,"keys":[]
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 #-----------------------------------------------------------------------------------------------------
+# REGISTERING AS NEW BLOCK PRODUCER 
+#-----------------------------------------------------------------------------------------------------
+
+remcli system regproducer $owneraccountname $requestpublickey $domain
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMCHAIN ACCOUNT PERMISSIONS 
+#-----------------------------------------------------------------------------------------------------
+
+remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
+remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@active
+remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@active
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
+
+#-----------------------------------------------------------------------------------------------------
 # CREATING REMCHAIN KEY PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
 
@@ -546,12 +568,18 @@ remcli set action permission $owneraccountname rem voteproducer vote -p $ownerac
 remcli set action permission $owneraccountname rem claimrewards claim -p $owneraccountname@active
 remcli set action permission $owneraccountname rem delegatebw stake -p $owneraccountname@active
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CASTING YOUR VOTES TO YOURSELF
 #-----------------------------------------------------------------------------------------------------
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING OWNER AND ACTIVE KEYS
@@ -561,6 +589,9 @@ remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
 remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
 remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
+printf "\n"
+pause 'Press [Enter] key to continue...'
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # JUMP STARTING THE REMNODE
