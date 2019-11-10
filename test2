@@ -536,14 +536,20 @@ printf "\n[******************************* COMPLETED ***************************
 # REGISTERING AS NEW BLOCK PRODUCER 
 #-----------------------------------------------------------------------------------------------------
 
+newblockproducer() {
+
 remcli system regproducer $owneraccountname $requestpublickey $domain
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
+}
+
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMCHAIN ACCOUNT PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
+
+setupkeypermissions() {
 
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
 remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@active
@@ -554,9 +560,13 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
+}
+
 #-----------------------------------------------------------------------------------------------------
 # CREATING REMCHAIN KEY PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
+
+createkeypermissions() {
 
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
@@ -567,6 +577,10 @@ remcli set action permission $owneraccountname rem.token transfer transfer -p $o
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+
+}
+
+finalisingproducer() {
 
 #-----------------------------------------------------------------------------------------------------
 # CASTING YOUR VOTES TO YOURSELF
@@ -581,10 +595,10 @@ printf "\n"
 # REMOVING OWNER AND ACTIVE KEYS
 #-----------------------------------------------------------------------------------------------------
 
-remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
-remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
-remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
-remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
+remcli wallet remove_key $ownerpublickey --password=$walletpass
+remcli wallet remove_key $activepublickey1 --password=$walletpass
+remcli wallet remove_key $activepublickey2 --password=$walletpass
+remcli wallet remove_key $activepublickey3 --password=$walletpass
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -620,6 +634,10 @@ do
 	     		     break;;
 
        		n|N|no|NO)   newkeypermissions
+                             setupblockproducer
+                             setupkeypermissions
+                             createkeypermissions
+                             finalisingproducer
        	     		     break;;
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
