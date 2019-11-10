@@ -532,9 +532,9 @@ printf "\n"
 # CREATING YOUR MULTISIG PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[********************** CREATING ACTIVE MULTISIG ************************]\n\n"
+printf "\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-printf "\n[********************** COMPLETED ************************]\n\n"
+printf "\n[************************* COMPLETED ***************************]\n\n"
 
 }
 
