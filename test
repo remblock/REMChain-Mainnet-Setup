@@ -202,10 +202,8 @@ do
 
 		echo "Fetching blocks for [${dt1date} | ${dt1time}] | Current block date [${dt2date} | ${dt2time}]"
 	fi
-
 	echo " "
 	sleep 2
-
 done
 
 #-----------------------------------------------------------------------------------------------------
