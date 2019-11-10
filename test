@@ -497,6 +497,8 @@ REMAINING=0
 CTR=0
 STEP=3
 
+printf "\n"
+
 while [[ "${DELAY}" -ge "${ELAPSED}" ]]
 do
 	CTR=$(($CTR+1))
@@ -520,6 +522,8 @@ do
         sleep $STEP 
 	ELAPSED=$(($ELAPSED + $STEP))
 done
+
+printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
