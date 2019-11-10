@@ -118,7 +118,7 @@ read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
 sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
-printf "\n[************************* DONE ***************************]\n\n"
+printf "\n[********************************** DONE ***********************************]\n\n"
 }
 
 while [ : ]
@@ -141,10 +141,10 @@ do
 			     fi
 			     ;;
 
-                n|N|no|NO)   printf "\n[************************* DONE ***************************]\n\n"
+                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
 
-                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+			     *)  echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
 done
 
@@ -378,7 +378,7 @@ printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
 rm walletpass Install-1.sh Install-2.sh Install-3.sh producerwalletpass.txt
-printf "\n[********************** COMPLETED ************************]\n\n"
+printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
 
@@ -534,7 +534,7 @@ printf "\n"
 
 printf "\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-printf "\n[************************* COMPLETED ***************************]\n\n"
+printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
 
