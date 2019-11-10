@@ -118,7 +118,7 @@ read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
 sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
-printf "\n[************************* DONE ***************************]\n\n"
+printf "\n[********************************** DONE ***********************************]\n\n"
 }
 
 while [ : ]
@@ -141,7 +141,7 @@ do
 			     fi
 			     ;;
 
-                n|N|no|NO)   printf "\n[************************* DONE ***************************]\n\n"
+                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
@@ -378,7 +378,7 @@ printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
 rm walletpass Install-1.sh Install-2.sh Install-3.sh producerwalletpass.txt
-printf "\n[********************** COMPLETED ************************]\n\n"
+printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
 
@@ -534,7 +534,49 @@ printf "\n"
 
 printf "\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-printf "\n[************************* COMPLETED ***************************]\n\n"
+printf "\n[******************************* COMPLETED *********************************]\n\n"
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING REMCHAIN KEY PERMISSIONS 
+#-----------------------------------------------------------------------------------------------------
+
+remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem voteproducer vote -p $owneraccountname@active
+remcli set action permission $owneraccountname rem claimrewards claim -p $owneraccountname@active
+remcli set action permission $owneraccountname rem delegatebw stake -p $owneraccountname@active
+remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@active
+
+#-----------------------------------------------------------------------------------------------------
+# CASTING YOUR VOTES TO YOURSELF
+#-----------------------------------------------------------------------------------------------------
+
+remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+
+#-----------------------------------------------------------------------------------------------------
+# REMOVING OWNER AND ACTIVE KEYS
+#-----------------------------------------------------------------------------------------------------
+
+remcli wallet remove_key $ownerpublickey --password=$producerwalletpass
+remcli wallet remove_key $activepublickey1 --password=$producerwalletpass
+remcli wallet remove_key $activepublickey2 --password=$producerwalletpass
+remcli wallet remove_key $activepublickey3 --password=$producerwalletpass
+
+#-----------------------------------------------------------------------------------------------------
+# JUMP STARTING THE REMNODE
+#-----------------------------------------------------------------------------------------------------
+
+sudo killall remnode
+sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
+sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+
+#-----------------------------------------------------------------------------------------------------
+# REMOVING FILES WHICH AINT REQUIRED ANYMORE
+#-----------------------------------------------------------------------------------------------------
+
+rm key1 key2 key3 key4 key5 activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys Install-1.sh Install-2.sh Install-3.sh domain.txt ownerpublickey.txt owneraccountname.txt activeproducername.txt producerwalletpass.txt
+
+printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
 
