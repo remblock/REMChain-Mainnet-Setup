@@ -118,7 +118,7 @@ read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
 sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
 sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
-printf "\n[********************** DONE ************************]\n\n"
+printf "\n[************************* DONE ***************************]\n\n"
 }
 
 while [ : ]
@@ -126,21 +126,22 @@ do
         read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
  
         case $yn1 in
-                y|Y|yes|YES) read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac 
-
+                y|Y|yes|YES) echo " "
+                             read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac
 			     if [[ "$linmac" == "y" ]]
 			     then
 				ssh_copy
                              	break
 			     else
+                                echo " "
 				echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
-				echo ""
+				echo " "
 				read -p "Press [Enter] key to continue..."
 				break
 			     fi
 			     ;;
 
-                n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
+                n|N|no|NO)   printf "\n[************************* DONE ***************************]\n\n"
                              break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
