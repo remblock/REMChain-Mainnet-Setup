@@ -19,7 +19,6 @@ echo ""
 
 while [ : ] 
 do
-
 	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
  
          if [[ ${#portnumber} -ne 5 ]]
