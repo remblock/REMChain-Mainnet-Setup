@@ -141,7 +141,7 @@ do
 			     ;;
 
                 n|N|no|NO)   printf "\n[********************** DONE ************************]\n\n"
-                             break;; 
+                             break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
@@ -181,36 +181,36 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 # THE INITIAL RUN OF THE REMNODE
 #-----------------------------------------------------------------------------------------------------
 
-nohup remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json 2>&1 | tee remnode_sync.log &>/dev/null &
-killall remnode
-
-#-----------------------------------------------------------------------------------------------------
-# RUNNING REMNODE IN THE BACKGROUND
-#-----------------------------------------------------------------------------------------------------
-
-remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
-dt1=$(remcli get info | grep head_block_time | cut -d'"' -f4)
-dt2=$(tail -n1 remnode.log | awk '{print $2}'| awk -F'.' '{print $1}')
-systemdt=$(date '+%Y-%m-%dT%H:%M:%S')
-
-echo "date1 is $dt1"
-echo "date2 is $dt2"
-echo "systemdate is $systemdt"
+for ((i=1;i<=1;i++))
+{
+	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
+	/usr/bin/nohup /usr/bin/remnode --config-dir /root/config/ --data-dir /root/data/ >>/root/remnode.log 2>>/root/remnode.log &
+	read -p "Press [Enter] key to continue..."
+	echo " "
+	break
+}
 
 while [ : ]
 do
-	if [[ "$dt2" = "$systemdt" ]]; then
+	systemdt=$(date '+%Y-%m-%dT%H:%M')
+	if [ "$dt1" == "$systemdt" ]; then
 		break
 	else
-		echo "Fetching blocks for $dt1 | Current block date $dt2"
-		dt2=$(tail -n1 remnode.log | awk '{print $2}')
+		dt1=$(remcli get info | grep head_block_time | cut -c 23-38)
+		dt1date=$(echo $dt1 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
+		dt1time=$(echo $dt1 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
+
+		dt2=$(tail -n 1 remnode.log | awk '{print $2}'| awk -F'.' '{print $1}')
+		dt2date=$(echo $dt2 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
+		dt2time=$(echo $dt2 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
+
+		echo "Fetching blocks for [${dt1date} | ${dt1time}] | Current block date [${dt2date} | ${dt2time}]"
 	fi
 
-	echo ""
+	echo " "
 	sleep 2
-done
 
-tail -n 1 remnode.log
+done
 
 #-----------------------------------------------------------------------------------------------------
 # RUNNING THE WALLET DAEMON
@@ -218,7 +218,6 @@ tail -n 1 remnode.log
 
 remvault &
 sleep 2
-#tail -n 1 remnode.log
 printf "\n"
 pause 'Press [Enter] key to continue...'
 printf "\n"
@@ -252,27 +251,22 @@ while [ : ]
 do
         read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
-	# Capital letter(s) used?
 	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN CAPS.\n\n"
                 continue
 
-	# Should not contain any spaces
 	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
-	# Can contain [a-z] and [1-5] chars only
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
                 printf "\nERROR: ACCOUNT NAME CAN HAVE [a-z] AND [1-5] CHARACTERS ONLY.\n\n"
                 continue
 
-        # Is exactly 12 char long?
         elif [[ ${#owneraccountname} -ne 12 ]]; then
                 printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
                 continue
 
-	# Contains any special chars? (This is redundant and wouldn't get checked)
 	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
@@ -354,7 +348,7 @@ done
 printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD *********************]\n\n"
 cat ./walletpass
 printf "\n"
-echo "" #### ADDED THIS LINE ####
+echo " "
 pause 'Press [Enter] key to continue...'
 printf "\n"
 
@@ -493,8 +487,11 @@ pause 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 
-######## COUNTDOWN TIMER LOOP ##########
-DELAY=160 ### In secs, change as needed
+#-----------------------------------------------------------------------------------------------------
+# WAITING 2 MINUTES TO CONTINUE
+#-----------------------------------------------------------------------------------------------------
+
+DELAY=160
 ELAPSED=0
 REMAINING=0
 CTR=0
@@ -519,12 +516,10 @@ do
 	do
 		echo -ne ">"
 	done
+       
         sleep $STEP 
-
 	ELAPSED=$(($ELAPSED + $STEP))
 done
-
-printf "\nDone"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
@@ -554,4 +549,3 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
-
