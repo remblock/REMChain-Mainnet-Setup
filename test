@@ -4,10 +4,6 @@
 #                                           INSTALL-1.SH                                             #
 #****************************************************************************************************#
 
-function pause(){
-   read -p "$*"
-}
-
 #-----------------------------------------------------------------------------------------------------
 # UPDATING AND UPGRADING PACKAGE DATABASE 
 #-----------------------------------------------------------------------------------------------------
@@ -97,7 +93,7 @@ sudo systemctl restart ssh
 printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
 sudo cat /home/$username/.ssh/id_rsa
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -220,7 +216,7 @@ done
 remvault &
 sleep 2
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -291,15 +287,15 @@ printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS *****************
 echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 remcli transfer $telegramaccountname $owneraccountname -x 120 "10000 REM" -p $telegramaccountname@owner
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
@@ -350,7 +346,7 @@ printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD ***************
 cat ./walletpass
 printf "\n"
 echo " "
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -407,7 +403,7 @@ printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 1 ****************
 echo "Account Name:" $activeproducername1
 cat ./activekeys1
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -424,7 +420,7 @@ printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 2 ****************
 echo "Account Name:" $activeproducername2
 cat ./activekeys2
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -441,7 +437,7 @@ printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 3 ****************
 echo "Account Name:" $activeproducername3
 cat ./activekeys3
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -458,7 +454,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 printf "\n[********************* TAKE NOTE OF YOUR REQUEST KEYS **********************]\n\n"
 cat ./requestkeys
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -473,7 +469,7 @@ remcli wallet import --private-key=$transferprivatekey
 printf "\n[******************** TAKE NOTE OF YOUR TRANSFER KEYS **********************]\n\n"
 cat ./transferkeys
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMCHAIN ACCOUNTS
@@ -482,11 +478,11 @@ pause 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 1 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 2 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 printf "\n"
-pause 'Press [Enter] key to continue...'
+read -p 'Press [Enter] key to continue...'
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 
