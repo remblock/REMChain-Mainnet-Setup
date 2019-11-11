@@ -243,12 +243,12 @@ while [ : ]
 do
         read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
 
-	elif [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
+	  if [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
-        elif [[ ${#telegrampublickey} -ne 54 ]]; then
-                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 54 CHARACTERS.\n\n"
+        elif [[ ${#telegrampublickey} -ne 53 ]]; then
+                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 53 CHARACTERS.\n\n"
                 continue
 
 	elif [[ "$telegrampublickey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -257,7 +257,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 printf "\n"
@@ -266,7 +266,7 @@ while [ : ]
 do
         read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
 
-	elif [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
+	  if [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
@@ -280,7 +280,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 printf "\n"
@@ -289,7 +289,7 @@ while [ : ]
 do
         read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 
-	if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
+	  if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
@@ -311,7 +311,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 printf "\n"
@@ -320,7 +320,7 @@ while [ : ]
 do
         read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
-	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
+	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
@@ -342,7 +342,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 printf "\n"
@@ -384,12 +384,12 @@ while [ : ]
 do
         read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
 
-	elif [[ ! "$ownerpublickey" = "${ownerpublickey%[[:space:]]*}" ]]; then
+	  if [[ ! "$ownerpublickey" = "${ownerpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
-        elif [[ ${#ownerpublickey} -ne 54 ]]; then
-                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 54 CHARACTERS.\n\n"
+        elif [[ ${#ownerpublickey} -ne 53 ]]; then
+                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 53 CHARACTERS.\n\n"
                 continue
 
 	elif [[ "$ownerpublickey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -398,7 +398,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 echo $ownerpublickey >> key1
@@ -408,7 +408,7 @@ while [ : ]
 do
         read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
 
-	elif [[ ! "$ownerprivatekey" = "${ownerprivatekey%[[:space:]]*}" ]]; then
+	  if [[ ! "$ownerprivatekey" = "${ownerprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
@@ -422,7 +422,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 echo $ownerprivatekey >> key1
@@ -432,7 +432,7 @@ while [ : ]
 do
         read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 
-	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
+	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
@@ -454,7 +454,7 @@ do
 
 	else
                 break
-        fi
+          fi
 done
 
 echo $owneraccountname >> key1
