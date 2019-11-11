@@ -725,11 +725,11 @@ printf "\n"
 
 }
 
-finalisingproducer() {
-
 #-----------------------------------------------------------------------------------------------------
 # CASTING YOUR VOTES TO YOURSELF
 #-----------------------------------------------------------------------------------------------------
+
+finalisingproducer() {
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
 printf "\n"
