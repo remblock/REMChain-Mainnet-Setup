@@ -532,6 +532,8 @@ printf "\n[************************ CREATING ACTIVE MULTISIG *******************
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
+}
+
 #-----------------------------------------------------------------------------------------------------
 # REGISTERING AS NEW BLOCK PRODUCER 
 #-----------------------------------------------------------------------------------------------------
