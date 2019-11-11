@@ -366,7 +366,7 @@ remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-remcli transfer $telegramaccountname $owneraccountname -x 120 "10000 REM" -p $telegramaccountname@owner
+remcli transfer $telegramaccountname $owneraccountname -x 120 "1000 REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -761,7 +761,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 test2.sh activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys domain.txt ownerpublickey.txt owneraccountname.txt activeproducername.txt producerwalletpass.txt
+rm key1 key2 key3 key4 key5 key6 test2 ownerkeys activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys producerwalletpass.txt
 
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
