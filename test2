@@ -122,16 +122,16 @@ do
         read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
  
         case $yn1 in
-                y|Y|yes|YES) echo " "
+                y|Y|yes|YES) echo ""
                              read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac
 			     if [[ "$linmac" == "y" ]]
 			     then
 				ssh_copy
                              	break
 			     else
-                                echo " "
+                                echo ""
 				echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
-				echo " "
+				echo ""
 				read -p "Press [Enter] key to continue..."
 				break
 			     fi
@@ -183,7 +183,7 @@ for ((i=1;i<=1;i++))
 	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
 	/usr/bin/nohup /usr/bin/remnode --config-dir /root/config/ --data-dir /root/data/ >>/root/remnode.log 2>>/root/remnode.log &
 	read -p "Press [Enter] key to continue..."
-	echo " "
+	echo ""
 	break
 }
 
@@ -204,7 +204,7 @@ do
 		echo "Fetching blocks for [${dt1date} | ${dt1time}] | Current block date [${dt2date} | ${dt2time}]"
 	fi
 
-	echo " "
+	echo ""
 	sleep 2
 
 done
