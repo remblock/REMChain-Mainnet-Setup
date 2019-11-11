@@ -238,9 +238,51 @@ printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
-read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+
+while [ : ]
+do
+        read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+
+	elif [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#telegrampublickey} -ne 54 ]]; then
+                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 54 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$telegrampublickey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi
+done
+
 printf "\n"
-read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+
+while [ : ]
+do
+        read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+
+	elif [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#telegramprivatekey} -ne 51 ]]; then
+                printf "\nERROR: PRIVATE KEY SHOULD BE EXACTLY 51 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$telegramprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi
+done
+
 printf "\n"
 
 while [ : ]
@@ -337,13 +379,84 @@ printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
-read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
+
+while [ : ]
+do
+        read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
+
+	elif [[ ! "$ownerpublickey" = "${ownerpublickey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#ownerpublickey} -ne 54 ]]; then
+                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 54 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$ownerpublickey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi
+done
+
 echo $ownerpublickey >> key1
 printf "\n"
-read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
+
+while [ : ]
+do
+        read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
+
+	elif [[ ! "$ownerprivatekey" = "${ownerprivatekey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#ownerprivatekey} -ne 51 ]]; then
+                printf "\nERROR: PRIVATE KEY SHOULD BE EXACTLY 51 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$ownerprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi
+done
+
 echo $ownerprivatekey >> key1
 printf "\n"
-read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
+
+while [ : ]
+do
+        read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
+
+	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
+                continue
+
+	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
+                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
+                continue
+
+        elif [[ ${#owneraccountname} -ne 12 ]]; then
+                printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi
+done
+
 echo $owneraccountname >> key1
 printf "\n"
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
