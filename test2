@@ -240,7 +240,7 @@ read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
 
-read -p "ENTER YOUR ETHEREUM NODE API KEY: " ethnodeaddress
+read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
 read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
@@ -387,7 +387,7 @@ read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
 
-read -p "ENTER YOUR ETHEREUM NODE API KEY: " ethnodeaddress
+read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
 read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
