@@ -697,7 +697,7 @@ printf "\n[******************************* COMPLETED ***************************
 
 setupblockproducer() {
 
-remcli system regproducer $owneraccountname $requestpublickey $domain
+remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
