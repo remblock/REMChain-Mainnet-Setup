@@ -630,7 +630,7 @@ printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *******************
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "100.0000 REM" -p $owneraccountname@owner
 
 #-----------------------------------------------------------------------------------------------------
-# WAITING 2 MINUTES TO CONTINUE
+# WAITING 2 MINUTES FOR TRANSCATION CONFIRMATION
 #-----------------------------------------------------------------------------------------------------
 
 DELAY=160
@@ -749,7 +749,7 @@ read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
-# JUMP STARTING THE REMNODE
+# REBOOTING REMNODE AND FIXING ANY PROBLEMS
 #-----------------------------------------------------------------------------------------------------
 
 sudo killall remnode
