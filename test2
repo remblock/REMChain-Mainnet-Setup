@@ -256,7 +256,7 @@ do
                 continue
 
         elif [[ "${telegramaccountname//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAME CAN HAVE [a-z] AND [1-5] CHARACTERS ONLY.\n\n"
+                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
                 continue
 
         elif [[ ${#telegramaccountname} -ne 12 ]]; then
@@ -287,7 +287,7 @@ do
                 continue
 
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAME CAN HAVE [a-z] AND [1-5] CHARACTERS ONLY.\n\n"
+                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
                 continue
 
         elif [[ ${#owneraccountname} -ne 12 ]]; then
