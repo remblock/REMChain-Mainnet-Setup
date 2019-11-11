@@ -682,7 +682,7 @@ printf "\n[******************************* COMPLETED ***************************
 # REGISTERING AS NEW BLOCK PRODUCER 
 #-----------------------------------------------------------------------------------------------------
 
-newblockproducer() {
+setupblockproducer() {
 
 remcli system regproducer $owneraccountname $requestpublickey $domain
 printf "\n"
