@@ -241,7 +241,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+          read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
 
 	  if [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -264,7 +264,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+          read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
 
 	  if [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -287,7 +287,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+          read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 
 	  if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -318,7 +318,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+          read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -382,7 +382,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
+          read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
 
 	  if [[ ! "$ownerpublickey" = "${ownerpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -406,7 +406,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
+          read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
 
 	  if [[ ! "$ownerprivatekey" = "${ownerprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -430,7 +430,7 @@ printf "\n"
 
 while [ : ]
 do
-        read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
+          read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
