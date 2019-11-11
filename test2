@@ -701,7 +701,7 @@ remcli set account permission $owneraccountname safemode $ownerpublickey owner -
 remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -719,7 +719,7 @@ remcli set action permission $owneraccountname rem unregprod safemode -p $ownera
 remcli set action permission $owneraccountname rem voteproducer vote -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem claimrewards claim -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem delegatebw stake -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.swap init swap -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
