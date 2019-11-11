@@ -240,7 +240,7 @@ read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
 
-read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
+read -p "ENTER YOUR ETHEREUM NODE API KEY: " ethnodeaddress
 printf "\n"
 
 read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
@@ -385,6 +385,12 @@ existingaccount() {
 printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
+printf "\n"
+
+read -p "ENTER YOUR ETHEREUM NODE API KEY: " ethnodeaddress
+printf "\n"
+
+read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
 printf "\n"
 
 while [ : ]
@@ -705,11 +711,11 @@ printf "\n"
 setupkeypermissions() {
 
 remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname swap $transferpublickey owner -p $owneraccountname@owner
+remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
 remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@owner
-remcli set action permission $owneraccountname oracle $transferpublickey owner -p $owneraccountname@owner
+remcli set action permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey owner -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
