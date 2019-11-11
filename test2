@@ -90,6 +90,7 @@ printf "\n[********************* GENERATING YOUR NEW SSH KEYS ******************
 su $username -c ssh-keygen
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo systemctl restart ssh
+
 printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
 sudo cat /home/$username/.ssh/id_rsa
 printf "\n"
@@ -101,6 +102,7 @@ printf "\n"
 #-----------------------------------------------------------------------------------------------------
 
 ssh_copy() {
+
 sudo apt-get install sshpass -y
 echo $SSH_CLIENT | awk '{ print $1}'
 ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
