@@ -701,6 +701,7 @@ printf "\n[******************************* COMPLETED ***************************
 setupblockproducer() {
 
 remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
+
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -711,7 +712,7 @@ printf "\n"
 # CREATING YOUR REMCHAIN ACCOUNT PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
 
-setupkeypermissions() {
+setupkeypermissions1() {
 
 remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
@@ -719,6 +720,24 @@ remcli set account permission $owneraccountname safemode $ownerpublickey owner -
 remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@owner
 remcli set action permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey owner -p $owneraccountname@owner
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+setupkeypermissions2() {
+
+remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+remcli set action permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey owner -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -730,17 +749,31 @@ printf "\n"
 # CREATING REMCHAIN KEY PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
 
-createkeypermissions() {
+createkeypermissions1() {
 
-remcli set action permission $owneraccountname rem.swap init swap -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem delegatebw stake -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem voteproducer vote -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem claimrewards claim -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem.oracle setprice oracle -p $owneraccountname@owner
-remcli set account permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
 
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+createkeypermissions2() {
+
+remcli set action permission $owneraccountname rem.swap init swap -p $owneraccountname@owner
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+remcli set action permission $owneraccountname rem.oracle setprice oracle -p $owneraccountname@owner
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+remcli set account permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -754,6 +787,7 @@ printf "\n"
 finalisingproducer() {
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -766,6 +800,7 @@ remcli wallet remove_key $ownerpublickey --password=$walletpass
 remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
 remcli wallet remove_key $activepublickey3 --password=$walletpass
+
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -802,8 +837,10 @@ do
 
        		n|N|no|NO)   newkeypermissions
                              setupblockproducer
-                             setupkeypermissions
-                             createkeypermissions
+                             setupkeypermissions1
+                             setupkeypermissions2
+                             createkeypermissions1
+                             createkeypermissions2
                              finalisingproducer
        	     		     break;;
 
