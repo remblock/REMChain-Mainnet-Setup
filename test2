@@ -242,7 +242,36 @@ read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
 printf "\n"
 read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
 printf "\n"
-read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+
+while [ : ] 
+do
+        read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+
+	if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN CAPS.\n\n"
+                continue
+
+	elif [[ ! "$telegramaccountname" = "${telegramaccountname%[[:space:]]*}" ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ "${telegramaccountname//[a-z1-5]}" ]]; then
+                printf "\nERROR: ACCOUNT NAME CAN HAVE [a-z] AND [1-5] CHARACTERS ONLY.\n\n"
+                continue
+
+        elif [[ ${#telegramaccountname} -ne 12 ]]; then
+                printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$telegramaccountname" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+        fi  
+done     
+
 printf "\n"
 
 while [ : ] 
