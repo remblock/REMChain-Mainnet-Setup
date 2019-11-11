@@ -248,7 +248,7 @@ do
         read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 
 	if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
-		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN CAPS.\n\n"
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
 	elif [[ ! "$telegramaccountname" = "${telegramaccountname%[[:space:]]*}" ]]; then
@@ -279,7 +279,7 @@ do
         read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
 	if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
-		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN CAPS.\n\n"
+		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
 	elif [[ ! "$owneraccountname" = "${owneraccountname%[[:space:]]*}" ]]; then
