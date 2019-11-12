@@ -43,7 +43,7 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.s
 # Optional Steps
 <br>
 
-__Step 4:__
+__Step 3:__
 
 **Setup canonical livepatch service**
 
@@ -69,7 +69,7 @@ canonical-livepatch status —verbose
 
 ***
 
-__Step 5:__
+__Step 4:__
 
 **Creating and installing SSH keys**
 
