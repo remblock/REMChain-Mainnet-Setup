@@ -13,7 +13,7 @@ __Step 1:__
 
 __Step 2:__
 
-* **Producer Node**
+* **PRODUCER SETUP**
 
 ```
 sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V2/raw/master/producer && sudo chmod u+x producer
