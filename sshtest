@@ -33,19 +33,19 @@ read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_username
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
-sudo sshpass -p $ssh_host_password $ssh_host_port $ssh_host_username@$ssh_host_ipaddress mkdir -p ~/.ssh
+sudo sshpass -p $ssh_host_password $ssh_host_port $ssh_host_username@$ssh_host_ipaddress "mkdir -p ~/.ssh"
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
+sudo sshpass -p $ssh_host_password ssh-copy-id $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-sudo sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config"
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-sudo sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port sudo systemctl restart ssh
+sudo sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sudo systemctl restart ssh"
 
 }
 
