@@ -647,6 +647,7 @@ printf "\n"
 remcli create key --file key6
 cp key6 transferkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key6 && sudo -S sed -i "/^Public key: /s/Public key: //" key6
+transferpublickey=$(head -n 2 key6 | tail -1)
 transferprivatekey=$(head -n 1 key6 | tail -1)
 remcli wallet import --private-key=$transferprivatekey
 printf "\n[******************** TAKE NOTE OF YOUR TRANSFER KEYS **********************]\n\n"
