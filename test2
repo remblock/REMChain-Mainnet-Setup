@@ -184,7 +184,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 for ((i=1;i<=1;i++))
 {
 	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
-	/usr/bin/nohup /usr/bin/remnode --config-dir /root/config/ --data-dir /root/data/ >>/root/remnode.log 2>>/root/remnode.log &
+#	/usr/bin/nohup /usr/bin/remnode --config-dir /root/config/ --data-dir /root/data/ >>/root/remnode.log 2>>/root/remnode.log &
 	read -p "Press [Enter] key to continue..."
 	echo ""
 	break
