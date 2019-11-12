@@ -83,71 +83,6 @@ sudo adduser $username
 sudo usermod -aG sudo $username
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING SSH KEYS FOR SERVER
-#-----------------------------------------------------------------------------------------------------
-
-printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
-su $username -c ssh-keygen
-sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo systemctl restart ssh
-
-printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
-sudo cat /home/$username/.ssh/id_rsa
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-#-----------------------------------------------------------------------------------------------------
-# COPYING SSH KEY OVER TO THE LOCAL HOST  
-#-----------------------------------------------------------------------------------------------------
-
-ssh_copy() {
-
-sudo apt-get install sshpass -y
-echo $SSH_CLIENT | awk '{ print $1}'
-ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
-echo "OK LET'S START COPYING OVER YOUR KEY FILES..."
-printf "\n"
-read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
-printf "\n"
-read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
-printf "\n"
-read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
-printf "\n"
-sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/home/$ssh_host_user/.ssh"
-sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/home/$username/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
-printf "\n[********************************** DONE ***********************************]\n\n"
-
-}
-
-while [ : ]
-do
-        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
- 
-        case $yn1 in
-                y|Y|yes|YES) echo ""
-                             read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac
-			     if [[ "$linmac" == "y" ]]
-			     then
-				ssh_copy
-                             	break
-			     else
-                                echo ""
-				echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
-				echo ""
-				read -p "Press [Enter] key to continue..."
-				break
-			     fi
-			     ;;
-
-                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
-                             break;;
-
-                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
-        esac
-done
-
-#-----------------------------------------------------------------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
 #-----------------------------------------------------------------------------------------------------
 
@@ -254,7 +189,7 @@ do
                 continue
 
         elif [[ ${#telegrampublickey} -ne 53 ]]; then
-                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 53 CHARACTERS.\n\n"
+                printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$telegrampublickey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -277,7 +212,7 @@ do
                 continue
 
         elif [[ ${#telegramprivatekey} -ne 51 ]]; then
-                printf "\nERROR: PRIVATE KEY SHOULD BE EXACTLY 51 CHARACTERS.\n\n"
+                printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$telegramprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -304,11 +239,11 @@ do
                 continue
 
         elif [[ "${telegramaccountname//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
                 continue
 
         elif [[ ${#telegramaccountname} -ne 12 ]]; then
-                printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$telegramaccountname" =~ ['!@#$%^&*()_+'] ]]; then
@@ -335,11 +270,11 @@ do
                 continue
 
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
                 continue
 
         elif [[ ${#owneraccountname} -ne 12 ]]; then
-                printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
@@ -357,16 +292,20 @@ while [ : ]
 do
           read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
 
-	  if [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
-		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
+	  if [[ "${ownertransferamount" -lt "1000" ]]; then
+		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
+                continue
+		
+	elif [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
+		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
         elif [[ "${ownertransferamount//[0-9]}" ]]; then
-                printf "\nERROR: AMOUNT CAN ONLY CONTAIN [0-9] CHARACTERS.\n\n"
+                printf "\nERROR: TRANSFER AMOUNT SHOULD ONLY CONTAIN CHARACTERS BETWEEN [0-9].\n\n"
                 continue
 
 	elif [[ "$ownertransferamount" =~ ['!@#$%^&*()_+,.£'] ]]; then
-		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
 	else
@@ -424,7 +363,7 @@ do
                 continue
 
         elif [[ ${#ownerpublickey} -ne 53 ]]; then
-                printf "\nERROR: PUBLIC KEY SHOULD BE EXACTLY 53 CHARACTERS.\n\n"
+                printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$ownerpublickey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -448,7 +387,7 @@ do
                 continue
 
         elif [[ ${#ownerprivatekey} -ne 51 ]]; then
-                printf "\nERROR: PRIVATE KEY SHOULD BE EXACTLY 51 CHARACTERS.\n\n"
+                printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$ownerprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
@@ -476,11 +415,11 @@ do
                 continue
 
         elif [[ "${owneraccountname//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAME CAN ONLY HAVE [a-z] AND [1-5] CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
                 continue
 
         elif [[ ${#owneraccountname} -ne 12 ]]; then
-                printf "\nERROR: ACCOUNT NAME SHOULD BE EXACTLY 12 CHARACTERS.\n\n"
+                printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
 	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
@@ -503,9 +442,9 @@ printf "\n"
 
 while [ : ]
 do
-	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn2
+	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
 
-  	case $yn2 in
+  	case $yn1 in
        		y|Y|yes|YES) newaccount
 	     		     break;;
 
@@ -787,17 +726,21 @@ stakingamount() {
 while [ : ]
 do
           read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
+          
+	  if [[ "${stakingamount" -lt "1000" ]]; then
+		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
+                continue
 
 	  if [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
-		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
+		printf "\nERROR: STAKE AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
         elif [[ "${stakingamount//[0-9]}" ]]; then
-                printf "\nERROR: AMOUNT CAN ONLY CONTAIN [0-9] CHARACTERS.\n\n"
+                printf "\nERROR: STAKE AMOUNT SHOULD ONLY CONTAIN CHARACTERS BETWEEN [0-9].\n\n"
                 continue
 
 	elif [[ "$stakingamount" =~ ['!@#$%^&*()_+,.£'] ]]; then
-		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		printf "\nERROR: STAKE AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
 	else
@@ -859,9 +802,9 @@ finalisingproducer() {
 
 while [ : ]
 do
-	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn3
+	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn2
 
-  	case $yn3 in
+  	case $yn2 in
        		y|Y|yes|YES) stakingamount
 			     stakingproducer
 			     setupblockproducer
@@ -913,9 +856,9 @@ printf "\n[******************************* COMPLETED ***************************
 
 while [ : ]
 do
-	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn4
+	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
 
-  	case $yn4 in
+  	case $yn3 in
        		y|Y|yes|YES) oldkeypermissions
 	     		     break;;
 
