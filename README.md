@@ -13,7 +13,7 @@
 <br>
 
 ```
-sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V2/raw/master/producer && sudo chmod u+x producer
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producer && sudo chmod u+x producer
 ```
 
 <br>
