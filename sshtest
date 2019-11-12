@@ -50,7 +50,7 @@ printf "\n[********************************** DONE *****************************
 
 while [ : ]
 do
-        read -p "DO YOU WANT TO GENERATE NEW SSH KEYS? [y/n]: " yn1
+        read -p "DO YOU WANT TO GENERATE A NEW PAIR OF SSH KEYS? [y/n]: " yn1
     
         case $yn1 in
                 y|Y|yes|YES) ssh_newkeys
