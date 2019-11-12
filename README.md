@@ -69,39 +69,6 @@ canonical-livepatch status —verbose
 
 ***
 
-**Creating and installing SSH keys**
-
-```
-ssh-keygen -t rsa -b 4096
-```
-
-> **Generate your new SSH keys on your OS terminal (MacOS or Ubuntu App).**
-
-**Enter file in which to save the key** `enter`
-
-> **Hit enter to have the SSH keys saved at the default location.**
-
-**Enter passphrase (empty for no passphrase):** `SETYOURPASSPHRASE`
-
-> **Having a passphrase provides an extra level of protection if you happen to lose your device, however if you don't wish to set a passphrase just hit enter.**
-
-```
-ssh-copy-id YOURUSERNAME@YOURIPADDRESS -p YOURPORTNUMBER
-```
-
-> **Your SSH keys will now be copied over to your ubuntu server.**
-
-```
-sudo sed -i ‘s/PasswordAuthentication yes/PasswordAuthentication no/’ /etc/ssh/sshd_config
-```
-
-```
-sudo service sshd restart
-```
-
-> **Copy and paste the above two lines of code into your ubuntu server terminal.**
-
-#
 # Important REMCLI Command Lines
 <br>
 
