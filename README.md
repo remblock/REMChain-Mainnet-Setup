@@ -40,7 +40,7 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V2/raw/master/producer &&
 * **If your server is compromised, the hacker only has access to your rewards and not your locked stake**
 * **When accessing your server you will need to login using your username and port number. Once in you will need to log into your root directory to use the remcli commands** `su - root`
 
-#
+***
 # Additional Setup Information
 <br>
 
@@ -131,7 +131,7 @@ remcli transfer YOURACCOUNTNAME RECEIVERSACCOUNTNAME "AMOUNT REM" -p YOURACCOUNT
 
 > **This command line is used for making transfers, make sure that your wallet is unlocked before making any transfers.**
 
-#
+***
 # Additional REMCLI Command Lines
 <br>
 
