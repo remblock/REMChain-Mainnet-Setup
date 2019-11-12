@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING SSH KEYS FOR SERVER
+# CREATING NEW SSH KEYS FOR SERVER
 #-----------------------------------------------------------------------------------------------------
+
+ssh_newkeys() {
 
 printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
 su -c ssh-keygen
@@ -33,32 +35,39 @@ read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_username
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
-cat ~/.ssh/id_rsa | sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
-#sudo sshpass -p $ssh_host_password ssh -p $ssh_host_password@$ssh_host_ipaddress -p $ssh_host_port "mkdir -p ~/.ssh"
-#sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
+sudo sshpass -p $ssh_host_password ssh -p $ssh_host_password@$ssh_host_ipaddress -p $ssh_host_port "mkdir -p ~/.ssh"
+sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
+
 printf "\n[********************************** DONE ***********************************]\n\n"
 
 }
 
+#-----------------------------------------------------------------------------------------------------
+# SSH FUNCTION WHILE LOOPS
+#-----------------------------------------------------------------------------------------------------
+
 while [ : ]
 do
-        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+        read -p "DO YOU WANT TO GENERATE NEW SSH KEYS? [y/n]: " yn1
     
         case $yn1 in
-                y|Y|yes|YES) echo ""
-                             read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac
-                             if [[ "$linmac" == "y" ]]
-                             then
-                                ssh_copy
-                                break
-                             else
-                                echo ""
-                                echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
-                                echo ""
-                                read -p "Press [Enter] key to continue..."
-                                break
-                             fi
-                             ;;
+                y|Y|yes|YES) ssh_newkeys
+                             break;;
+
+                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
+                             break;;
+
+                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+        esac
+done
+
+while [ : ]
+do
+        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn2
+    
+        case $yn2 in
+                y|Y|yes|YES) ssh_copy
+                             break;;
 
                 n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
