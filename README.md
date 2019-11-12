@@ -1,5 +1,5 @@
 #
-# **Producer Node - Ubuntu 18.04 Installation Steps**
+# **REMChain-Testnet-V2 - Ubuntu 18.04 Installation Steps**
 <br>
 
 __Step 1:__
@@ -13,8 +13,10 @@ __Step 1:__
 
 __Step 2:__
 
+* **Producer Node**
+
 ```
-sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh
+sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V2/raw/master/producer && sudo chmod u+x producer
 ```
 
 <br>
