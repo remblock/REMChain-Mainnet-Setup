@@ -789,7 +789,7 @@ while [ : ]
 do
           read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
 
-	elif [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
+	  if [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
 		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
