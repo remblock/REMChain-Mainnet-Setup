@@ -34,13 +34,20 @@ printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
 sudo sshpass -p $ssh_host_password -p $ssh_host_port $ssh_host_username@$ssh_host_ipaddress mkdir -p ~/.ssh
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 sudo sshpass -p $ssh_host_password -p $ssh_host_port ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_username@$ssh_host_ipaddress
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 sudo sshpass -p $ssh_host_password -p $ssh_host_port $ssh_host_username@$ssh_host_ipaddress sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 sudo sshpass -p $ssh_host_password -p $ssh_host_port $ssh_host_username@$ssh_host_ipaddress sudo systemctl restart ssh
 
 }
-
-printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # WHILE LOOPS FOR SSH FUNCTIONS
@@ -54,7 +61,8 @@ do
                 y|Y|yes|YES) ssh_newkeys
                              break;;
 
-                n|N|no|NO)   break;;
+                n|N|no|NO)   echo ""
+                             break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
