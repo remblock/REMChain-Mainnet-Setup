@@ -715,12 +715,9 @@ printf "\n"
 setupkeypermissions1() {
 
 remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
 remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@owner
-remcli set action permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey owner -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -738,7 +735,7 @@ remcli set action permission $owneraccountname oracle $transferpublickey active 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey owner -p $owneraccountname@owner
+remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey active -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -809,9 +806,9 @@ printf "\n"
 # REBOOTING REMNODE AND FIXING ANY PROBLEMS
 #-----------------------------------------------------------------------------------------------------
 
-sudo killall remnode
-sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
-sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+#sudo killall remnode
+#sudo remnode --config-dir ./config/ --data-dir ./data/ --fix-reversible-blocks --force-all-checks --genesis-json genesis.json
+#sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
