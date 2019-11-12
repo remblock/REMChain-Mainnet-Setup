@@ -1,5 +1,5 @@
 #
-# **REMChain-Testnet-V2 - Ubuntu 18.04**
+# **REMChain-Testnet-V2 - (Ubuntu 18.04)**
 <br>
 
 **The REMME [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with getting set up and creating an account with some tokens in it. With the help of this bot you will get the following data about your testnet account:**
