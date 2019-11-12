@@ -17,6 +17,8 @@ __Step 2:__
 sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh
 ```
 
+<br>
+
 * **Root password changed**
 * **Setup a firewall with UFW**
 * **New user account created**
