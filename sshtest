@@ -1,0 +1,67 @@
+!/usr/bin/env bash
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING SSH KEYS FOR SERVER
+#-----------------------------------------------------------------------------------------------------
+
+printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
+su -c ssh-keygen
+sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+
+printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
+sudo cat ~/.ssh/id_rsa
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+#-----------------------------------------------------------------------------------------------------
+# COPYING SSH KEY OVER TO THE LOCAL HOST
+#-----------------------------------------------------------------------------------------------------
+
+ssh_copy() {
+
+sudo apt-get install sshpass -y
+echo $SSH_CLIENT | awk '{ print $1}'
+ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
+echo "OK LET'S START COPYING OVER YOUR KEY FILES..."
+printf "\n"
+read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
+printf "\n"
+read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
+printf "\n"
+read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
+printf "\n"
+sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/.ssh"
+sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
+printf "\n[********************************** DONE ***********************************]\n\n"
+
+}
+
+while [ : ]
+do
+        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn1
+    
+        case $yn1 in
+                y|Y|yes|YES) echo ""
+                             read -p "IS YOUR LOCAL HOST OPERATING ON LINUX OR MACOS? [y/n]: " linmac
+                             if [[ "$linmac" == "y" ]]
+                             then
+                                ssh_copy
+                                break
+                             else
+                                echo ""
+                                echo "SSH KEYS CAN ONLY BE COPIED TO A LINUX OR MAC OPERATING SYSTEM."
+                                echo ""
+                                read -p "Press [Enter] key to continue..."
+                                break
+                             fi
+                             ;;
+
+                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
+                             break;;
+
+                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+        esac
+
+done
