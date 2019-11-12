@@ -802,9 +802,9 @@ finalisingproducer() {
 
 while [ : ]
 do
-	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn2
+	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn3
 
-  	case $yn2 in
+  	case $yn3 in
        		y|Y|yes|YES) stakingamount
 			     stakingproducer
 			     setupblockproducer
@@ -856,9 +856,9 @@ printf "\n[******************************* COMPLETED ***************************
 
 while [ : ]
 do
-	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
+	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
 
-  	case $yn3 in
+  	case $yn2 in
        		y|Y|yes|YES) oldkeypermissions
 	     		     break;;
 
