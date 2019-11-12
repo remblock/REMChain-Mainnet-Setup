@@ -14,7 +14,7 @@ __Step 1:__
 __Step 2:__
 
 ```
-sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-2.sh && sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-3.sh && sudo chmod u+x Install-1.sh && sudo chmod u+x Install-2.sh && sudo chmod u+x Install-3.sh && sudo ./Install-1.sh
+sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.sh && sudo chmod u+x Install-1.sh
 ```
 
 * **Root password changed**
@@ -28,18 +28,6 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V1/raw/master/Install-1.s
 * **Initialised the first run of your remnode**
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
-
-***
-
-__Step 3:__
-
-```
-sudo ./Install-2.sh
-```
-```
-sudo ./Install-3.sh
-```
-
 * **Running remnode in the background**
 * **Created three active multisignature keys**
 * **Created two additional keys producer and request**
