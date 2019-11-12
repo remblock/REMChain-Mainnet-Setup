@@ -69,8 +69,6 @@ canonical-livepatch status —verbose
 
 ***
 
-#
-
 **Creating and installing SSH keys**
 
 ```
