@@ -8,7 +8,7 @@
 * **Public and private keys to be able to create transactions.**
 
 ***
-# Producer Setup
+# Block Producer Setup
 
 <br>
 
