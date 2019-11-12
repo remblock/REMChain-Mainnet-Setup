@@ -292,7 +292,7 @@ while [ : ]
 do
           read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
 
-	  if [[ "${ownertransferamount -lt "1000"}" ]]; then
+	  if [[ $ownertransferamount -lt 1000 ]]; then
 		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
 		
@@ -727,7 +727,7 @@ while [ : ]
 do
           read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
           
-	  if [[ "${stakingamount -lt "1000"}" ]]; then
+	  if [[ $stakingamount -lt 1000 ]]; then
 		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
 
