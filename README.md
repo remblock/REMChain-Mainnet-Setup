@@ -69,7 +69,7 @@ canonical-livepatch status —verbose
 
 ***
 
-__Step 4:__
+#
 
 **Creating and installing SSH keys**
 
