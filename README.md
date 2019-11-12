@@ -42,10 +42,8 @@ sudo wget https://github.com/SooSDExZ/REMChain-Testnet-V2/raw/master/producer &&
 * **When accessing your server you will need to login using your username and port number. Once in you will need to log into your root directory to use the remcli commands** `su - root`
 
 #
-# Optional Steps
+# Additional Setup Information
 <br>
-
-__Step 3:__
 
 **Setup canonical livepatch service**
 
