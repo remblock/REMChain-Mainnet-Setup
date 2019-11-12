@@ -54,10 +54,10 @@ do
     
         case $yn1 in
                 y|Y|yes|YES) ssh_newkeys
+                             printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
 
-                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
-                             break;;
+                n|N|no|NO)   break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
@@ -69,6 +69,7 @@ do
     
         case $yn2 in
                 y|Y|yes|YES) ssh_copy
+                             printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
 
                 n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n\n"
