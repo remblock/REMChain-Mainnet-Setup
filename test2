@@ -915,7 +915,7 @@ while [ : ]
 do
 	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn4
 
-  	case $yn3 in
+  	case $yn4 in
        		y|Y|yes|YES) oldkeypermissions
 	     		     break;;
 
