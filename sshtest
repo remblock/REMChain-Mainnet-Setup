@@ -54,7 +54,6 @@ do
     
         case $yn1 in
                 y|Y|yes|YES) ssh_newkeys
-                             printf "\n[********************************** DONE ***********************************]\n\n"
                              break;;
 
                 n|N|no|NO)   break;;
