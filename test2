@@ -718,21 +718,7 @@ printf "\n[******************************* COMPLETED ***************************
 }
 
 #-----------------------------------------------------------------------------------------------------
-# REGISTERING AS NEW BLOCK PRODUCER 
-#-----------------------------------------------------------------------------------------------------
-
-setupblockproducer() {
-
-remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-}
-
-#-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMCHAIN ACCOUNT PERMISSIONS 
+# CREATING REMCHAIN ACCOUNT PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
 
 setupkeypermissions1() {
@@ -766,7 +752,7 @@ printf "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING REMCHAIN KEY PERMISSIONS 
+# CREATING REMCHAIN ACTION PERMISSIONS 
 #-----------------------------------------------------------------------------------------------------
 
 createkeypermissions1() {
@@ -830,7 +816,7 @@ done
 }
 
 #-----------------------------------------------------------------------------------------------------
-# STAKING AMOUNT TO YOUR PRODUCER
+# DELEGATING STAKE TO YOUR PRODUCER
 #-----------------------------------------------------------------------------------------------------
 
 stakingproducer() {
@@ -844,7 +830,21 @@ printf "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
-# CASTING YOUR VOTES TO YOURSELF
+# REGISTERING AS NEW BLOCK PRODUCER 
+#-----------------------------------------------------------------------------------------------------
+
+setupblockproducer() {
+
+remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+#-----------------------------------------------------------------------------------------------------
+# CASTING YOUR VOTES TO YOUR PRODUCER
 #-----------------------------------------------------------------------------------------------------
 
 voteproducer() {
