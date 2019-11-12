@@ -353,6 +353,29 @@ do
 done
 
 printf "\n"
+
+while [ : ]
+do
+          read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
+
+	  if [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
+		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ "${ownertransferamount//[0-9]}" ]]; then
+                printf "\nERROR: AMOUNT CAN ONLY CONTAIN [0-9] CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$ownertransferamount" =~ ['!@#$%^&*()_+,.£'] ]]; then
+		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
+printf "\n"
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
 remcli create key --file key1
@@ -372,7 +395,7 @@ remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-remcli transfer $telegramaccountname $owneraccountname -x 120 "1000 REM" -p $telegramaccountname@owner
+remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -778,16 +801,80 @@ printf "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
+# SETTING YOUR STAKING AMOUNT
+#-----------------------------------------------------------------------------------------------------
+
+stakingamount() {
+
+while [ : ]
+do
+          read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
+
+	elif [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
+		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ "${stakingamount//[0-9]}" ]]; then
+                printf "\nERROR: AMOUNT CAN ONLY CONTAIN [0-9] CHARACTERS.\n\n"
+                continue
+
+	elif [[ "$stakingamount" =~ ['!@#$%^&*()_+,.£'] ]]; then
+		printf "\nERROR: AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
+}
+
+#-----------------------------------------------------------------------------------------------------
+# STAKING AMOUNT TO YOUR PRODUCER
+#-----------------------------------------------------------------------------------------------------
+
+stakingproducer() {
+
+remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@stake
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+#-----------------------------------------------------------------------------------------------------
 # CASTING YOUR VOTES TO YOURSELF
 #-----------------------------------------------------------------------------------------------------
 
-finalisingproducer() {
+voteproducer() {
 
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+
+}
+
+finalisingproducer() {
+
+while [ : ]
+do
+	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn3
+
+  	case $yn3 in
+       		y|Y|yes|YES) stakingamount
+			     stakingproducer
+			     setupblockproducer
+			     voteproducer
+	     		     break;;
+
+       		n|N|no|NO)   break;;
+
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+  	esac
+done
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING OWNER AND ACTIVE KEYS
@@ -826,14 +913,13 @@ printf "\n[******************************* COMPLETED ***************************
 
 while [ : ]
 do
-	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn3
+	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn4
 
   	case $yn3 in
        		y|Y|yes|YES) oldkeypermissions
 	     		     break;;
 
        		n|N|no|NO)   newkeypermissions
-                             setupblockproducer
                              setupkeypermissions1
                              setupkeypermissions2
                              createkeypermissions1
