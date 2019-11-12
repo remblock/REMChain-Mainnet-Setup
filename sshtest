@@ -22,18 +22,19 @@ printf "\n"
 ssh_copy() {
 
 sudo apt-get install sshpass -y
-echo $SSH_CLIENT | awk '{ print $1}'
-ip_ssh=$(echo $SSH_CLIENT | awk '{ print $1}')
+printf "\n"
 echo "OK LET'S START COPYING OVER YOUR KEY FILES..."
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
 printf "\n"
-read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_user
+read -p "PLEASE ENTER YOUR LOCAL IP ADDRESS: " ssh_host_ipaddress
+printf "\n"
+read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_username
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
 printf "\n"
-sudo sshpass -p $ssh_host_password ssh $ssh_host_user@$ip_ssh -p $ssh_host_port "mkdir -p ~/.ssh"
-sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_user@$ip_ssh -p $ssh_host_port
+sudo sshpass -p $ssh_host_password ssh $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "mkdir -p ~/.ssh"
+sudo sshpass -p $ssh_host_password ssh-copy-id -i ~/.ssh/id_rsa $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
 printf "\n[********************************** DONE ***********************************]\n\n"
 
 }
