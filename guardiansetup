@@ -621,7 +621,7 @@ printf "\n"
 
 createkeypermissions2() {
 
-remcli set account permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
