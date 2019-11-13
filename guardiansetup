@@ -570,11 +570,11 @@ setupkeypermissions1() {
 
 printf "\n[********************** CREATING ACCOUNT PERMISSIONS ***********************]\n\n"
 
-remcli set account permission $owneraccountname vote $producerpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname vote $guardianpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
 remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname claim $producerpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname stake $producerpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname claim $guardianpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname stake $guardianpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
 
 printf "\n"
