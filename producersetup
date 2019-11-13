@@ -563,7 +563,7 @@ printf "\n"
 
 setupkeypermissions2() {
 
-remcli set account permission $owneraccountname $owneraccountname transfer $transferpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -617,19 +617,19 @@ do
           read -p "HOW MUCH WOULD YOU LIKE TO DELEGATE TOWARDS THE PRODUCER: " stakingamount
 
 	  if [[ $stakingamount -lt 300 ]]; then
-		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 300 REM.\n\n"
+		printf "\nERROR: DELEGATED AMOUNT SHOULDN'T BE LESS THEN 300 REM.\n\n"
                 continue
 
 	elif [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
-		printf "\nERROR: STAKE AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
+		printf "\nERROR: DELEGATED AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
         elif [[ "${stakingamount//[0-9]}" ]]; then
-                printf "\nERROR: STAKE AMOUNT SHOULD ONLY CONTAIN CHARACTERS BETWEEN [0-9].\n\n"
+                printf "\nERROR: DELEGATED AMOUNT SHOULD ONLY CONTAIN CHARACTERS BETWEEN [0-9].\n\n"
                 continue
 
 	elif [[ "$stakingamount" =~ ['!@#$%^&*()_+,.£'] ]]; then
-		printf "\nERROR: STAKE AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		printf "\nERROR: DELEGATED AMOUNT SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
 	else
