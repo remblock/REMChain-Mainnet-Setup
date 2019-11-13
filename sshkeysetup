@@ -7,7 +7,6 @@
 ssh_newkeys() {
 
 printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
-#su -c ssh-keygen
 ssh-keygen -t rsa -b 4096
 
 printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
@@ -52,7 +51,7 @@ done
 
 while [ : ]
 do
-        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR LOCAL HOST THROUGH SSH? [y/n]: " yn2
+        read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR SERVER THROUGH SSH? [y/n]: " yn2
     
         case $yn2 in
                 y|Y|yes|YES) ssh_copy
