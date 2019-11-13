@@ -5,7 +5,7 @@
 #****************************************************************************************************#
 
 #-----------------------------------------------------------------------------------------------------
-# UPDATING AND UPGRADING PACKAGE DATABASE 
+# UPDATING AND UPGRADING PACKAGE DATABASE
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt update && sudo -S apt upgrade -y
@@ -15,11 +15,11 @@ echo ""
 # CHANGING DEFAULT SSH PORT NUMBER
 #-----------------------------------------------------------------------------------------------------
 
-while [ : ] 
+while [ : ]
 do
 
 	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
- 
+
          if [[ ${#portnumber} -ne 5 ]]
          then
                  printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n\n"
@@ -31,7 +31,7 @@ do
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
                  break
-         fi  
+         fi
 done
 
 #-----------------------------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ do
 	  if [[ $ownertransferamount -lt 1000 ]]; then
 		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
-		
+
 	elif [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
 		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
@@ -435,7 +435,7 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
-  
+
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
@@ -679,8 +679,8 @@ do
 	do
 		echo -ne ">"
 	done
-       
-        sleep $STEP 
+
+        sleep $STEP
 	ELAPSED=$(($ELAPSED + $STEP))
 done
 
@@ -697,7 +697,7 @@ printf "\n[******************************* COMPLETED ***************************
 }
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING REMCHAIN ACCOUNT PERMISSIONS 
+# CREATING REMCHAIN ACCOUNT PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
 setupkeypermissions1() {
@@ -768,7 +768,7 @@ stakingamount() {
 while [ : ]
 do
           read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
-          
+
 	  if [[ $stakingamount -lt 1000 ]]; then
 		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
