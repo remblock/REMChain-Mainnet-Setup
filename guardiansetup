@@ -728,27 +728,11 @@ done
 # DELEGATING STAKE TO YOUR PRODUCER
 #-----------------------------------------------------------------------------------------------------
 
-stakingproducer() {
+stakingguardian() {
 
-printf "\n[********************** DELEGATING STAKE TO PRODUCER ***********************]\n\n"
+printf "\n[********************** DELEGATING STAKE TO GUARDIAN ***********************]\n\n"
 
 remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@stake
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-}
-
-#-----------------------------------------------------------------------------------------------------
-# REGISTERING AS NEW BLOCK PRODUCER 
-#-----------------------------------------------------------------------------------------------------
-
-setupblockproducer() {
-
-printf "\n[******************** REGISTERING AS A BLOCK PRODUCER **********************]\n\n"
-
-remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -764,7 +748,28 @@ voteproducer() {
 
 printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER **********************]\n\n"
 
-remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+while [ : ]
+do
+          read -p "ENTER THE BLOCK PRODUCER TO CAST VOTES: " produceraccountnames
+
+	  if [[ "$produceraccountnames" =~ [[:upper:]] ]]; then
+		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY CAPS.\n\n"
+                continue
+
+        elif [[ "${produceraccountnames//[a-z1-5]}" ]]; then
+                printf "\nERROR: ACCOUNT NAMES SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
+                continue
+
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
+remcli system voteproducer prods $owneraccountname $produceraccountnames -p $owneraccountname@vote
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -776,12 +781,11 @@ finalisingproducer() {
 
 while [ : ]
 do
-	read -p "WOULD YOU LIKE TO REGISTER AS A BLOCK PRODUCER? [y/n]: " yn3
+	read -p "WOULD YOU LIKE TO REGISTER AS A GUARDIAN? [y/n]: " yn3
 
   	case $yn3 in
        		y|Y|yes|YES) stakingamount
-			     stakingproducer
-			     setupblockproducer
+			     stakingguardian
 			     voteproducer
 	     		     break;;
 
