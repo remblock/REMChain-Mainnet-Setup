@@ -135,7 +135,7 @@ printf "\n"
 
 remcli wallet create --file walletpass
 walletpass=$(cat walletpass)
-echo $walletpass > producerwalletpass.txt
+echo $walletpass > guardianwalletpass
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR USERS REMNODE ACCOUNT
@@ -446,27 +446,88 @@ printf "\n"
 
 oldkeypermissions() {
 
-read -p "ENTER YOUR REQUEST PUBLIC KEY: " requestpublickey
+while [ : ]
+do
+          read -p "ENTER YOUR REQUEST PUBLIC KEY: " requestpublickey
+
+	  if [[ ! "$requestpublickey" = "${requestpublickey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#requestpublickey} -ne 53 ]]; then
+                printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
+                continue
+
+	elif [[ "$requestpublickey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
 printf "\n"
-read -p "ENTER YOUR REQUEST PRIVATE KEY: " requestprivatekey
+
+while [ : ]
+do
+          read -p "ENTER YOUR REQUEST PRIVATE KEY: " requestprivatekey
+
+	  if [[ ! "$requestprivatekey" = "${requestprivatekey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#requestprivatekey} -ne 51 ]]; then
+                printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
+                continue
+
+	elif [[ "$requestprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
 printf "\n"
+
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$requestprivatekey
+
 printf "\n"
-read -p "ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
+
+while [ : ]
+do
+          read -p "ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
+
+	  if [[ ! "$transferprivatekey" = "${transferprivatekey%[[:space:]]*}" ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
+                continue
+
+        elif [[ ${#transferprivatekey} -ne 51 ]]; then
+                printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
+                continue
+
+	elif [[ "$transferprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
 printf "\n"
+
 remcli wallet import --private-key=$transferprivatekey
 echo -e "\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $requestprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $requestprivatekey" >> ./config/config.ini
 printf "\n"
-remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+voteproducer()
 printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
-rm test2.sh walletpass producerwalletpass.txt
+rm walletpass guardiansetup guardianwalletpass
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
@@ -822,7 +883,7 @@ printf "\n"
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 key6 producer ownerkeys activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys producerwalletpass.txt
+rm key1 key2 key3 key4 key5 key6 ownerkeys activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys guardiansetup guardianwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
