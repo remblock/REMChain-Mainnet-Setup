@@ -9,10 +9,10 @@
 
 
 ***
-# SSH Keys Setup (Coming Soon)
+# SSH Keys Setup
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshtest && sudo chmod u+x sshtest && sudo ./sshtest
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshkeysetup && sudo chmod u+x sshkeysetup && sudo ./sshkeysetup
 ```
 
 ***
