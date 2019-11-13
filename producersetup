@@ -776,7 +776,7 @@ do
 		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
 
-	  if [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
+	elif [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
 		printf "\nERROR: STAKE AMOUNT SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
