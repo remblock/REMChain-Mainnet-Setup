@@ -23,29 +23,33 @@ printf "\n"
 
 ssh_copy() {
 
-sudo apt-get install sshpass -y
+#sudo apt-get install sshpass -y
 printf "\n[*********************** TRANSFERING YOUR SSH KEYS *************************]\n\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST PORT: " ssh_host_port
-printf "\n"
+#printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL IP ADDRESS: " ssh_host_ipaddress
 printf "\n"
 read -p "PLEASE ENTER YOUR LOCAL HOST USERNAME: " ssh_host_username
 printf "\n"
-read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
-printf "\n"
-/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_port $ssh_host_username@$ssh_host_ipaddress "mkdir -p ~/.ssh"
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-/usr/local/bin/sshpass -p $ssh_host_password /usr/local/bin/ssh-copy-id -i ~/.ssh/id_rsa.pub $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config"
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sudo systemctl restart ssh"
+ssh -t $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port mkdir -p ~/.ssh
+ssh-copy-id $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
+ssh -t $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+ssh -t $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port sudo systemctl restart ssh
+#read -p "PLEASE ENTER YOUR LOCAL HOST PASSWORD: " ssh_host_password
+#printf "\n"
+#/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_port $ssh_host_username@$ssh_host_ipaddress "mkdir -p ~/.ssh"
+#printf "\n"
+#read -p 'Press [Enter] key to continue...'
+#printf "\n"
+#/usr/local/bin/sshpass -p $ssh_host_password /usr/local/bin/ssh-copy-id -i ~/.ssh/id_rsa.pub $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port
+#printf "\n"
+#read -p 'Press [Enter] key to continue...'
+#printf "\n"
+#/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config"
+#printf "\n"
+#read -p 'Press [Enter] key to continue...'
+#printf "\n"
+#/usr/local/bin/sshpass -p $ssh_host_password $ssh_host_username@$ssh_host_ipaddress -p $ssh_host_port "sudo systemctl restart ssh"
 
 }
 
