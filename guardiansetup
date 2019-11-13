@@ -47,11 +47,6 @@ printf "\n"
 
 newaccount() {
 
-printf "\n"
-read -p "ENTER YOUR DOMAIN ADDRESS: " domain
-echo $domain >> key1
-printf "\n"
-
 read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
@@ -228,11 +223,6 @@ remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 existingaccount() {
 
-printf "\n"
-read -p "ENTER YOUR DOMAIN ADDRESS: " domain
-echo $domain >> key1
-printf "\n"
-
 read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
@@ -331,7 +321,7 @@ oldkeypermissions() {
 
 while [ : ]
 do
-          read -p "ENTER YOUR REQUEST PUBLIC KEY: " guardianpublickey
+          read -p "ENTER YOUR GUARDIAN PUBLIC KEY: " guardianpublickey
 
 	  if [[ ! "$guardianpublickey" = "${guardianpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -354,7 +344,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR REQUEST PRIVATE KEY: " guardianprivatekey
+          read -p "ENTER YOUR GUARDIAN PRIVATE KEY: " guardianprivatekey
 
 	  if [[ ! "$guardianprivatekey" = "${guardianprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
