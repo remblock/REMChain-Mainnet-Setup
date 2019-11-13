@@ -36,8 +36,9 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@$ssh_host_ipaddress
 
 while [ : ]
 do
+        echo ""
         read -p "DO YOU WANT TO GENERATE A NEW PAIR OF SSH KEYS? [y/n]: " yn1
-    
+
         case $yn1 in
                 y|Y|yes|YES) ssh_newkeys
                              break;;
