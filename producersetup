@@ -52,8 +52,8 @@ sudo -S ufw enable
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt -y install fail2ban
-sudo -S systemctl enable fail2ban -y
-sudo -S systemctl start fail2ban -y
+sudo -S systemctl enable fail2ban
+sudo -S systemctl start fail2ban
 sudo -S service sshd restart
 
 #-----------------------------------------------------------------------------------------------------
@@ -93,6 +93,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 for ((i=1;i<=1;i++))
 {
 	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
+	sleep 2
 	echo ""
 	break
 }
