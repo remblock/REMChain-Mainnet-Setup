@@ -637,10 +637,10 @@ stakingamount() {
 
 while [ : ]
 do
-          read -p "THE AMOUNT YOU WOULD LIKE TO STAKE: " stakingamount
+          read -p "HOW MUCH WOULD YOU LIKE TO DELEGATE TOWARDS THE PRODUCER: " stakingamount
 
-	  if [[ $stakingamount -lt 1000 ]]; then
-		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
+	  if [[ $stakingamount -lt 300 ]]; then
+		printf "\nERROR: STAKE AMOUNT SHOULDN'T BE LESS THEN 300 REM.\n\n"
                 continue
 
 	elif [[ ! "$stakingamount" = "${stakingamount%[[:space:]]*}" ]]; then
