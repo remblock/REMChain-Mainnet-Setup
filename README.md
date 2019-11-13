@@ -7,6 +7,21 @@
 * **Account name**
 * **Public and private keys to be able to create transactions.**
 
+
+***
+# SSH Keys Setup (Coming Soon)
+
+```
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshtest && sudo chmod u+x sshtest && sudo ./sshtest
+```
+
+***
+# Guardian Setup (Coming Soon)
+
+```
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardian && sudo chmod u+x guardian && sudo ./guardian
+```
+
 ***
 # Block Producer Setup
 
