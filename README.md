@@ -19,7 +19,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshtest && 
 # Guardian Setup (Coming Soon)
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardian && sudo chmod u+x guardian && sudo ./guardian
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
 ```
 
 ***
@@ -28,7 +28,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardian &&
 <br>
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producer && sudo chmod u+x producer && sudo ./producer
+sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
 ```
 
 <br>
