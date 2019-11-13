@@ -1,146 +1,11 @@
 #!/usr/bin/env bash
 
 #****************************************************************************************************#
-#                                        REMCHAIN-TESTNET-V2                                         #
+#                                       PRODUCER FUNCTIONS                                           #
 #****************************************************************************************************#
 
 #-----------------------------------------------------------------------------------------------------
-# UPDATING AND UPGRADING PACKAGE DATABASE
-#-----------------------------------------------------------------------------------------------------
-
-sudo -S apt update && sudo -S apt upgrade -y
-echo ""
-
-#-----------------------------------------------------------------------------------------------------
-# CHANGING DEFAULT SSH PORT NUMBER
-#-----------------------------------------------------------------------------------------------------
-
-while [ : ]
-do
-
-	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
-
-         if [[ ${#portnumber} -ne 5 ]]
-         then
-                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n\n"
-                 continue
-         elif [[ ! -z "${portnumber//[0-9]}" ]]
-         then
-                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n\n"
-                 continue
-         else
-                 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-                 break
-         fi
-done
-
-#-----------------------------------------------------------------------------------------------------
-# INSTALLING UNCOMPLICATED FIREWALL
-#-----------------------------------------------------------------------------------------------------
-
-sudo -S apt-get install ufw -y
-sudo -S ufw allow ssh/tcp
-sudo -S ufw limit ssh/tcp
-sudo -S ufw allow $portnumber/tcp
-sudo -S ufw allow 8888/tcp
-sudo -S ufw allow 9877/tcp
-sudo -S ufw logging on
-sudo -S ufw enable
-
-#-----------------------------------------------------------------------------------------------------
-# INSTALLING FAIL2BAN
-#-----------------------------------------------------------------------------------------------------
-
-sudo -S apt -y install fail2ban
-sudo -S systemctl enable fail2ban
-sudo -S systemctl start fail2ban
-sudo -S service sshd restart
-
-#-----------------------------------------------------------------------------------------------------
-# INSTALLING CANONICAL LIVEPATCH SERVICE
-#-----------------------------------------------------------------------------------------------------
-
-sudo snap install canonical-livepatch
-
-#-----------------------------------------------------------------------------------------------------
-# INSTALLING REM PROTOCOL BINARIES
-#-----------------------------------------------------------------------------------------------------
-
-wget https://github.com/Remmeauth/remprotocol/releases/download/0.2.1/remprotocol_0.2.1-1_amd64.deb && sudo apt install ./remprotocol_0.2.1-1_amd64.deb
-
-#-----------------------------------------------------------------------------------------------------
-# BOOTING REMNODE AND WALLET
-#-----------------------------------------------------------------------------------------------------
-
-wget https://testchain.remme.io/genesis.json
-
-#-----------------------------------------------------------------------------------------------------
-# CREATING A CONFIG AND DATA DIRECTORIES
-#-----------------------------------------------------------------------------------------------------
-
-mkdir data && mkdir config
-
-#-----------------------------------------------------------------------------------------------------
-# CONFIGURATION FILE (CONFIG/CONFIG.INI)
-#-----------------------------------------------------------------------------------------------------
-
-echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = p2p.testnet.rem.eon.llc:9876\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = testnet.geordier.co.uk:9876\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480" > ./config/config.ini
-
-#-----------------------------------------------------------------------------------------------------
-# THE INITIAL RUN OF THE REMNODE
-#-----------------------------------------------------------------------------------------------------
-
-for ((i=1;i<=1;i++))
-{
-	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
-	sleep 2
-	echo ""
-	break
-}
-
-while [ : ]
-do
-	systemdt=$(date '+%Y-%m-%dT%H:%M')
-	
-	if [ "$dt1" == "$systemdt" ]; then
-		break
-	else
-		dt1=$(remcli get info | grep head_block_time | cut -c 23-38)
-		dt1date=$(echo $dt1 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
-		dt1time=$(echo $dt1 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
-
-		dt2=$(tail -n 1 remnode.log | awk '{print $2}'| awk -F'.' '{print $1}')
-		dt2date=$(echo $dt2 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
-		dt2time=$(echo $dt2 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
-
-		echo "Fetching blocks for [${dt1date} | ${dt1time}] | Current block date [${dt2date} | ${dt2time}]"
-	fi
-
-	echo ""
-	sleep 2
-done
-
-#-----------------------------------------------------------------------------------------------------
-# RUNNING THE WALLET DAEMON
-#-----------------------------------------------------------------------------------------------------
-
-remvault &
-sleep 2
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-#-----------------------------------------------------------------------------------------------------
-# CREATING THE REMCLI WALLET
-#-----------------------------------------------------------------------------------------------------
-
-remcli wallet create --file walletpass
-walletpass=$(cat walletpass)
-echo $walletpass > producerwalletpass
-
-#-----------------------------------------------------------------------------------------------------
-# CHECKING FOR USERS REMNODE ACCOUNT
+# CHECKING FOR REMNODE USER ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
 newaccount() {
@@ -322,6 +187,8 @@ remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
 
+#-----------------------------------------------------------------------------------------------------
+
 existingaccount() {
 
 printf "\n"
@@ -418,34 +285,6 @@ remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$ownerprivatekey
 
 }
-
-printf "\n"
-
-while [ : ]
-do
-	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
-
-  	case $yn1 in
-       		y|Y|yes|YES) newaccount
-	     		     break;;
-
-       		n|N|no|NO)   existingaccount
-       	     		     break;;
-
-       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
-  	esac
-done
-
-#-----------------------------------------------------------------------------------------------------
-# YOUR REMNODE WALLET PASSWORD
-#-----------------------------------------------------------------------------------------------------
-
-printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD *********************]\n\n"
-cat ./walletpass
-printf "\n"
-echo " "
-read -p 'Press [Enter] key to continue...'
-printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # IMPORTING EXISTING KEY PERMISSIONS
@@ -718,6 +557,8 @@ printf "\n"
 
 }
 
+#-----------------------------------------------------------------------------------------------------
+
 setupkeypermissions2() {
 
 remcli set account permission $owneraccountname swap $transferpublickey active -p $owneraccountname@owner
@@ -749,6 +590,8 @@ read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 }
+
+#-----------------------------------------------------------------------------------------------------
 
 createkeypermissions2() {
 
@@ -894,6 +737,173 @@ rm key1 key2 key3 key4 key5 key6 ownerkeys activekeys1 activekeys2 activekeys3 w
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
 }
+
+#****************************************************************************************************#
+#                                      PRODUCER MAIN PROGRAM                                         #
+#****************************************************************************************************#
+
+#-----------------------------------------------------------------------------------------------------
+# UPDATING AND UPGRADING PACKAGE DATABASE
+#-----------------------------------------------------------------------------------------------------
+
+sudo -S apt update && sudo -S apt upgrade -y
+echo ""
+
+#-----------------------------------------------------------------------------------------------------
+# CHANGING DEFAULT SSH PORT NUMBER
+#-----------------------------------------------------------------------------------------------------
+
+while [ : ]
+do
+
+	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
+
+         if [[ ${#portnumber} -ne 5 ]]
+         then
+                 printf "\nERROR: PORT NUMBER SHOULD BE EXACTLY 5 DIGITS.\n\n"
+                 continue
+         elif [[ ! -z "${portnumber//[0-9]}" ]]
+         then
+                 printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n\n"
+                 continue
+         else
+                 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+                 break
+         fi
+done
+
+#-----------------------------------------------------------------------------------------------------
+# INSTALLING UNCOMPLICATED FIREWALL
+#-----------------------------------------------------------------------------------------------------
+
+sudo -S apt-get install ufw -y
+sudo -S ufw allow ssh/tcp
+sudo -S ufw limit ssh/tcp
+sudo -S ufw allow $portnumber/tcp
+sudo -S ufw allow 8888/tcp
+sudo -S ufw allow 9877/tcp
+sudo -S ufw logging on
+sudo -S ufw enable
+
+#-----------------------------------------------------------------------------------------------------
+# INSTALLING FAIL2BAN
+#-----------------------------------------------------------------------------------------------------
+
+sudo -S apt -y install fail2ban
+sudo -S systemctl enable fail2ban
+sudo -S systemctl start fail2ban
+sudo -S service sshd restart
+
+#-----------------------------------------------------------------------------------------------------
+# INSTALLING CANONICAL LIVEPATCH SERVICE
+#-----------------------------------------------------------------------------------------------------
+
+sudo snap install canonical-livepatch
+
+#-----------------------------------------------------------------------------------------------------
+# INSTALLING REM PROTOCOL BINARIES
+#-----------------------------------------------------------------------------------------------------
+
+wget https://github.com/Remmeauth/remprotocol/releases/download/0.2.1/remprotocol_0.2.1-1_amd64.deb && sudo apt install ./remprotocol_0.2.1-1_amd64.deb
+
+#-----------------------------------------------------------------------------------------------------
+# BOOTING REMNODE AND WALLET
+#-----------------------------------------------------------------------------------------------------
+
+wget https://testchain.remme.io/genesis.json
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING A CONFIG AND DATA DIRECTORIES
+#-----------------------------------------------------------------------------------------------------
+
+mkdir data && mkdir config
+
+#-----------------------------------------------------------------------------------------------------
+# CONFIGURATION FILE (CONFIG/CONFIG.INI)
+#-----------------------------------------------------------------------------------------------------
+
+echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.testchain.remme.io:2087\n\n# https://eon.llc\n\np2p-peer-address = p2p.testnet.rem.eon.llc:9876\n\n# https://testnet.geordier.co.uk\n\np2p-peer-address = testnet.geordier.co.uk:9876\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480" > ./config/config.ini
+
+#-----------------------------------------------------------------------------------------------------
+# THE INITIAL RUN OF THE REMNODE
+#-----------------------------------------------------------------------------------------------------
+
+for ((i=1;i<=1;i++))
+{
+	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
+	sleep 2
+	echo ""
+	break
+}
+
+while [ : ]
+do
+	systemdt=$(date '+%Y-%m-%dT%H:%M')
+	
+	if [ "$dt1" == "$systemdt" ]; then
+		break
+	else
+		dt1=$(remcli get info | grep head_block_time | cut -c 23-38)
+		dt1date=$(echo $dt1 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
+		dt1time=$(echo $dt1 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
+
+		dt2=$(tail -n 1 remnode.log | awk '{print $2}'| awk -F'.' '{print $1}')
+		dt2date=$(echo $dt2 | awk -F'T' '{print $1}' | awk -F'-' 'BEGIN {OFS="-"}{ print $3, $2, $1}')
+		dt2time=$(echo $dt2 | awk -F'T' '{print $2}' | awk -F':' 'BEGIN {OFS=":"}{ print $1, $2}')
+
+		echo "Fetching blocks for [${dt1date} | ${dt1time}] | Current block date [${dt2date} | ${dt2time}]"
+	fi
+
+	echo ""
+	sleep 2
+done
+
+#-----------------------------------------------------------------------------------------------------
+# RUNNING THE WALLET DAEMON
+#-----------------------------------------------------------------------------------------------------
+
+remvault &
+sleep 2
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING THE REMCLI WALLET
+#-----------------------------------------------------------------------------------------------------
+
+remcli wallet create --file walletpass
+walletpass=$(cat walletpass)
+echo $walletpass > producerwalletpass
+
+printf "\n"
+
+while [ : ]
+do
+	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
+
+  	case $yn1 in
+       		y|Y|yes|YES) newaccount
+	     		     break;;
+
+       		n|N|no|NO)   existingaccount
+       	     		     break;;
+
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+  	esac
+done
+
+#-----------------------------------------------------------------------------------------------------
+# YOUR REMNODE WALLET PASSWORD
+#-----------------------------------------------------------------------------------------------------
+
+printf "\n[******************* TAKE NOTE OF YOUR WALLET PASSWORD *********************]\n\n"
+cat ./walletpass
+printf "\n"
+echo " "
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
