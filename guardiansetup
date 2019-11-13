@@ -101,6 +101,7 @@ for ((i=1;i<=1;i++))
 while [ : ]
 do
 	systemdt=$(date '+%Y-%m-%dT%H:%M')
+	
 	if [ "$dt1" == "$systemdt" ]; then
 		break
 	else
@@ -125,6 +126,7 @@ done
 
 remvault &
 sleep 2
+
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -297,12 +299,16 @@ sudo -S sed -i "/^Private key: /s/Private key: //" key1 && sudo -S sed -i "/^Pub
 ownerpublickey=$(head -n 2 key1 | tail -1)
 ownerprivatekey=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$ownerprivatekey
+
 printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS ***********************]\n\n"
+
 echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
 read -p 'Press [Enter] key to continue...'
+
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
+
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -311,6 +317,7 @@ remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamo
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
@@ -448,17 +455,17 @@ oldkeypermissions() {
 
 while [ : ]
 do
-          read -p "ENTER YOUR REQUEST PUBLIC KEY: " requestpublickey
+          read -p "ENTER YOUR REQUEST PUBLIC KEY: " guardianpublickey
 
-	  if [[ ! "$requestpublickey" = "${requestpublickey%[[:space:]]*}" ]]; then
+	  if [[ ! "$guardianpublickey" = "${guardianpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
-        elif [[ ${#requestpublickey} -ne 53 ]]; then
+        elif [[ ${#guardianpublickey} -ne 53 ]]; then
                 printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$requestpublickey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$guardianpublickey" =~ ['!@#$%^&*()_+'] ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -471,17 +478,17 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR REQUEST PRIVATE KEY: " requestprivatekey
+          read -p "ENTER YOUR REQUEST PRIVATE KEY: " guardianprivatekey
 
-	  if [[ ! "$requestprivatekey" = "${requestprivatekey%[[:space:]]*}" ]]; then
+	  if [[ ! "$guardianprivatekey" = "${guardianprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
                 continue
 
-        elif [[ ${#requestprivatekey} -ne 51 ]]; then
+        elif [[ ${#guardianprivatekey} -ne 51 ]]; then
                 printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$requestprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$guardianprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -493,7 +500,7 @@ done
 printf "\n"
 
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli wallet import --private-key=$requestprivatekey
+remcli wallet import --private-key=$guardianprivatekey
 
 printf "\n"
 
@@ -521,7 +528,7 @@ done
 printf "\n"
 
 remcli wallet import --private-key=$transferprivatekey
-echo -e "\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $requestprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $requestprivatekey" >> ./config/config.ini
+echo -e "\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $guardianpublickey=KEY:$guardianprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $guardianprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $guardianprivatekey" >> ./config/config.ini
 printf "\n"
 voteproducer()
 printf "\n"
@@ -595,18 +602,18 @@ read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE REQUEST KEY
+# CREATING YOUR REMNODE GUARDIAN KEY
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key5
-cp key5 requestkeys
+cp key5 guardiankeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
-requestpublickey=$(head -n 2 key5 | tail -1)
-requestprivatekey=$(head -n 1 key5 | tail -1)
-remcli wallet import --private-key=$requestprivatekey
-echo -e "\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $requestpublickey=KEY:$requestprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $requestprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $requestprivatekey" >> ./config/config.ini
-printf "\n[********************* TAKE NOTE OF YOUR REQUEST KEYS **********************]\n\n"
-cat ./requestkeys
+guardianpublickey=$(head -n 2 key5 | tail -1)
+guardianprivatekey=$(head -n 1 key5 | tail -1)
+remcli wallet import --private-key=$guardianprivatekey
+echo -e "\n\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $guardianpublickey=KEY:$guardianprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $guardianprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $guardianprivatekey" >> ./config/config.ini
+printf "\n[********************* TAKE NOTE OF YOUR GUARDIAN KEYS **********************]\n\n"
+cat ./guardiankeys
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -697,10 +704,10 @@ setupkeypermissions1() {
 
 printf "\n[********************** CREATING ACCOUNT PERMISSIONS ***********************]\n\n"
 
-remcli set account permission $owneraccountname vote $requestpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname vote $guardianpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -p $owneraccountname@owner
-remcli set account permission $owneraccountname claim $requestpublickey active -p $owneraccountname@owner
-remcli set account permission $owneraccountname stake $requestpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname claim $guardianpublickey active -p $owneraccountname@owner
+remcli set account permission $owneraccountname stake $guardianpublickey active -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -883,7 +890,7 @@ printf "\n"
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 key6 ownerkeys activekeys1 activekeys2 activekeys3 walletpass requestkeys transferkeys guardiansetup guardianwalletpass
+rm key1 key2 key3 key4 key5 key6 ownerkeys activekeys1 activekeys2 activekeys3 walletpass guardiankeys transferkeys guardiansetup guardianwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n"
 
