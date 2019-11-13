@@ -52,8 +52,8 @@ sudo -S ufw enable
 #-----------------------------------------------------------------------------------------------------
 
 sudo -S apt -y install fail2ban
-sudo -S systemctl enable fail2ban
-sudo -S systemctl start fail2ban
+sudo -S systemctl enable fail2ban -y
+sudo -S systemctl start fail2ban -y
 sudo -S service sshd restart
 
 #-----------------------------------------------------------------------------------------------------
