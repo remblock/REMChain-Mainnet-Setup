@@ -55,7 +55,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producerset
 # Additional Setup Information
 <br>
 
-**SETUP CANONICAL LIVEPATCH SERVICE**
+**(SETUP CANONICAL LIVEPATCH SERVICE)**
 
 **This service will apply critical kernel security fixes to your ubuntu server automatically without the need of you rebooting the server, therefore reducing the downtime of the server.**
 
