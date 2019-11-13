@@ -34,24 +34,24 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producerset
 <br>
 
 * **Setup a firewall with UFW**
-* **SSH port number changed**
+* **SSH port number is changed**
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
 * **Installed canonical livepatch service**
 * **Created and adjusted the config.ini file**
-* **Initialised the first run of your remnode**
 * **Downloaded and installed the genesis file**
 * **Downloaded and installed remnode binaries**
-* **Running remnode in the background**
-* **Created three active multisignature keys**
-* **Created two additional keys producer and request**
-* **Setting up multiple key permissions for your account**
+* **Initialised the first run of your remnode**
+* **Created three active multisignature accounts**
+* **Created two additional keys producer and transfer**
+* **Setting up multiple key permissions for the account**
 * **Created two safemode permissions for regprod and unregprod** 
-* **Your request key will be used for claiming, voting and restaking**
+* **Your producer key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
-* **Your active key has been changed so that its not directly linked with the owner key**
+* **Three active keys will be created so that its not directly linked to the owner key**
 * **If your server is compromised, the hacker only has access to your rewards and not your locked stake**
-* **When accessing your server you will need to login using your username and port number. Once in you will need to log into your root directory to use the remcli commands** `su - root`
+
+* **When accessing your server you will need to login using your SSH Key which was copied over by the above SSH script.** 
 
 ***
 # Additional Setup Information
