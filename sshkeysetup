@@ -8,7 +8,7 @@ ssh_newkeys() {
 
 printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
 #su -c ssh-keygen
-su -c ssh-keygen -b 4096
+ssh-keygen -t rsa -b 4096
 
 printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
 sudo cat ~/.ssh/id_rsa
