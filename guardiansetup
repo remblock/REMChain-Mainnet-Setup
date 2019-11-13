@@ -5,6 +5,43 @@
 #****************************************************************************************************#
 
 #-----------------------------------------------------------------------------------------------------
+# CASTING YOUR VOTES TO YOUR PRODUCER
+#-----------------------------------------------------------------------------------------------------
+
+voteproducer() {
+
+printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER **********************]\n\n"
+
+while [ : ]
+do
+          read -p "ENTER THE BLOCK PRODUCER TO CAST VOTES: " produceraccountnames
+
+	  if [[ "$produceraccountnames" =~ [[:upper:]] ]]; then
+		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY CAPS.\n\n"
+                continue
+
+        elif [[ "${produceraccountnames//[a-z1-5]}" ]]; then
+                printf "\nERROR: ACCOUNT NAMES SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
+                continue
+
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
+		continue
+
+	else
+                break
+          fi
+done
+
+remcli system voteproducer prods $owneraccountname $produceraccountnames -p $owneraccountname@vote
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+#-----------------------------------------------------------------------------------------------------
 # CHECKING FOR USERS REMNODE ACCOUNT
 #-----------------------------------------------------------------------------------------------------
 
@@ -636,7 +673,7 @@ done
 }
 
 #-----------------------------------------------------------------------------------------------------
-# DELEGATING STAKE TO YOUR PRODUCER
+# DELEGATING STAKE TO YOUR GUARDIAN
 #-----------------------------------------------------------------------------------------------------
 
 stakingguardian() {
@@ -652,43 +689,10 @@ printf "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
-# CASTING YOUR VOTES TO YOUR PRODUCER
+# REGISTER AS A REMCHAIN GUARDIAN
 #-----------------------------------------------------------------------------------------------------
 
-voteproducer() {
-
-printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER **********************]\n\n"
-
-while [ : ]
-do
-          read -p "ENTER THE BLOCK PRODUCER TO CAST VOTES: " produceraccountnames
-
-	  if [[ "$produceraccountnames" =~ [[:upper:]] ]]; then
-		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY CAPS.\n\n"
-                continue
-
-        elif [[ "${produceraccountnames//[a-z1-5]}" ]]; then
-                printf "\nERROR: ACCOUNT NAMES SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
-                continue
-
-	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
-		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
-		continue
-
-	else
-                break
-          fi
-done
-
-remcli system voteproducer prods $owneraccountname $produceraccountnames -p $owneraccountname@vote
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-}
-
-finalisingproducer() {
+registerguardian() {
 
 while [ : ]
 do
@@ -927,7 +931,7 @@ do
                              setupkeypermissions2
                              createkeypermissions1
                              createkeypermissions2
-                             finalisingproducer
+                             registerguardian
        	     		     break;;
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
