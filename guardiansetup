@@ -558,7 +558,7 @@ printf "\n"
 
 printf "\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -p $owneraccountname@owner
-printf "\n[******************************* COMPLETED *********************************]\n\n"
+printf "\n\n"
 
 }
 
@@ -668,7 +668,7 @@ done
 
 stakingguardian() {
 
-printf "\n[********************** DELEGATING STAKE TO GUARDIAN ***********************]\n\n"
+printf "\n\n[********************** DELEGATING STAKE TO GUARDIAN ***********************]\n\n"
 
 remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@stake
 
@@ -683,6 +683,8 @@ printf "\n"
 #-----------------------------------------------------------------------------------------------------
 
 registerguardian() {
+
+printf "\n"
 
 while [ : ]
 do
