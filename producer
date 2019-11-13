@@ -8,9 +8,7 @@
 # UPDATING AND UPGRADING PACKAGE DATABASE 
 #-----------------------------------------------------------------------------------------------------
 
-sudo -S apt update && sudo -S apt upgrade
-printf "\nSET YOUR NEW ROOT PASSWORD:\n"
-passwd root
+sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
 #-----------------------------------------------------------------------------------------------------
@@ -59,30 +57,6 @@ sudo -S systemctl start fail2ban
 sudo -S service sshd restart
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING NEW USER ACCOUNT
-#-----------------------------------------------------------------------------------------------------
-
-printf "\n[******************** CREATING YOUR NEW USER ACCOUNT **********************]\n\n"
-
-while [ : ]
-do
-	read -p "SET YOUR NEW SERVER USERNAME: " username
-
-	USERNAME=$(echo $username | tr '[a-z]' '[A-Z]')
-
-	if [[ "$username" = "${username%[[:space:]]*}" ]]
-	then
-		break
-	else
-		printf "\nERROR: $USERNAME SHOULDN'T CONTAIN ANY SPACES.\n\n"
-		continue
-	fi
-done
-
-sudo adduser $username
-sudo usermod -aG sudo $username
-
-#-----------------------------------------------------------------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
 #-----------------------------------------------------------------------------------------------------
 
@@ -119,7 +93,6 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 for ((i=1;i<=1;i++))
 {
 	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
-	read -p "Press [Enter] key to continue..."
 	echo ""
 	break
 }
