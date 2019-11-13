@@ -16,7 +16,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshkeysetup
 ```
 
 ***
-# Guardian Setup (Coming Soon)
+# Guardian Setup
 
 ```
 sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
