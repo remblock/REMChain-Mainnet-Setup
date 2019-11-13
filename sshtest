@@ -23,13 +23,10 @@ printf "\n"
 
 ssh_copy() {
 
-sudo apt-get install sshpass -y
 printf "\n[*********************** TRANSFERING YOUR SSH KEYS *************************]\n\n"
-read -p "PLEASE ENTER YOUR SERVER PASSWORD: " ssh_host_password
-printf "\n"
 read -p "PLEASE ENTER YOUR SERVER IP ADDRESS: " ssh_host_ipaddress
 printf "\n"
-/usr/local/bin/sshpass -p $ssh_host_password /usr/local/bin/ssh-copy-id -i ~/.ssh/id_rsa.pub root@$ssh_host_ipaddress
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@$ssh_host_ipaddress
 
 }
 
