@@ -879,6 +879,10 @@ echo $walletpass > producerwalletpass
 
 printf "\n"
 
+#-----------------------------------------------------------------------------------------------------
+# CREATING A NEW OWNER ACCOUNT
+#-----------------------------------------------------------------------------------------------------
+
 while [ : ]
 do
 	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
