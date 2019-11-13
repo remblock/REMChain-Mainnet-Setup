@@ -18,9 +18,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producer &&
 
 <br>
 
-* **Root password changed**
 * **Setup a firewall with UFW**
-* **New user account created**
 * **SSH port number changed**
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
