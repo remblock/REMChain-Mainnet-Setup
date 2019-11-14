@@ -173,6 +173,7 @@ echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
 read -p 'Press [Enter] key to continue...'
+printf "\n"
 
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 
@@ -183,7 +184,7 @@ printf "\n"
 remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 }
 
@@ -587,7 +588,7 @@ remcli set action permission $owneraccountname rem.token transfer transfer -x 12
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 }
 
@@ -650,7 +651,7 @@ setupblockproducer() {
 
 printf "\n[******************** REGISTERING AS A BLOCK PRODUCER **********************]\n\n"
 
-remcli system regproducer $owneraccountname $producerpublickey $domain -p $owneraccountname@owner
+remcli system regproducer $owneraccountname $producerpublickey $domain -x 120 -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -666,7 +667,7 @@ voteproducer() {
 
 printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER **********************]\n\n"
 
-remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $owneraccountname@vote
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -896,7 +897,7 @@ cat ./walletpass
 printf "\n"
 echo " "
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
