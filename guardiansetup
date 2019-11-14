@@ -166,8 +166,8 @@ while [ : ]
 do
           read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
 
-	  if [[ $ownertransferamount -lt 1000 ]]; then
-		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
+	  if [[ $ownertransferamount -lt 3000 ]]; then
+		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 3000 REM.\n\n"
                 continue
 
 	elif [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
