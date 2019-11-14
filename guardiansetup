@@ -166,8 +166,8 @@ while [ : ]
 do
           read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
 
-	  if [[ $ownertransferamount -lt 20000 ]]; then
-		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 20000 REM.\n\n"
+	  if [[ $ownertransferamount -lt 1000 ]]; then
+		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 1000 REM.\n\n"
                 continue
 
 	elif [[ ! "$ownertransferamount" = "${ownertransferamount%[[:space:]]*}" ]]; then
@@ -209,7 +209,7 @@ read -p 'Press [Enter] key to continue...'
 
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 
-remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "100.0000 REM" -p $telegramaccountname@owner
+remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "1000.0000 REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
@@ -217,8 +217,6 @@ remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamo
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
-
-remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 }
 
@@ -698,6 +696,7 @@ remcli wallet remove_key $ownerpublickey --password=$walletpass
 remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
 remcli wallet remove_key $activepublickey3 --password=$walletpass
+remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
