@@ -26,6 +26,7 @@ ssh_copy() {
 printf "\n[*********************** TRANSFERING YOUR SSH KEYS *************************]\n\n"
 read -p "PLEASE ENTER YOUR SERVER IP ADDRESS: " ssh_host_ipaddress
 printf "\n"
+ssh-keygen -f "/root/.ssh/known_hosts" -R "$ssh_host_ipaddress" > /dev/null 2>&1
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@$ssh_host_ipaddress
 
 }
