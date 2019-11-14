@@ -321,6 +321,8 @@ remcli wallet import --private-key=$ownerprivatekey
 
 oldkeypermissions() {
 
+printf "\n"
+
 while [ : ]
 do
           read -p "ENTER YOUR GUARDIAN PUBLIC KEY: " guardianpublickey
