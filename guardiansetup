@@ -186,6 +186,8 @@ do
           fi
 done
 
+#-----------------------------------------------------------------------------------------------------
+
 printf "\n"
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
@@ -401,7 +403,7 @@ printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
 rm walletpass guardiansetup guardianwalletpass
-printf "\n[******************************* COMPLETED *********************************]\n\n"
+printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
 }
 
