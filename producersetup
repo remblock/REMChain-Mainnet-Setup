@@ -542,7 +542,7 @@ printf "\n\n"
 # CREATING REMCHAIN ACCOUNT PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-setupkeypermissions1() {
+setupkeypermissions() {
 
 printf "\n[********************** CREATING ACCOUNT PERMISSIONS ***********************]\n\n"
 
@@ -552,17 +552,6 @@ remcli set account permission $owneraccountname swap $transferpublickey active -
 remcli set account permission $owneraccountname claim $producerpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname stake $producerpublickey active -p $owneraccountname@owner
 remcli set account permission $owneraccountname oracle $transferpublickey active -p $owneraccountname@owner
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-}
-
-#-----------------------------------------------------------------------------------------------------
-
-setupkeypermissions2() {
-
 remcli set account permission $owneraccountname transfer $transferpublickey active -p $owneraccountname@owner
 
 printf "\n"
@@ -575,7 +564,7 @@ printf "\n"
 # CREATING REMCHAIN ACTION PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
-createkeypermissions1() {
+createkeypermissions() {
 
 printf "\n[*********************** CREATING ACTION PERMISSIONS ***********************]\n\n"
 
@@ -586,18 +575,6 @@ remcli set action permission $owneraccountname rem claimrewards claim -p $ownera
 remcli set action permission $owneraccountname rem unregprod safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem regproducer safemode -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.oracle setprice oracle -p $owneraccountname@owner
-
-
-printf "\n"
-read -p 'Press [Enter] key to continue...'
-printf "\n"
-
-}
-
-#-----------------------------------------------------------------------------------------------------
-
-createkeypermissions2() {
-
 remcli set action permission $owneraccountname rem.token transfer transfer -p $owneraccountname@owner
 
 printf "\n"
@@ -925,10 +902,8 @@ do
 	     		     break;;
 
        		n|N|no|NO)   newkeypermissions
-                             setupkeypermissions1
-                             setupkeypermissions2
-                             createkeypermissions1
-                             createkeypermissions2
+                             setupkeypermissions
+                             createkeypermissions
                              finalisingproducer
        	     		     break;;
 
