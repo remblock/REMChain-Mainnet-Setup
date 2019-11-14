@@ -33,7 +33,7 @@ do
           fi
 done
 
-remcli system voteproducer prods $owneraccountname $produceraccountnames -p $owneraccountname@vote
+remcli system voteproducer prods $owneraccountname $produceraccountnames -x 120 -p $owneraccountname@vote
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -206,6 +206,7 @@ echo "Account Name:" $owneraccountname
 cat ./ownerkeys
 printf "\n"
 read -p 'Press [Enter] key to continue...'
+printf "\n"
 
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 
@@ -216,7 +217,7 @@ printf "\n"
 remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 }
 
@@ -612,7 +613,7 @@ remcli set action permission $owneraccountname rem.token transfer transfer -x 12
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 }
 
@@ -893,7 +894,7 @@ cat ./walletpass
 printf "\n"
 echo " "
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
