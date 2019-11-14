@@ -555,9 +555,13 @@ done
 
 printf "\n"
 
+}
+
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR MULTISIG PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
+
+setupmultisig() {
 
 printf "\n\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
@@ -901,6 +905,7 @@ do
 	     		     break;;
 
        		n|N|no|NO)   newkeypermissions
+			     setupmultisig
                              setupkeypermissions
                              createkeypermissions
                              registerguardian
