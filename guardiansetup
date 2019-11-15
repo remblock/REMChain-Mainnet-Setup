@@ -47,6 +47,7 @@ printf "\n"
 
 newaccount() {
 
+printf "\n"
 read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
