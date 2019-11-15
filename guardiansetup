@@ -47,7 +47,6 @@ printf "\n"
 
 newaccount() {
 
-printf "\n"
 read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
@@ -963,5 +962,5 @@ do
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac	
-	printf "\n\n"
+	printf "\n"
 done
