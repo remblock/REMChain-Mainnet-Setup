@@ -716,7 +716,7 @@ done
 # REMOVING OWNER AND ACTIVE KEYS
 #-----------------------------------------------------------------------------------------------------
 
-printf "\n[********************* REMOVING OWNER AND ACTIVE KEYS **********************]\n\n"
+printf "\n\n[********************* REMOVING OWNER AND ACTIVE KEYS **********************]\n\n"
 
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 remcli wallet remove_key $activepublickey1 --password=$walletpass
