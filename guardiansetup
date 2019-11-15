@@ -409,9 +409,16 @@ echo -e "\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugi
 printf "\n"
 voteproducer
 printf "\n"
+
+printf "\n[********************* REMOVING YOUR OWNER KEY **********************]\n\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
 rm walletpass guardiansetup guardianwalletpass
+
 printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
 }
