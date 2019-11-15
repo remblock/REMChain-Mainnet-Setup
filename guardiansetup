@@ -575,6 +575,22 @@ printf "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------
+# REMOVING REMCHAIN ACCOUNT PERMISSIONS
+#-----------------------------------------------------------------------------------------------------
+
+removekeypermission() {
+
+printf "\n[********************** REMOVING ACCOUNT PERMISSIONS ***********************]\n\n"
+
+remcli set account permission $owneraccountname safemode $ownerpublickey NULL -x 120 -p $owneraccountname@owner
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
+}
+
+#-----------------------------------------------------------------------------------------------------
 # CREATING REMCHAIN ACCOUNT PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
@@ -678,9 +694,9 @@ printf "\n"
 
 while [ : ]
 do
-	read -p "WOULD YOU LIKE TO REGISTER AS A GUARDIAN? [y/n]: " yn3
+	read -p "WOULD YOU LIKE TO REGISTER AS A GUARDIAN? [y/n]: " yn4
 
-  	case $yn3 in
+  	case $yn4 in
        		y|Y|yes|YES) echo ""
 			     stakingamount
 			     stakingguardian
@@ -899,6 +915,34 @@ read -p 'Press [Enter] key to continue...'
 printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
+# CHANGING EXISTING KEY PERMISSIONS
+#-----------------------------------------------------------------------------------------------------
+
+changekeypermission() {
+
+printf "\n"
+
+while [ : ]
+do
+	read -p "DO WANT TO CHANGE YOUR EXISTING KEY PERMISSIONS? [y/n]: " yn3
+
+  	case $yn3 in
+       		y|Y|yes|YES) newkeypermissions
+			     setupmultisig
+			     removekeypermission
+                             setupkeypermissions
+                             createkeypermissions
+                             finalisingproducer
+       	     		     break;;
+
+       		n|N|no|NO)   oldkeypermissions
+	     		     break;;
+
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+  	esac
+done
+
+#-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
@@ -907,7 +951,7 @@ do
 	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
 
   	case $yn2 in
-       		y|Y|yes|YES) oldkeypermissions
+       		y|Y|yes|YES) changekeypermission
 	     		     break;;
 
        		n|N|no|NO)   newkeypermissions
