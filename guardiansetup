@@ -426,6 +426,8 @@ activeproducername3=c$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n
 # CREATING YOUR REMNODE ACTIVE KEY 1
 #-----------------------------------------------------------------------------------------------------
 
+printf "\n\n"
+
 remcli create key --file key2
 cp key2 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
