@@ -10,7 +10,6 @@
 
 newaccount() {
 
-printf "\n"
 read -p "ENTER YOUR DOMAIN ADDRESS: " domain
 echo $domain >> key1
 printf "\n"
@@ -966,5 +965,5 @@ do
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
-        printf "\n\n"
+        printf "\n"
 done
