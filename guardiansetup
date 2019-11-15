@@ -214,6 +214,9 @@ remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+
+printf "\n[******************** TRANSFERING TO NEW OWNER ACCOUNT **********************]\n\n"
+
 remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -939,6 +942,8 @@ do
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
 done
+
+}
 
 #-----------------------------------------------------------------------------------------------------
 # CHECKING FOR EXISTING KEY PERMISSIONS
