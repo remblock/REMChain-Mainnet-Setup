@@ -692,7 +692,6 @@ remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
 
 }
 
