@@ -966,4 +966,5 @@ do
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
   	esac
+        printf "\n"
 done
