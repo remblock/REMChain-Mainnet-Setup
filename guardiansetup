@@ -14,7 +14,7 @@ printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER ****************
 
 while [ : ]
 do
-          read -p "ENTER THE BLOCK PRODUCER TO CAST VOTES: " produceraccountnames
+          read -p "PLEASE ENTER THE BLOCK PRODUCERS TO CAST VOTES ON: " produceraccountnames
 
 	  if [[ "$produceraccountnames" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -48,15 +48,15 @@ read -p 'Press [Enter] key to continue...'
 newaccount() {
 
 printf "\n"
-read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
+read -p "PLEASE ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
-read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
+read -p "PLEASE ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
 printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+          read -p "PLEASE ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
 
 	  if [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -79,7 +79,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+          read -p "PLEASE ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
 
 	  if [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -102,7 +102,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+          read -p "PLEASE ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
 
 	  if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -133,7 +133,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+          read -p "PLEASE ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -164,7 +164,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
+          read -p "PLEASE ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
 
 	  if [[ $ownertransferamount -lt 5000 ]]; then
 		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 5000 REM.\n\n"
@@ -231,15 +231,15 @@ printf "\n\n"
 
 existingaccount() {
 
-read -p "ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
+read -p "PLEASE ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
-read -p "ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
+read -p "PLEASE ENTER YOUR CRYPTOCOMPARE API KEY: " cryptocomparekey
 printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
+          read -p "PLEASE ENTER YOUR OWNER PUBLIC KEY: " ownerpublickey
 
 	  if [[ ! "$ownerpublickey" = "${ownerpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -263,7 +263,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
+          read -p "PLEASE ENTER YOUR OWNER PRIVATE KEY: " ownerprivatekey
 
 	  if [[ ! "$ownerprivatekey" = "${ownerprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -287,7 +287,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
+          read -p "PLEASE ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -331,7 +331,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR GUARDIAN PUBLIC KEY: " guardianpublickey
+          read -p "PLEASE ENTER YOUR GUARDIAN PUBLIC KEY: " guardianpublickey
 
 	  if [[ ! "$guardianpublickey" = "${guardianpublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -354,7 +354,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR GUARDIAN PRIVATE KEY: " guardianprivatekey
+          read -p "PLEASE ENTER YOUR GUARDIAN PRIVATE KEY: " guardianprivatekey
 
 	  if [[ ! "$guardianprivatekey" = "${guardianprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -382,7 +382,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
+          read -p "PLEASE ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
 
 	  if [[ ! "$transferprivatekey" = "${transferprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -789,7 +789,7 @@ echo ""
 while [ : ]
 do
 
-	 read -p "CHOOSE A RANDOM 5 DIGIT PORT NUMBER: " portnumber
+	 read -p "PLEASE ENTER A RANDOM 5 DIGIT PORT NUMBER: " portnumber
 
          if [[ ${#portnumber} -ne 5 ]]
          then
