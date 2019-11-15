@@ -689,8 +689,6 @@ printf "\n"
 
 registerguardian() {
 
-printf "\n"
-
 while [ : ]
 do
 	read -p "WOULD YOU LIKE TO REGISTER AS A GUARDIAN? [y/n]: " yn4
