@@ -774,8 +774,8 @@ do
                  printf "\nERROR: PORT NUMBER SHOULD CONTAIN NUMBERS ONLY.\n\n"
                  continue
          else
-                 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-                 break
+                 sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' && sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 120/' /etc/ssh/sshd_config && sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 720/‘ /etc/ssh/sshd_config
+		 break
          fi
 done
 
