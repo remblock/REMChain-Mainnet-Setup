@@ -167,7 +167,7 @@ ownerpublickey=$(head -n 2 key1 | tail -1)
 ownerprivatekey=$(head -n 1 key1 | tail -1)
 remcli wallet import --private-key=$ownerprivatekey
 
-printf "\n[********************** TAKE NOTE OF YOUR OWNER KEYS ***********************]\n\n"
+printf "\n\n[********************** TAKE NOTE OF YOUR OWNER KEYS ***********************]\n\n"
 
 echo "Account Name:" $owneraccountname
 cat ./ownerkeys
