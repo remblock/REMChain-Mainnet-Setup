@@ -157,6 +157,7 @@ done
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$telegramprivatekey
 printf "\n"
 remcli create key --file key1
@@ -177,6 +178,7 @@ printf "\n"
 
 printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $telegramaccountname $owneraccountname $ownerpublickey $ownerpublickey -x 120 --transfer --stake "1000.0000 REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -184,6 +186,7 @@ printf "\n"
 
 printf "\n[******************** TRANSFERING TO NEW OWNER ACCOUNT **********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -371,6 +374,7 @@ do
 done
 
 printf "\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
 echo -e "\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $producerprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $producerprivatekey" >> ./config/config.ini
 printf "\n"
@@ -378,6 +382,7 @@ remcli system regproducer $owneraccountname $requestpublickey $domain -p $ownera
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
 printf "\n"
 remcli wallet remove_key $ownerpublickey --password=$walletpass
@@ -409,6 +414,7 @@ cp key2 activekeys1
 sudo -S sed -i "/^Private key: /s/Private key: //" key2 && sudo -S sed -i "/^Public key: /s/Public key: //" key2
 activepublickey1=$(head -n 2 key2 | tail -1)
 activeprivatekey1=$(head -n 1 key2 | tail -1)
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$activeprivatekey1
 printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 1 **********************]\n\n"
 echo "Account Name:" $activeproducername1
@@ -426,6 +432,7 @@ cp key3 activekeys2
 sudo -S sed -i "/^Private key: /s/Private key: //" key3 && sudo -S sed -i "/^Public key: /s/Public key: //" key3
 activepublickey2=$(head -n 2 key3 | tail -1)
 activeprivatekey2=$(head -n 1 key3 | tail -1)
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$activeprivatekey2
 printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 2 **********************]\n\n"
 echo "Account Name:" $activeproducername2
@@ -443,6 +450,7 @@ cp key4 activekeys3
 sudo -S sed -i "/^Private key: /s/Private key: //" key4 && sudo -S sed -i "/^Public key: /s/Public key: //" key4
 activepublickey3=$(head -n 2 key4 | tail -1)
 activeprivatekey3=$(head -n 1 key4 | tail -1)
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$activeprivatekey3
 printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 3 **********************]\n\n"
 echo "Account Name:" $activeproducername3
@@ -460,6 +468,7 @@ cp key5 producerkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
 producerpublickey=$(head -n 2 key5 | tail -1)
 producerprivatekey=$(head -n 1 key5 | tail -1)
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$producerprivatekey
 echo -e "\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $producerprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $producerprivatekey" >> ./config/config.ini
 printf "\n[********************* TAKE NOTE OF YOUR PRODUCER KEYS **********************]\n\n"
@@ -477,6 +486,7 @@ cp key6 transferkeys
 sudo -S sed -i "/^Private key: /s/Private key: //" key6 && sudo -S sed -i "/^Public key: /s/Public key: //" key6
 transferpublickey=$(head -n 2 key6 | tail -1)
 transferprivatekey=$(head -n 1 key6 | tail -1)
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
 printf "\n[******************** TAKE NOTE OF YOUR TRANSFER KEYS **********************]\n\n"
 cat ./transferkeys
@@ -489,16 +499,19 @@ printf "\n"
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 1 *************************]\n\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername1 $activepublickey1 $activepublickey1 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 2 *************************]\n\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername2 $activepublickey2 $activepublickey2 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
 
@@ -549,6 +562,7 @@ printf "\n"
 setupmultisig() {
 
 printf "\n\n[************************ CREATING ACTIVE MULTISIG *************************]\n\n"
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
 printf "\n"
 
@@ -562,6 +576,7 @@ removekeypermission() {
 
 printf "\n[********************** REMOVING ACCOUNT PERMISSIONS ***********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname safemode $ownerpublickey NULL -x 120 -p $owneraccountname@owner
 
 printf "\n"
@@ -578,6 +593,7 @@ setupkeypermissions() {
 
 printf "\n[********************** CREATING ACCOUNT PERMISSIONS ***********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname vote $producerpublickey active -x 120 -p $owneraccountname@owner
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -x 120 -p $owneraccountname@owner
 remcli set account permission $owneraccountname swap $transferpublickey active -x 120 -p $owneraccountname@owner
@@ -600,6 +616,7 @@ createkeypermissions() {
 
 printf "\n[*********************** CREATING ACTION PERMISSIONS ***********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set action permission $owneraccountname rem.swap init swap -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem delegatebw stake -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem voteproducer vote -x 120 -p $owneraccountname@owner
@@ -658,6 +675,7 @@ stakingproducer() {
 
 printf "\n\n[********************** DELEGATING STAKE TO PRODUCER ***********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@stake
 
 printf "\n"
@@ -674,6 +692,7 @@ setupblockproducer() {
 
 printf "\n[******************** REGISTERING AS A BLOCK PRODUCER **********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system regproducer $owneraccountname $producerpublickey $domain -x 120 -p $owneraccountname@owner
 
 printf "\n"
@@ -690,6 +709,7 @@ voteproducer() {
 
 printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER **********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $owneraccountname@vote
 
 printf "\n"
@@ -722,6 +742,7 @@ done
 
 printf "\n\n[********************* REMOVING OWNER AND ACTIVE KEYS **********************]\n\n"
 
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet remove_key $ownerpublickey --password=$walletpass
 remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
