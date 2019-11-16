@@ -958,7 +958,7 @@ sleep 2
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n"
+printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING THE REMCLI WALLET
