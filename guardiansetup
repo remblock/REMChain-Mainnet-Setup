@@ -380,12 +380,6 @@ done
 
 printf "\n"
 
-remcli wallet lock > /dev/null 2>&1
-remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli wallet import --private-key=$guardianprivatekey
-
-printf "\n"
-
 while [ : ]
 do
           read -p "PLEASE ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
@@ -409,6 +403,9 @@ done
 
 printf "\n"
 
+remcli wallet lock > /dev/null 2>&1
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
+remcli wallet import --private-key=$guardianprivatekey
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
