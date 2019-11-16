@@ -425,6 +425,7 @@ owneraccountname=$(head -n 3 key1 | tail -1)
 activeproducername1=a$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
 activeproducername2=b$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
 activeproducername3=c$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
+activeproducername4=d$(cat /dev/urandom | tr -dc 'a-z1-5' | fold -w 11 | head -n 1 |  grep -o . | sort |tr -d "\n")
 
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE ACTIVE KEY 1
@@ -486,14 +487,33 @@ read -p 'Press [Enter] key to continue...'
 printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMNODE PRODUCER KEY
+# CREATING YOUR REMNODE ACTIVE KEY 4
 #-----------------------------------------------------------------------------------------------------
 
 remcli create key --file key5
-cp key5 producerkeys
+cp key5 activekeys4
 sudo -S sed -i "/^Private key: /s/Private key: //" key5 && sudo -S sed -i "/^Public key: /s/Public key: //" key5
-producerpublickey=$(head -n 2 key5 | tail -1)
-producerprivatekey=$(head -n 1 key5 | tail -1)
+activepublickey4=$(head -n 2 key5 | tail -1)
+activeprivatekey4=$(head -n 1 key5 | tail -1)
+remcli wallet lock > /dev/null 2>&1
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
+remcli wallet import --private-key=$activeprivatekey4
+printf "\n[********************* TAKE NOTE OF YOUR ACTIVE KEY 4 **********************]\n\n"
+echo "Account Name:" $activeproducername4
+cat ./activekeys4
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n\n"
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMNODE PRODUCER KEY
+#-----------------------------------------------------------------------------------------------------
+
+remcli create key --file key6
+cp key6 producerkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key6 && sudo -S sed -i "/^Public key: /s/Public key: //" key6
+producerpublickey=$(head -n 2 key6 | tail -1)
+producerprivatekey=$(head -n 1 key6 | tail -1)
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$producerprivatekey
@@ -508,11 +528,11 @@ printf "\n\n"
 # CREATING YOUR REMNODE TRANSFER KEY
 #-----------------------------------------------------------------------------------------------------
 
-remcli create key --file key6
-cp key6 transferkeys
-sudo -S sed -i "/^Private key: /s/Private key: //" key6 && sudo -S sed -i "/^Public key: /s/Public key: //" key6
-transferpublickey=$(head -n 2 key6 | tail -1)
-transferprivatekey=$(head -n 1 key6 | tail -1)
+remcli create key --file key7
+cp key7 transferkeys
+sudo -S sed -i "/^Private key: /s/Private key: //" key7 && sudo -S sed -i "/^Public key: /s/Public key: //" key7
+transferpublickey=$(head -n 2 key7 | tail -1)
+transferprivatekey=$(head -n 1 key7 | tail -1)
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
@@ -549,6 +569,13 @@ printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *******************
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
+printf "\n"
+
+printf "\n[*********************** CREATING ACTIVE ACCOUNT 4 *************************]\n\n"
+
+remcli wallet lock > /dev/null 2>&1
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
+remcli system newaccount $owneraccountname $activeproducername4 $activepublickey4 $activepublickey4 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
@@ -601,7 +628,7 @@ printf "\n\n[*********************** CREATING ACTIVE MULTISIG ******************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli set account permission $owneraccountname active '{"threshold":2,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname active '{"threshold":3,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight”:1},{"permission":{"actor":"'$activeproducername4'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
 printf "\n"
 
 }
@@ -792,6 +819,7 @@ remcli wallet remove_key $ownerpublickey --password=$walletpass
 remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
 remcli wallet remove_key $activepublickey3 --password=$walletpass
+remcli wallet remove_key $activepublickey4 --password=$walletpass
 remcli wallet remove_key $telegrampublickey --password=$walletpass
 
 printf "\n"
@@ -810,7 +838,7 @@ printf "\n"
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 key6 ownerkeys activekeys1 activekeys2 activekeys3 walletpass producerkeys transferkeys producersetup producerwalletpass
+rm key1 key2 key3 key4 key5 key6 key7 ownerkeys activekeys1 activekeys2 activekeys3 activekeys4 walletpass producerkeys transferkeys producersetup producerwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
