@@ -227,7 +227,6 @@ remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamount REM" -p $telegramaccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
 
 }
 
