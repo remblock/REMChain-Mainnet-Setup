@@ -387,7 +387,7 @@ printf "\n"
 
 printf "\n[******************** REGISTERING AS A BLOCK PRODUCER **********************]\n\n"
 
-remcli system regproducer $owneraccountname $requestpublickey $domain -p $owneraccountname@owner
+remcli system regproducer $owneraccountname $producerpublickey $domain -p $owneraccountname@owner
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
