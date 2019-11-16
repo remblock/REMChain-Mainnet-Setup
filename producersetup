@@ -290,7 +290,7 @@ do
 done
 
 echo $owneraccountname >> key1
-printf "\n"
+printf "\n\n"
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$ownerprivatekey
