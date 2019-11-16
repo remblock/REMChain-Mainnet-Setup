@@ -424,7 +424,7 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
-rm walletpass guardiansetup guardianwalletpass
+rm key1 walletpass guardiansetup guardianwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
