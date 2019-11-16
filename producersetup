@@ -12,7 +12,6 @@ newaccount() {
 
 printf "\n"
 read -p "PLEASE ENTER YOUR DOMAIN ADDRESS: " domain
-echo $domain >> key1
 printf "\n"
 
 read -p "PLEASE ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
@@ -203,7 +202,6 @@ existingaccount() {
 
 printf "\n"
 read -p "PLEASE ENTER YOUR DOMAIN ADDRESS: " domain
-echo $domain >> key1
 printf "\n"
 
 read -p "PLEASE ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
