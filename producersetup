@@ -351,12 +351,6 @@ done
 
 printf "\n"
 
-remcli wallet lock > /dev/null 2>&1
-remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli wallet import --private-key=$producerprivatekey
-
-printf "\n"
-
 while [ : ]
 do
           read -p "PLEASE ENTER YOUR TRANSFER PRIVATE KEY: " transferprivatekey
@@ -379,10 +373,15 @@ do
 done
 
 printf "\n"
+
+remcli wallet lock > /dev/null 2>&1
+remcli wallet unlock --password=$walletpass > /dev/null 2>&1
+remcli wallet import --private-key=$producerprivatekey
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
 echo -e "\nplugin = eosio::producer_plugin\n\nplugin = eosio::producer_api_plugin\n\nproducer-name = $owneraccountname\n\nsignature-provider = $producerpublickey=KEY:$producerprivatekey\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $producerprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $producerprivatekey" >> ./config/config.ini
+
 printf "\n"
 
 printf "\n[******************** REGISTERING AS A BLOCK PRODUCER **********************]\n\n"
