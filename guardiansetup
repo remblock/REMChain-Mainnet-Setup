@@ -647,7 +647,7 @@ printf "\n\n[*********************** CREATING ACTIVE MULTISIG ******************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli set account permission $owneraccountname active '{"threshold":3,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight”:1},{"permission":{"actor":"'$activeproducername4'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname active '{"threshold":3,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername4'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
 printf "\n"
 
 }
