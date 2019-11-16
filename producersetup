@@ -989,25 +989,6 @@ echo $walletpass > producerwalletpass
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING A NEW OWNER ACCOUNT
-#-----------------------------------------------------------------------------------------------------
-
-while [ : ]
-do
-	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
-
-  	case $yn1 in
-       		y|Y|yes|YES) newaccount
-	     		     break;;
-
-       		n|N|no|NO)   existingaccount
-       	     		     break;;
-
-       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
-  	esac
-done
-
-#-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
 #-----------------------------------------------------------------------------------------------------
 
@@ -1053,6 +1034,8 @@ done
 # CHECKING FOR EXISTING KEY PERMISSIONS
 #-----------------------------------------------------------------------------------------------------
 
+existingkeypermission() {
+
 while [ : ]
 do
 	read -p "DO YOU HAVE EXISTING KEY PERMISSIONS? [y/n]: " yn2
@@ -1066,6 +1049,33 @@ do
                              setupkeypermissions
                              createkeypermissions
                              finalisingproducer
+       	     		     break;;
+
+       		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+  	esac
+done
+
+}
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING A NEW OWNER ACCOUNT
+#-----------------------------------------------------------------------------------------------------
+
+while [ : ]
+do
+	read -p "DO YOU WANT TO CREATE A NEW OWNER ACCOUNT? [y/n]: " yn1
+
+  	case $yn1 in
+       		y|Y|yes|YES) newaccount
+			     newkeypermissions
+			     setupmultisig
+                             setupkeypermissions
+                             createkeypermissions
+                             finalisingproducer
+	     		     break;;
+
+       		n|N|no|NO)   existingaccount
+			     existingkeypermission
        	     		     break;;
 
        		*)   	     echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
