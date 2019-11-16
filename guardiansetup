@@ -607,7 +607,7 @@ REMAINING=0
 CTR=0
 STEP=3
 
-printf "\n"
+printf "\n\n"
 
 while [[ "${DELAY}" -ge "${ELAPSED}" ]]
 do
