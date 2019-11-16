@@ -572,6 +572,8 @@ remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername3 $activepublickey3 $activepublickey3 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
 
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 4 *************************]\n\n"
 
@@ -579,6 +581,7 @@ remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli system newaccount $owneraccountname $activeproducername4 $activepublickey4 $activepublickey4 -x 120 --transfer --stake "1000.0000 REM" -p $owneraccountname@owner
 printf "\n"
+read -p 'Press [Enter] key to continue...'
 
 #-----------------------------------------------------------------------------------------------------
 # WAITING 2 MINUTES FOR TRANSCATION CONFIRMATION
