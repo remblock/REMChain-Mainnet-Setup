@@ -408,7 +408,7 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
-rm walletpass producersetup producerwalletpass
+rm key1 walletpass producersetup producerwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
