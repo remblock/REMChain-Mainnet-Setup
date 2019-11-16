@@ -985,7 +985,7 @@ remcli wallet create --file walletpass
 walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass
 
-printf "\n"
+printf "\n\n"
 
 #-----------------------------------------------------------------------------------------------------
 # YOUR REMNODE WALLET PASSWORD
