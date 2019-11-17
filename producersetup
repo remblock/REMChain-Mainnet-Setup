@@ -486,6 +486,8 @@ remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$activeprivatekey4
 
+printf "\n"
+
 #-----------------------------------------------------------------------------------------------------
 # CREATING YOUR REMNODE PRODUCER KEY
 #-----------------------------------------------------------------------------------------------------
@@ -526,7 +528,7 @@ echo "Account Name:" $activeproducername1
 cat ./activekeys1
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # DISPLAYING YOUR REMNODE ACTIVE KEY 2
@@ -537,7 +539,7 @@ echo "Account Name:" $activeproducername2
 cat ./activekeys2
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # DISPLAYING YOUR REMNODE ACTIVE KEY 3
@@ -548,7 +550,7 @@ echo "Account Name:" $activeproducername3
 cat ./activekeys3
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # DISPLAYING YOUR REMNODE ACTIVE KEY 4
@@ -559,7 +561,7 @@ echo "Account Name:" $activeproducername4
 cat ./activekeys4
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # DISPLAYING YOUR REMNODE PRODUCER KEY
@@ -569,7 +571,7 @@ printf "\n[********************* TAKE NOTE OF YOUR PRODUCER KEYS ***************
 cat ./producerkeys
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
 # DISPLAYING YOUR REMNODE TRANSFER KEY
@@ -582,7 +584,7 @@ read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 #-----------------------------------------------------------------------------------------------------
-# CREATING YOUR REMCHAIN ACCOUNTS
+# CREATING YOUR REMNODE ACTIVE ACCOINT 1
 #-----------------------------------------------------------------------------------------------------
 
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 1 *************************]\n\n"
@@ -594,6 +596,10 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMNODE ACTIVE ACCOINT 2
+#-----------------------------------------------------------------------------------------------------
+
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 2 *************************]\n\n"
 
 remcli wallet lock > /dev/null 2>&1
@@ -603,6 +609,10 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMNODE ACTIVE ACCOINT 3
+#-----------------------------------------------------------------------------------------------------
+
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 3 *************************]\n\n"
 
 remcli wallet lock > /dev/null 2>&1
@@ -611,6 +621,10 @@ remcli system newaccount $owneraccountname $activeproducername3 $activepublickey
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
+
+#-----------------------------------------------------------------------------------------------------
+# CREATING YOUR REMNODE ACTIVE ACCOINT 4
+#-----------------------------------------------------------------------------------------------------
 
 printf "\n[*********************** CREATING ACTIVE ACCOUNT 4 *************************]\n\n"
 
