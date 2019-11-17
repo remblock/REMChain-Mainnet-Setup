@@ -50,7 +50,7 @@ do
                 n|N|no|NO)   echo ""
                              break;;
 
-                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+                *)           echo -e "\n\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
 done
 
