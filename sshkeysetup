@@ -6,10 +6,12 @@
 
 ssh_newkeys() {
 
-printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
+printf "\n\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
+printf "\n"
 ssh-keygen -t rsa -b 4096
 
-printf "\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
+printf "\n\n[******************* TAKE NOTE OF YOUR SSH PRIVATE KEY *********************]\n\n"
+printf "\n"
 sudo cat ~/.ssh/id_rsa
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -23,7 +25,8 @@ printf "\n"
 
 ssh_copy() {
 
-printf "\n[*********************** TRANSFERING YOUR SSH KEYS *************************]\n\n"
+printf "\n\n[*********************** TRANSFERING YOUR SSH KEYS *************************]\n\n"
+printf "\n"
 read -p "PLEASE ENTER YOUR SERVER IP ADDRESS: " ssh_host_ipaddress
 printf "\n"
 ssh-keygen -f "/root/.ssh/known_hosts" -R "$ssh_host_ipaddress" > /dev/null 2>&1
@@ -57,10 +60,12 @@ do
     
         case $yn2 in
                 y|Y|yes|YES) ssh_copy
-                             printf "[********************************** DONE ***********************************]\n"
+                             printf "\n[********************************** DONE ***********************************]\n"
+                             printf "\n"
                              break;;
 
-                n|N|no|NO)   printf "[********************************** DONE ***********************************]\n"
+                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n"
+                             printf "\n"
                              break;;
 
                 *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
