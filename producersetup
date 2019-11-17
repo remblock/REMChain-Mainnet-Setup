@@ -992,11 +992,13 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 
 for ((i=1;i<=1;i++))
 {
-	remnode --config-dir /root/config/ --data-dir /root/data/ --delete-all-blocks --genesis-json /root/genesis.json 2>>/root/remnode.log &
+	remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json > /dev/null 2>&1
 	sleep 2
 	echo ""
 	break
 }
+
+remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 
 while [ : ]
 do
