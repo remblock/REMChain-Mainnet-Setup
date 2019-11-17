@@ -6,7 +6,7 @@
 
 ssh_newkeys() {
 
-printf "\n[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
+printf "[********************* GENERATING YOUR NEW SSH KEYS ***********************]\n\n"
 printf "\n"
 ssh-keygen -t rsa -b 4096
 
