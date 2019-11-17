@@ -40,7 +40,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@$ssh_host_ipaddress
 
 while [ : ]
 do
-        echo ""
         read -p "DO YOU WANT TO GENERATE A NEW PAIR OF SSH KEYS? [y/n]: " yn1
 
         case $yn1 in
@@ -50,13 +49,12 @@ do
                 n|N|no|NO)   echo ""
                              break;;
 
-                *)           echo -e "\n\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
+                *)           echo -e "\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
         esac
 done
 
 while [ : ]
 do
-        echo ""
         read -p "DO YOU WANT TO TRANSFER YOUR KEYS TO YOUR SERVER THROUGH SSH? [y/n]: " yn2
     
         case $yn2 in
