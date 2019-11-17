@@ -36,7 +36,7 @@ for ((i=1;i<=1;i++))
 	break
 }
 
-remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log > /dev/null 2>&1
 
 while [ : ]
 do
