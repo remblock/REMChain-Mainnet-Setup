@@ -30,7 +30,7 @@ echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nh
 
 remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json >> remnode.log 2>&1 & > /dev/null 2>&1
 sleep 2
-printf "\n\n"
+printf "\n"
 
 while [ : ]
 do
