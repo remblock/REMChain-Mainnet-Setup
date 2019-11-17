@@ -907,8 +907,8 @@ printf "\n[******************************* COMPLETED ***************************
 #-----------------------------------------------------------------------------------------------------
 # UPDATING AND UPGRADING PACKAGE DATABASE
 #-----------------------------------------------------------------------------------------------------
-: '
-sudo -S apt update && sudo -S apt upgrade -y
+
+#sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
 #-----------------------------------------------------------------------------------------------------
@@ -930,7 +930,7 @@ do
                  continue
          else
                  sudo -S sed -i "/^#Port 22/s/#Port 22/Port $portnumber/" /etc/ssh/sshd_config && sed -i '/^PermitRootLogin/s/yes/without-password/' /etc/ssh/sshd_config && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-'		 break
+		 break
          fi
 done
 
@@ -938,30 +938,30 @@ done
 # INSTALLING UNCOMPLICATED FIREWALL
 #-----------------------------------------------------------------------------------------------------
 
-sudo -S apt-get install ufw -y
-sudo -S ufw allow ssh/tcp
-sudo -S ufw limit ssh/tcp
-sudo -S ufw allow $portnumber/tcp
-sudo -S ufw allow 8888/tcp
-sudo -S ufw allow 9877/tcp
-sudo -S ufw logging on
-sudo -S ufw enable
+#sudo -S apt-get install ufw -y
+#sudo -S ufw allow ssh/tcp
+#sudo -S ufw limit ssh/tcp
+#sudo -S ufw allow $portnumber/tcp
+#sudo -S ufw allow 8888/tcp
+#sudo -S ufw allow 9877/tcp
+#sudo -S ufw logging on
+#sudo -S ufw enable
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING FAIL2BAN
 #-----------------------------------------------------------------------------------------------------
 
-sudo -S apt -y install fail2ban
-sudo -S systemctl enable fail2ban
-sudo -S systemctl start fail2ban
-sudo -S service sshd restart
+#sudo -S apt -y install fail2ban
+#sudo -S systemctl enable fail2ban
+#sudo -S systemctl start fail2ban
+#sudo -S service sshd restart
 
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING CANONICAL LIVEPATCH SERVICE
 #-----------------------------------------------------------------------------------------------------
 
-sudo snap install canonical-livepatch
-'
+#sudo snap install canonical-livepatch
+
 #-----------------------------------------------------------------------------------------------------
 # INSTALLING REM PROTOCOL BINARIES
 #-----------------------------------------------------------------------------------------------------
