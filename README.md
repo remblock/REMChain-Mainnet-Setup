@@ -16,13 +16,6 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshkeysetup
 ```
 
 ***
-# Protocol Setup
-
-```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/protocolsetup && sudo chmod u+x protocolsetup && sudo ./protocolsetup
-```
-
-***
 # Guardian Setup
 
 ```
