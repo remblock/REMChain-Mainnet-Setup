@@ -228,6 +228,9 @@ remcli transfer $telegramaccountname $owneraccountname -x 120 "$ownertransferamo
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 
+rm ownerkeys
+remcli wallet remove_key $telegrampublickey --password=$walletpass > /dev/null 2>&1
+
 }
 
 #-----------------------------------------------------------------------------------------------------
@@ -881,7 +884,6 @@ remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
 remcli wallet remove_key $activepublickey3 --password=$walletpass
 remcli wallet remove_key $activepublickey4 --password=$walletpass
-remcli wallet remove_key $telegrampublickey --password=$walletpass > /dev/null 2>&1
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -905,7 +907,7 @@ echo -e "\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountna
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 key6 key7 ownerkeys activekeys1 activekeys2 activekeys3 activekeys4 walletpass guardiankeys transferkeys guardiansetup guardianwalletpass
+rm key1 key2 key3 key4 key5 key6 key7 activekeys1 activekeys2 activekeys3 activekeys4 walletpass guardiankeys transferkeys guardiansetup guardianwalletpass
 
 printf "\n[******************************* COMPLETED *********************************]\n\n\n"
 
