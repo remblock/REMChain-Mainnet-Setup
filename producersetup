@@ -423,7 +423,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $producerprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $producerprivatekey" >> ./config/config.ini
+echo -e "\n\n#plugin = eosio::eth_swap_plugin\n\n#swap-authority = $owneraccountname@swap\n\n#swap-signing-key = $producerprivatekey\n\n#eth-wss-provider = $ethnodeaddress\n\n#eth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\n#return_chain_id=ethropsten\n\n#plugin = eosio::rem_oracle_plugin\n\n#cryptocompare-apikey = $cryptocomparekey\n\n#oracle-authority = $owneraccountname@oracle\n\n#oracle-signing-key = $producerprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
@@ -914,7 +914,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\n\nplugin = eosio::eth_swap_plugin\n\nswap-authority = $owneraccountname@swap\n\nswap-signing-key = $producerprivatekey\n\neth-wss-provider = $ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey = $cryptocomparekey\n\noracle-authority = $owneraccountname@oracle\n\noracle-signing-key = $producerprivatekey" >> ./config/config.ini
+echo -e "\n\n#plugin = eosio::eth_swap_plugin\n\n#swap-authority = $owneraccountname@swap\n\n#swap-signing-key = $producerprivatekey\n\n#eth-wss-provider = $ethnodeaddress\n\n#eth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\n#return_chain_id=ethropsten\n\n#plugin = eosio::rem_oracle_plugin\n\n#cryptocompare-apikey = $cryptocomparekey\n\n#oracle-authority = $owneraccountname@oracle\n\n#oracle-signing-key = $producerprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
