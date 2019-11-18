@@ -121,7 +121,7 @@ do
                 printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$telegramaccountname" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$telegramaccountname" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -152,7 +152,7 @@ do
                 printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
