@@ -379,6 +379,9 @@ printf "\n\n"
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$producerprivatekey
+
+printf "\n"
+
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli wallet import --private-key=$transferprivatekey
