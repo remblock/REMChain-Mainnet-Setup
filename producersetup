@@ -894,7 +894,7 @@ remcli wallet remove_key $activepublickey1 --password=$walletpass
 remcli wallet remove_key $activepublickey2 --password=$walletpass
 remcli wallet remove_key $activepublickey3 --password=$walletpass
 remcli wallet remove_key $activepublickey4 --password=$walletpass
-remcli wallet remove_key $telegrampublickey --password=$walletpass
+remcli wallet remove_key $telegrampublickey --password=$walletpass > /dev/null 2>&1
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
