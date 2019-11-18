@@ -24,7 +24,7 @@ do
                 printf "\nERROR: ACCOUNT NAMES SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
                 continue
 
-	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -67,7 +67,7 @@ do
                 printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$telegrampublickey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$telegrampublickey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -90,7 +90,7 @@ do
                 printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$telegramprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$telegramprivatekey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -255,7 +255,7 @@ do
                 printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$ownerpublickey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$ownerpublickey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -279,7 +279,7 @@ do
                 printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$ownerprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$ownerprivatekey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -311,7 +311,7 @@ do
                 printf "\nERROR: ACCOUNT NAME SHOULD ONLY BE 12 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$owneraccountname" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -350,7 +350,7 @@ do
                 printf "\nERROR: PUBLIC KEY SHOULD ONLY BE 53 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$guardianpublickey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$guardianpublickey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -373,7 +373,7 @@ do
                 printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$guardianprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$guardianprivatekey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
@@ -396,7 +396,7 @@ do
                 printf "\nERROR: PRIVATE KEY SHOULD ONLY BE 51 CHARACTERS LONG.\n\n"
                 continue
 
-	elif [[ "$transferprivatekey" =~ ['!@#$%^&*()_+'] ]]; then
+	elif [[ "$transferprivatekey" =~ ['!@#$%^&*()_+,.£'] ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SYMBOLS.\n\n"
 		continue
 
