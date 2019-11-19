@@ -754,6 +754,10 @@ remcli set action permission $owneraccountname rem regproducer NULL -x 120 -p $o
 remcli set action permission $owneraccountname rem.oracle setprice NULL -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.token transfer NULL -x 120 -p $owneraccountname@owner
 
+printf "\n"
+read -p 'Press [Enter] key to continue...'
+printf "\n"
+
 printf "\n[********************** REMOVING ACCOUNT PERMISSIONS ***********************]\n\n"
 
 remcli set account permission $owneraccountname vote NULL -x 120 -p $owneraccountname@owner
