@@ -741,9 +741,26 @@ removekeypermission() {
 
 printf "\n[********************** REMOVING ACCOUNT PERMISSIONS ***********************]\n\n"
 
+owneraccountname=$(head -n 3 key1 | tail -1)
+
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli set account permission $owneraccountname safemode $ownerpublickey NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.swap init NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem delegatebw NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem voteproducer NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem claimrewards NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem unregprod NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem regproducer NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.oracle setprice NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.token transfer NULL -x 120 -p $owneraccountname@owner
+printf "\n"
+remcli set account permission $owneraccountname vote NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname safemode NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname swap NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname claim NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname stake NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname oracle NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname transfer NULL -x 120 -p $owneraccountname@owner
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
