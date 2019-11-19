@@ -22,7 +22,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "PLEASE ENTER YOUR TELEGRAM PUBLIC KEY: " telegrampublickey
+          read -p "PLEASE ENTER YOUR EXISTING OWNER PUBLIC KEY: " telegrampublickey
 
 	  if [[ ! "$telegrampublickey" = "${telegrampublickey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PUBLIC KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -45,7 +45,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "PLEASE ENTER YOUR TELEGRAM PRIVATE KEY: " telegramprivatekey
+          read -p "PLEASE ENTER YOUR EXISTING OWNER PRIVATE KEY: " telegramprivatekey
 
 	  if [[ ! "$telegramprivatekey" = "${telegramprivatekey%[[:space:]]*}" ]]; then
 		printf "\nERROR: PRIVATE KEY SHOULDN'T CONTAIN ANY SPACES.\n\n"
@@ -68,7 +68,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "PLEASE ENTER YOUR TELEGRAM ACCOUNT NAME: " telegramaccountname
+          read -p "PLEASE ENTER YOUR EXISTING ACCOUNT NAME: " telegramaccountname
 
 	  if [[ "$telegramaccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -99,7 +99,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "PLEASE ENTER YOUR NEW OWNER ACCOUNT NAME: " owneraccountname
+          read -p "PLEASE ENTER YOUR NEW PRODUCER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
@@ -130,7 +130,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p " PLEASE ENTER THE AMOUNT TO TRANSFER TO YOUR NEW OWNER ACCOUNT: " ownertransferamount
+          read -p " PLEASE ENTER THE AMOUNT TO TRANSFER TO YOUR NEW PRODUCER ACCOUNT: " ownertransferamount
 
 	  if [[ $ownertransferamount -lt 5000 ]]; then
 		printf "\nERROR: TRANSFER AMOUNT SHOULDN'T BE LESS THEN 5000 REM.\n\n"
@@ -176,7 +176,7 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
-printf "\n[******************** CREATING YOUR NEW OWNER ACCOUNT **********************]\n\n"
+printf "\n[******************* CREATING YOUR NEW PRODUCER ACCOUNT ********************]\n\n"
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
@@ -185,7 +185,7 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
 
-printf "\n[******************** TRANSFERING TO NEW OWNER ACCOUNT *********************]\n\n"
+printf "\n[******************* TRANSFERING TO NEW PRODUCER ACCOUNT *******************]\n\n"
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
@@ -262,7 +262,7 @@ printf "\n"
 
 while [ : ]
 do
-          read -p "PLEASE ENTER YOUR OWNER ACCOUNT NAME: " owneraccountname
+          read -p "PLEASE ENTER YOUR PRODUCER ACCOUNT NAME: " owneraccountname
 
 	  if [[ "$owneraccountname" =~ [[:upper:]] ]]; then
 		printf "\nERROR: ACCOUNT NAME SHOULDN'T CONTAIN ANY CAPS.\n\n"
