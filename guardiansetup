@@ -237,6 +237,7 @@ remcli wallet remove_key $telegrampublickey --password=$walletpass > /dev/null 2
 
 existingaccount() {
 
+printf "\n"
 read -p "PLEASE ENTER YOUR ETHEREUM NODE ADDRESS: " ethnodeaddress
 printf "\n"
 
