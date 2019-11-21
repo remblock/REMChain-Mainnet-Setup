@@ -20,7 +20,7 @@ do
 		printf "\nERROR: ACCOUNT NAMES SHOULDN'T CONTAIN ANY CAPS.\n\n"
                 continue
 
-        elif [[ "${produceraccountnames//[a-z1-5]}" ]]; then
+        elif [[ "${produceraccountnames//[a-z 1-5]}" ]]; then
                 printf "\nERROR: ACCOUNT NAMES SHOULD ONLY HAVE CHARACTERS BETWEEN [a-z] AND [1-5].\n\n"
                 continue
 
