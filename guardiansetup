@@ -701,7 +701,7 @@ progress-bar() {
 
 }
 
-printf  "\n\nWAIT 2 MINUTES FOR CONFIRMATION ON THE ABOVE TRANSACTIONS\n\n"
+printf  "\n\nWAIT 2 MINUTES FOR THE CONFIRMATION OF THE ABOVE TRANSACTIONS\n\n"
 
 progress-bar 112
 
