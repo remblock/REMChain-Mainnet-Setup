@@ -659,40 +659,30 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 
 #-----------------------------------------------------------------------------------------------------
-# WAITING 2 MINUTES FOR TRANSCATION CONFIRMATION
+# WAITING 2 MINUTES FOR NETWORK CONFIRMATION
 #-----------------------------------------------------------------------------------------------------
 
-DELAY=160
-ELAPSED=0
-REMAINING=0
-CTR=0
-STEP=3
+progress-bar() {
 
-printf "\n\n"
+  local duration=${1}
+  already_done() { for ((done=0; done<$elapsed; done++)); do printf "▇"; done }
+  remaining() { for ((remain=$elapsed; remain<$duration; remain++)); do printf " "; done }
+  percentage() { printf "| %s%%" $(( (($elapsed)*100)/($duration)*100/100 )); }
+  clean_line() { printf "\r"; }
 
-while [[ "${DELAY}" -ge "${ELAPSED}" ]]
-do
-	CTR=$(($CTR+1))
-	REMAINING=$(($DELAY - $ELAPSED))
-	MINS=$(($REMAINING/60))
-	SECS=$(($REMAINING - ($MINS*60)))
-	STEPSECS=$(($SECS - $STEP))
+  for (( elapsed=1; elapsed<=$duration; elapsed++ )); do
+      already_done; remaining; percentage
+      sleep 1
+      clean_line
 
-	if [[ ! $STEPSECS -ge 0 ]]
-	then
-		STEPSECS=0
-	fi
+  done
+  clean_line
 
-	echo -ne " | Please wait for $MINS minutes $STEPSECS seconds ...\033[0K\r"
+}
 
-	for ((I=1;I<=$CTR;I++))
-	do
-		echo -ne ">"
-	done
+printf  "\n\nWAITING 2 MINUTES FOR NETWORK CONFIRMATION\n\n"
 
-        sleep $STEP
-	ELAPSED=$(($ELAPSED + $STEP))
-done
+progress-bar 112
 
 printf "\n"
 
