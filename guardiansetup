@@ -680,7 +680,7 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 
 #-----------------------------------------------------------------------------------------------------
-# WAITING 2 MINUTES FOR TRANSCATION CONFIRMATION
+# WAITING 2 MINUTES FOR TRANSACTION CONFIRMATION
 #-----------------------------------------------------------------------------------------------------
 
 progress-bar() {
@@ -701,7 +701,7 @@ progress-bar() {
 
 }
 
-printf  "\n\nWAITING 2 MINUTES FOR NETWORK CONFIRMATION\n\n"
+printf  "\n\nWAIT 2 MINUTES FOR CONFIRMATION ON THE ABOVE TRANSACTIONS\n\n"
 
 progress-bar 112
 
@@ -720,6 +720,9 @@ printf "\n\n[*********************** CREATING ACTIVE MULTISIG ******************
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname active '{"threshold":3,"keys":[],"accounts":[{"permission":{"actor":"'$activeproducername1'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername2'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername3'","permission":"active"},"weight":1},{"permission":{"actor":"'$activeproducername4'","permission":"active"},"weight":1}],"waits":[]}' owner -x 120 -p $owneraccountname@owner
+
+printf "\n"
+read -p 'Press [Enter] key to continue...'
 printf "\n"
 
 }
