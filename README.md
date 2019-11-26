@@ -38,17 +38,17 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producerset
 * **Protected SSH with Fail2Ban**
 * **Updated and upgraded the server**
 * **Installed canonical livepatch service**
-* **Downloads and installs the genesis file**
-* **Downloads and installs remnode binaries**
+* **Download and installed the genesis file**
+* **Download and installed remnode binaries**
 * **Created and adjusted the config.ini file**
 * **Initialised the first run of your remnode**
-* **Create three active multisignature accounts**
+* **Create four active multisignature accounts**
 * **Create two permission keys producer and transfer**
-* **Setting up multiple key permissions for the account**
+* **Setting up multiple key permissions for these two keys**
 * **Created two safemode permissions for regprod and unregprod** 
 * **Your producer key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
-* **Three active keys will be created so that its not directly linked to the owner key**
+* **Four active keys will be created so that its not directly linked to the owner key**
 * **When accessing your server you will need to login using your SSH Key which was copied over by the above SSH script.** 
 
 ***
