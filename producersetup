@@ -400,7 +400,7 @@ printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER ****************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@vote
+remcli system voteproducer prods $owneraccountname $owneraccountname -p $owneraccountname@producer
 printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n"
