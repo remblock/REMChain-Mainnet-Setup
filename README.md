@@ -49,7 +49,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producerset
 * **Your producer key will be used for claiming, voting and restaking**
 * **Your transfer key will be used for making transfers on the REMChain**
 * **Four active keys will be created so that its not directly linked to the owner key**
-* **When accessing your server you will need to login using your SSH Key which was copied over by the above SSH script.** 
+* **When accessing your server you will need to login using your SSH Key which was copied over by the SSH script.** 
 
 ***
 # Additional Setup Information
