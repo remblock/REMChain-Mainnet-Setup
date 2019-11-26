@@ -835,7 +835,7 @@ printf "\n\n[********************* DELEGATING STAKE TO PRODUCER ****************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@stake
+remcli system delegatebw $owneraccountname $owneraccountname "$stakingamount REM" -x 120 -p $owneraccountname@producer
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -871,7 +871,7 @@ printf "\n[********************* CASTING VOTE TO BLOCK PRODUCER ****************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $owneraccountname@vote
+remcli system voteproducer prods $owneraccountname $owneraccountname -x 120 -p $owneraccountname@producer
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
