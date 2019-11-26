@@ -39,9 +39,9 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producerset
 * **Updated and upgraded the server**
 * **Installed canonical livepatch service**
 * **Download and installed the genesis file**
-* **Download and installed remnode binaries**
 * **Created and adjusted your config.ini file**
-* **Initialised the first run of your remnode**
+* **Download and installed remnode binaries**
+* **Initialised the first execution of remnode**
 * **Create four active multisignature accounts**
 * **Create two permission keys producer and transfer**
 * **Setting up multiple key permissions for these two keys**
