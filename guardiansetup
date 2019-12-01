@@ -447,7 +447,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@swap\n\nswap-signing-key =$transferprivatekey\n\neth-wss-provider =$ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@oracle\n\noracle-signing-key =$transferprivatekey" >> ./config/config.ini
+echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@transfer\n\nswap-signing-key =$transferprivatekey\n\neth-wss-provider =$ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@producer\n\noracle-signing-key =$transferprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
@@ -915,7 +915,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@swap\n\nswap-signing-key =$transferprivatekey\n\neth-wss-provider =$ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@oracle\n\noracle-signing-key =$transferprivatekey" >> ./config/config.ini
+echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@transfer\n\nswap-signing-key =$transferprivatekey\n\neth-wss-provider =$ethnodeaddress\n\neth_swap_contract_address=0x39882ab5105b1d627e6aed3ff39c1b004a18e207\n\nreturn_chain_id=ethropsten\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@producer\n\noracle-signing-key =$transferprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
