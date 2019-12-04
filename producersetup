@@ -724,6 +724,7 @@ remcli set action permission $owneraccountname rem voteproducer NULL -x 120 -p $
 remcli set action permission $owneraccountname rem claimrewards NULL -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod NULL -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem regproducer NULL -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem undelegatebw NULL -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.oracle setprice NULL -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.token transfer NULL -x 120 -p $owneraccountname@owner
 
@@ -781,6 +782,7 @@ remcli set action permission $owneraccountname rem voteproducer producer -x 120 
 remcli set action permission $owneraccountname rem claimrewards producer -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem unregprod safemode -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem regproducer safemode -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem undelegatebw safemode -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.oracle setprice producer -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@owner
 
