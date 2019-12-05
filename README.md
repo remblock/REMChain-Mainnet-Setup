@@ -89,7 +89,7 @@ remcli wallet unlock
 > **This command line will unlock your wallet.**
 
 ```
-remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
+remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.**
