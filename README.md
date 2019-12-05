@@ -95,43 +95,43 @@ remcli system claimrewards YOURACCOUNTNAME -p YOURACCOUNTNAME@claim
 > **This command line will be used for claiming your rewards, make sure that your wallet is unlocked before making a claim.**
 
 ```
-remcli system voteproducer prods YOURACCOUNTNAME YOURACCOUNTNAME -p YOURACCOUNTNAME@vote
+remcli system voteproducer prods YOURACCOUNTNAME YOURACCOUNTNAME -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for voting for voting for yourself.**
 
 ```
-remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@vote
+remcli system voteproducer prods YOURACCOUNTNAME BP_ACCOUNT_NAME1 BP_ACCOUNCT_NAME2 -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for voting for multiple block producers.**
 
 ```
-remcli system voteproducer approve BPACCOUNTNAME -p YOURACCOUNTNAME@vote
+remcli system voteproducer approve BPACCOUNTNAME -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for adding a new block producer to your list of voted producers.**
 
 ```
-remcli system voteproducer unapprove BPACCOUNTNAME -p YOURACCOUNTNAME@vote
+remcli system voteproducer unapprove BPACCOUNTNAME -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for removing a block producer from your list of voted producers.**
 
 ```
-remcli system delegatebw YOURACCOUNTNAME YOURACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
+remcli system delegatebw YOURACCOUNTNAME YOURACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for staking your block rewards to yourself, make sure that your wallet is unlocked before restaking your rewards.**
 
 ```
-remcli system delegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
+remcli system delegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for staking your block rewards to another block producer, make sure that your wallet is unlocked before restaking your rewards to another block producer.**
 
 ```
-remcli system undelegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@stake
+remcli system undelegatebw YOURACCOUNTNAME BPACCOUNTNAME "AMOUNT REM" -p YOURACCOUNTNAME@producer
 ```
 
 > **This command line is used for taking back your stake from a block producer, make sure that your wallet is unlocked before taking back your stake.**
@@ -213,7 +213,7 @@ remcli system listproducers
 > **This command line will return a list of all block producers.**
 
 ```
-remcli system unregprod YOURACCOUNTNAME
+remcli system unregprod YOURACCOUNTNAME -p YOURACCOUNTNAME@owner
 ```
 
 > **This command line is used to unregister you as a block producer.**
