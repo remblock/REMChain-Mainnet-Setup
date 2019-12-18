@@ -1,5 +1,5 @@
 #
-# **REMChain-Testnet-V2 - (Ubuntu 18.04)**
+# **REMChain-Mainnet-V1 - (Ubuntu 18.04)**
 <br>
 
 **The REMME [Faucet Bot](https://t.me/RemmeProtocolTestnetFaucetBot) helps you with getting set up and creating an account with some tokens in it. With the help of this bot you will get the following data about your testnet account:**
@@ -12,14 +12,14 @@
 # SSH Keys Setup
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/sshkeysetup && sudo chmod u+x sshkeysetup && sudo ./sshkeysetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/sshkeysetup && sudo chmod u+x sshkeysetup && sudo ./sshkeysetup
 ```
 
 ***
 # Guardian Setup
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
 ```
 
 ***
@@ -28,7 +28,7 @@ sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/guardianset
 <br>
 
 ```
-sudo wget https://github.com/remblock/REMChain-Testnet-V2/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
 ```
 
 <br>
