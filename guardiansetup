@@ -35,7 +35,7 @@ done
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli system voteproducer prods $owneraccountname $produceraccountnames -x 120 -p $owneraccountname@producer
+remcli system voteproducer prods $owneraccountname $produceraccountnames -x 120 -p $owneraccountname@guardian
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
@@ -447,7 +447,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@producer\n\nswap-signing-key =$producerprivatekey\n\neth-wss-provider =$ethnodeaddress\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@producer\n\noracle-signing-key =$producerprivatekey" >> ./config/config.ini
+echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@guardian\n\nswap-signing-key =$producerprivatekey\n\neth-wss-provider =$ethnodeaddress\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@guardian\n\noracle-signing-key =$producerprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
@@ -758,7 +758,7 @@ printf "\n[********************** REMOVING ACCOUNT PERMISSIONS *****************
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname safemode NULL -x 120 -p $owneraccountname@owner
-remcli set account permission $owneraccountname producer NULL -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname guardian NULL -x 120 -p $owneraccountname@owner
 remcli set account permission $owneraccountname transfer NULL -x 120 -p $owneraccountname@owner
 
 printf "\n"
@@ -778,7 +778,7 @@ printf "\n[********************** CREATING ACCOUNT PERMISSIONS *****************
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
 remcli set account permission $owneraccountname safemode $ownerpublickey owner -x 120 -p $owneraccountname@owner
-remcli set account permission $owneraccountname producer $producerpublickey active -x 120 -p $owneraccountname@owner
+remcli set account permission $owneraccountname guardian $guardianpublickey active -x 120 -p $owneraccountname@owner
 remcli set account permission $owneraccountname transfer $transferpublickey active -x 120 -p $owneraccountname@owner
 
 printf "\n"
@@ -797,14 +797,14 @@ printf "\n[*********************** CREATING ACTION PERMISSIONS *****************
 
 remcli wallet lock > /dev/null 2>&1
 remcli wallet unlock --password=$walletpass > /dev/null 2>&1
-remcli set action permission $owneraccountname rem unregprod safemode -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem regproducer safemode -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem unregprod guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem regproducer guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.swap init guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem delegatebw guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem voteproducer guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem claimrewards guardian -x 120 -p $owneraccountname@owner
+remcli set action permission $owneraccountname rem.oracle setprice guardian -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem undelegatebw safemode -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem.swap init producer -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem delegatebw producer -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem voteproducer producer -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem claimrewards producer -x 120 -p $owneraccountname@owner
-remcli set action permission $owneraccountname rem.oracle setprice producer -x 120 -p $owneraccountname@owner
 remcli set action permission $owneraccountname rem.token transfer transfer -x 120 -p $owneraccountname@owner
 
 printf "\n"
@@ -917,7 +917,7 @@ sudo remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
 # ADDING SWAP AND ORACLE PLUGINS TO CONFIG.INI
 #-----------------------------------------------------------------------------------------------------
 
-echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@producer\n\nswap-signing-key =$producerprivatekey\n\neth-wss-provider =$ethnodeaddress\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@producer\n\noracle-signing-key =$producerprivatekey" >> ./config/config.ini
+echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@guardian\n\nswap-signing-key =$producerprivatekey\n\neth-wss-provider =$ethnodeaddress\n\nplugin = eosio::rem_oracle_plugin\n\ncryptocompare-apikey =$cryptocomparekey\n\noracle-authority =$owneraccountname@guardian\n\noracle-signing-key =$producerprivatekey" >> ./config/config.ini
 
 #-----------------------------------------------------------------------------------------------------
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
