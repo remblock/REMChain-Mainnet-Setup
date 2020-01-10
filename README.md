@@ -6,14 +6,14 @@
 # SSH Keys Setup
 
 ```
-sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/sshkeysetup && sudo chmod u+x sshkeysetup && sudo ./sshkeysetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/sshkeysetup && sudo chmod u+x sshkeysetup && sudo ./sshkeysetup
 ```
 
 ***
 # Guardian Setup
 
 ```
-sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/guardiansetup && sudo chmod u+x guardiansetup && sudo ./guardiansetup
 ```
 
 ***
@@ -22,7 +22,7 @@ sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/guardianset
 <br>
 
 ```
-sudo wget https://github.com/remblock/REMChain-Mainnet-V1/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
+sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
 ```
 
 <br>
