@@ -937,8 +937,8 @@ printf "\n\n[******************************* COMPLETED *************************
 # INSTALLING REM PROTOCOL BINARIES
 #-----------------------------------------------------------------------------------------------------
 
-sudo wget https://github.com/Remmeauth/remprotocol/releases/download/0.4.0/remprotocol_0.4.0_amd64.deb 
-sudo apt install ./remprotocol_0.4.0_amd64.deb
+wget https://github.com/Remmeauth/remprotocol/releases/download/0.4.1/remprotocol_0.4.1.amd64.deb
+sudo apt install ./remprotocol_0.4.1.amd64.deb
 
 #-----------------------------------------------------------------------------------------------------
 # BOOTING REMNODE AND WALLET
