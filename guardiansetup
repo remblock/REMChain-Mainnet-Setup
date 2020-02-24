@@ -958,12 +958,40 @@ mkdir data && mkdir config
 
 echo -e "plugin = eosio::chain_api_plugin\n\nplugin = eosio::net_api_plugin\n\nhttp-server-address = 0.0.0.0:8888\n\np2p-listen-endpoint = 0.0.0.0:9876\n\n# https://remme.io\n\np2p-peer-address = p2p.remchain.remme.io:2087\n\nverbose-http-errors = true\n\nchain-state-db-size-mb = 100480\n\nreversible-blocks-db-size-mb = 10480" > ./config/config.ini
 
+#----------------------------------------------------------------------------------------------------
+# RESTORE FROM SNAPSHOT                                                                              
+#----------------------------------------------------------------------------------------------------
+
+sudo wget https://github.com/remblock/REMChain-Remote-Snapshots/raw/master/setup-remote-snapshot 
+sudo chmod u+x setup-remote-snapshot 
+sudo ./setup-remote-snapshot
+cd data
+cd snapshots
+sudo ./restore-remote-snapshot
+
+#----------------------------------------------------------------------------------------------------
+# GRACEFULLY STOP REMNODE                                                                            
+#----------------------------------------------------------------------------------------------------
+
+remnode_pid=$(pgrep remnode)
+
+if [ ! -z "$remnode_pid" ]; 
+then
+  if ps -p $remnode_pid > /dev/null; 
+  then
+    kill -SIGINT $remnode_pid
+  fi
+  while ps -p $remnode_pid > /dev/null; do
+    sleep 1
+  done
+fi
+
 #-----------------------------------------------------------------------------------------------------
-# THE INITIAL RUN OF THE REMNODE
+# RUN REMNODE IN THE BACKGROUND
 #-----------------------------------------------------------------------------------------------------
 
-remnode --config-dir ./config/ --data-dir ./data/ --delete-all-blocks --genesis-json genesis.json >> remnode.log 2>&1 & > /dev/null 2>&1
-sleep 7
+remnode --config-dir ./config/ --data-dir ./data/ >> remnode.log 2>&1 &
+sleep 4
 
 while [ : ]
 do
