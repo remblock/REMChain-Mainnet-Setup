@@ -1083,6 +1083,38 @@ printf "\n"
 read -p 'Press [Enter] key to continue...'
 printf "\n\n"
 
+#----------------------------------------------------------------------------------------------------
+# SETUP GRACEFUL SHUTDOWN                                                                            
+#----------------------------------------------------------------------------------------------------
+
+echo '#!/bin/sh
+remnode_pid=$(pgrep remnode)
+if [ ! -z "$remnode_pid" ]; then
+if ps -p $remnode_pid > /dev/null; then
+kill -SIGINT $remnode_pid
+fi
+while ps -p $remnode_pid > /dev/null; do
+sleep 1
+done
+fi
+' > /root/node_shutdown.sh
+echo '[Unit]
+Description=Gracefully shut down remnode to avoid database dirty flag
+DefaultDependencies=no
+After=poweroff.target shutdown.target reboot.target halt.target kexec.target
+Requires=network-online.target network.target
+[Service]
+Type=oneshot
+ExecStop=/root/node_shutdown.sh
+RemainAfterExit=yes
+KillMode=none
+[Install]
+WantedBy=multi-user.target' > /etc/systemd/system/node_shutdown.service
+sudo chmod +x /root/node_shutdown.sh
+systemctl daemon-reload
+systemctl enable node_shutdown
+systemctl restart node_shutdown
+
 #-----------------------------------------------------------------------------------------------------
 # CREATING THE REMCLI WALLET
 #-----------------------------------------------------------------------------------------------------
