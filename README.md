@@ -1,5 +1,5 @@
 #
-# **REMChain-Mainnet-Setup - (Ubuntu 18.04)**
+# **REMChain-Mainnet-Setup | (Ubuntu 18.04)**
 
 
 ***
