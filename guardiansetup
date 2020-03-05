@@ -453,7 +453,7 @@ echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 walletpass guardiansetup guardianwalletpass
+rm key1 remprotocol guardiansetup guardianwalletpass
 
 printf "\n\n[******************************* COMPLETED *********************************]\n\n\n"
 
@@ -923,7 +923,7 @@ echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@
 # REMOVING FILES WHICH AINT REQUIRED ANYMORE
 #-----------------------------------------------------------------------------------------------------
 
-rm key1 key2 key3 key4 key5 key6 key7 activekeys1 activekeys2 activekeys3 activekeys4 walletpass guardiankeys transferkeys guardiansetup guardianwalletpass
+rm key1 key2 key3 key4 key5 key6 key7 activekeys1 activekeys2 activekeys3 activekeys4 remprotocol guardiankeys transferkeys guardiansetup guardianwalletpass
 
 printf "\n\n[******************************* COMPLETED *********************************]\n\n\n"
 
@@ -938,6 +938,7 @@ printf "\n\n[******************************* COMPLETED *************************
 #-----------------------------------------------------------------------------------------------------
 
 wget https://raw.githubusercontent.com/remblock/REMChain-Scripts/master/remprotocol
+chmod +x remprotocol
 sudo ./remprotocol
 
 #-----------------------------------------------------------------------------------------------------
