@@ -434,7 +434,11 @@ echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@
 
 rm key1 remprotocol producersetup producerwalletpass
 
-printf "\n\n[******************************* COMPLETED *********************************]\n\n\n"
+echo ""
+echo "====================================="
+echo "REMCHAIN-PRODUCER-SETUP HAS COMPLETED"
+echo "====================================="
+echo ""
 
 }
 
@@ -937,7 +941,11 @@ echo -e "\nplugin = eosio::eth_swap_plugin\n\nswap-authority =$owneraccountname@
 
 rm key1 key2 key3 key4 key5 key6 key7 activekeys1 activekeys2 activekeys3 activekeys4 remprotocol producerkeys transferkeys producersetup producerwalletpass
 
-printf "\n\n[******************************* COMPLETED *********************************]\n\n\n"
+echo ""
+echo "====================================="
+echo "REMCHAIN-PRODUCER-SETUP HAS COMPLETED"
+echo "====================================="
+echo ""
 
 }
 
