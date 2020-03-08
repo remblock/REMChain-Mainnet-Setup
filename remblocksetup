@@ -124,7 +124,7 @@ sleep 2
 
 printf "\n"
 read -p 'Press [Enter] key to continue...'
-printf "\n\n"
+printf "\n"
 
 #----------------------------------------------------------------------------------------------------#
 # CREATING THE REMCLI WALLET                                                                         #
@@ -134,7 +134,7 @@ remcli wallet create --file walletpass
 walletpass=$(cat walletpass)
 echo $walletpass > producerwalletpass
 
-printf "\n\n"
+printf "\n"
 
 #----------------------------------------------------------------------------------------------------#
 # SETUP GRACEFUL SHUTDOWN                                                                            #
