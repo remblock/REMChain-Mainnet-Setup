@@ -105,6 +105,10 @@ sudo -S service sshd restart
 
 sudo snap install canonical-livepatch
 
+#----------------------------------------------------------------------------------------------------#
+# READJUST CONFIG.INI FILE                                                                           #
+#----------------------------------------------------------------------------------------------------#
+
 rm /root/config/config.ini
 wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/config.ini
 cat /root/config.ini >> /root/config/config.ini
