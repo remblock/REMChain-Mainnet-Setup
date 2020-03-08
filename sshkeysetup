@@ -61,12 +61,18 @@ do
     
         case $yn2 in
                 y|Y|yes|YES) ssh_copy
-                             printf "\n[********************************** DONE ***********************************]\n"
-                             printf "\n"
+                             echo ""
+                             echo "==========================="
+                             echo "SSH-KEY-SETUP HAS COMPLETED"
+                             echo "==========================="
+                             echo ""
                              break;;
 
-                n|N|no|NO)   printf "\n[********************************** DONE ***********************************]\n"
-                             printf "\n"
+                n|N|no|NO)   echo ""
+                             echo "==========================="
+                             echo "SSH-KEY-SETUP HAS COMPLETED"
+                             echo "==========================="
+                             echo ""
                              break;;
 
                 *)           echo -e "\n\nPLEASE ANSWER USING [y/n] or [Y/N]\n";;
