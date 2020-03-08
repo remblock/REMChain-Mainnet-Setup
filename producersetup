@@ -955,7 +955,7 @@ sudo ./remprotocol
 rm remprotocol
 
 #----------------------------------------------------------------------------------------------------#
-# BOOTING REMNODE AND WALLET                                                                         #
+# FETCHING GENESIS JSON                                                                              #
 #----------------------------------------------------------------------------------------------------#
 
 wget https://remchain.remme.io/genesis.json
