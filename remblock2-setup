@@ -134,7 +134,6 @@ sudo snap install canonical-livepatch
 rm /root/config/config.ini
 wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/config2.ini
 mv /root/config2.ini /root/config/config.ini
-rm /root/config2.ini
 
 #----------------------------------------------------------------------------------------------------#
 # RUNNING THE WALLET DAEMON                                                                          #
