@@ -76,6 +76,7 @@ sudo ./restore-remote-snapshot
 #----------------------------------------------------------------------------------------------------#
 
 echo ""
+cd ~
 sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
