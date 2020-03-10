@@ -15,6 +15,31 @@ then
 fi
 
 #----------------------------------------------------------------------------------------------------#
+# CONFIGURATION VARIABLES                                                                            #
+#----------------------------------------------------------------------------------------------------#
+
+create_ssh_dir="/root/.ssh"
+create_data_dir="/root/data"
+state_dir="/root/data/state"
+blocks_dir="/root/data/blocks"
+create_config_dir="/root/config"
+remnode_log_file="/root/remnode.log"
+config_file="/root/config/config.ini"
+create_snapshot_dir="/root/data/snapshots"
+
+#----------------------------------------------------------------------------------------------------#
+# CREATE DIRECTORY IF IT DOESN'T EXIST                                                               #
+#----------------------------------------------------------------------------------------------------#
+
+if [ ! -d "$create_data_dir" -o -d "$create_config_dir" -o -d "$create_snapshot_dir" ]
+then
+  mkdir -p "$create_ssh_dir"
+  mkdir -p "$create_data_dir"
+  mkdir -p "$create_config_dir"
+  mkdir -p "$create_snapshot_dir"
+fi
+
+#----------------------------------------------------------------------------------------------------#
 # INSTALLING REM PROTOCOL BINARIES                                                                   #
 #----------------------------------------------------------------------------------------------------#
 
@@ -28,12 +53,6 @@ rm remprotocol
 #----------------------------------------------------------------------------------------------------#
 
 wget https://remchain.remme.io/genesis.json
-
-#----------------------------------------------------------------------------------------------------#
-# CREATING A CONFIG AND DATA DIRECTORIES                                                             #
-#----------------------------------------------------------------------------------------------------#
-
-mkdir data && mkdir config
 
 #----------------------------------------------------------------------------------------------------#
 # CONFIGURATION FILE (CONFIG/CONFIG.INI)                                                             #
@@ -91,7 +110,6 @@ sudo -S ufw allow ssh/tcp
 sudo -S ufw limit ssh/tcp
 sudo -S ufw allow $portnumber/tcp
 sudo -S ufw allow 8888/tcp
-sudo -S ufw allow 9876/tcp
 sudo -S ufw logging on
 sudo -S ufw enable
 
@@ -102,7 +120,6 @@ sudo -S ufw enable
 sudo -S apt -y install fail2ban
 sudo -S systemctl enable fail2ban
 sudo -S systemctl start fail2ban
-sudo -S service sshd restart
 
 #----------------------------------------------------------------------------------------------------#
 # INSTALLING CANONICAL LIVEPATCH SERVICE                                                             #
@@ -181,8 +198,17 @@ sudo resize2fs /dev/nvme1n1
 sudo remnode --config-dir /root/config/ --data-dir /root/data/ >> /root/remnode.log 2>&1 &
 exit 0' > /etc/rc.local
 sudo chmod +x /etc/rc.local
+
+#----------------------------------------------------------------------------------------------------#
+# ADDING SSH PUBLIC KEY TO SERVER                                                                    #
+#----------------------------------------------------------------------------------------------------#
+
+echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5govVMkNP5HyBQ+DBWSbUe97qyKVzoI5s1lR+x1HCSdetS8dacN6e86eWaWNUQBBr6O0AttbXULqxvOBNF1GzWFw0T1jFr9lCtuz2Y06KGjJBHRHXopeSp6VHJr+BG4Q4l9fzguYO/EmQf9Y48eCXCs4eFkKE6mFlfGkNvRInpz6bbRvwYOFEEKiTyLXE6y1910dVrgLTd2P1kyh88aCwuF4GnexM4AsipzKpSCR3/s/gqxK4YpW8KsMBCdcQMYHZ2dgxoscudcp2l88hgnQJOriYOfjAnXSKttaGNRsER/hEcKGKJsRPELJZLCn+Ahv322GTsnTRMvipfXUtDqoTdpteM5lSz+GlUe6get+O501kTz9xF9aMK7fJdj264mzj8JfvxKsZFKfsDJvTkoIV8GPdzSk5fYr8W+lFzrNXKqHBeR8+WXdVYKIq8l6Y3NOCUcf6I+kYeHPKOAqkl8mSue2Q9GPGTn8z3tAg1ASuNxFQCqhcDCyF4RcZzVMfTO6tTe56Udt/mOr2QRb6C8+wI4YK9l6Un+S6MLAt1EQZyHEm/uI0Cv4SIvh2X4ksZLEgNNAcw63MxEOLnUiGacrhKG1v4qixtjaZITkc0M518J43FK8157q0DJwbMDQCOLCWyqoytRYNhfdNvTc6sefJBJOMqKbUwGxvrZue9T6BnQ== root@REMBLOCK' > ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
+
 echo ""
 echo "==============================="
 echo "REMBLOCK-PRODUCER HAS COMPLETED"
 echo "==============================="
 echo ""
+sudo -S service sshd restart
