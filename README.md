@@ -25,6 +25,23 @@ sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/guardian
 sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/producersetup && sudo chmod u+x producersetup && sudo ./producersetup
 ```
 
+***
+# Remblock Producer Setup
+
+<br>
+
+```
+sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/remblock1-setup && sudo chmod u+x remblock1-setup && sudo ./remblock1-setup
+```
+
+***
+# Remblock Backup Producer Setup
+
+<br>
+
+```
+sudo wget https://github.com/remblock/REMChain-Mainnet-Setup/raw/master/remblock2-setup && sudo chmod u+x remblock2-setup && sudo ./remblock2-setup
+```
 <br>
 
 * **Setup a firewall with UFW**
