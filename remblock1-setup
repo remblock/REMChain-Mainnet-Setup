@@ -75,6 +75,7 @@ sudo ./restore-remote-snapshot
 # UPDATING AND UPGRADING PACKAGE DATABASE                                                            #
 #----------------------------------------------------------------------------------------------------#
 
+echo ""
 sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
