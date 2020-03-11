@@ -70,7 +70,6 @@ sudo ./setup-remote-snapshot
 cd data
 cd snapshots
 sudo ./restore-remote-snapshot
-rm ./setup-remote-snapshot
 
 #----------------------------------------------------------------------------------------------------#
 # UPDATING AND UPGRADING PACKAGE DATABASE                                                            #
@@ -78,6 +77,7 @@ rm ./setup-remote-snapshot
 
 echo ""
 cd ~
+rm ./setup-remote-snapshot
 sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
