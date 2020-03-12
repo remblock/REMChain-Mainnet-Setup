@@ -134,6 +134,7 @@ sudo -S systemctl start fail2ban
 # INSTALLING CANONICAL LIVEPATCH SERVICE                                                             #
 #----------------------------------------------------------------------------------------------------#
 
+sudo apt install snapd -y
 sudo snap install canonical-livepatch
 
 #----------------------------------------------------------------------------------------------------#
