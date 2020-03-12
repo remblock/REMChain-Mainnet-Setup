@@ -49,7 +49,7 @@ sudo ./remprotocol
 rm remprotocol
 
 #----------------------------------------------------------------------------------------------------#
-# BOOTING REMNODE AND WALLET                                                                         #
+# ADDING REMNODE GENESIS.JSON                                                                      #
 #----------------------------------------------------------------------------------------------------#
 
 wget https://remchain.remme.io/genesis.json
