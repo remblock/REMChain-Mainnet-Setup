@@ -84,6 +84,8 @@ sudo ./restore-remote-snapshot
 echo ""
 cd ~
 rm ./setup-remote-snapshot
+sudo apt install linux-tools-common -y
+sudo apt install linux-tools-4.15.0-88-generic -y
 sudo -S apt update && sudo -S apt upgrade -y
 echo ""
 
@@ -202,6 +204,7 @@ systemctl restart node_shutdown
 echo '#!/bin/bash
 sudo resize2fs /dev/nvme1n1
 sudo remnode --config-dir /root/config/ --data-dir /root/data/ >> /root/remnode.log 2>&1 &
+cpupower frequency-set --governor performance
 exit 0' > /etc/rc.local
 sudo chmod +x /etc/rc.local
 
